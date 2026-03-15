@@ -5,8 +5,10 @@ import './HomePage.css'
 export default function HomePage() {
   return (
     <div className="home-page">
-      <CardStack />
-      <div className="home-page__widget-wrap">
+      <div className="home-page__hero">
+        <CardStack />
+      </div>
+      <div className="home-page__about">
         <MeWidget />
       </div>
     </div>
