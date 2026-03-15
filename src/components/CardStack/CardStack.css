@@ -1,0 +1,50 @@
+.card-stack {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  overflow: visible;
+}
+
+.card-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 40px;
+  transform-origin: center center;
+  will-change: transform;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+}
+
+.card-item:active {
+  cursor: grabbing;
+}
+
+.card-face {
+  width: 100%;
+  height: 100%;
+  border-radius: 40px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Subtle inner shadow to distinguish stacked cards */
+  box-shadow:
+    0 2px 8px rgba(61, 61, 58, 0.06),
+    0 8px 32px rgba(61, 61, 58, 0.08);
+}
+
+.card-top .card-face {
+  box-shadow:
+    0 4px 16px rgba(61, 61, 58, 0.08),
+    0 16px 48px rgba(61, 61, 58, 0.12);
+}
+
+.card-label {
+  font-family: 'Literata', serif;
+  font-size: 15px;
+  color: #b0afa8;
+  letter-spacing: 0.03px;
+  pointer-events: none;
+}

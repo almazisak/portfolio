@@ -1,0 +1,183 @@
+.me-widget {
+  position: relative;
+  background: #ffffff;
+  border-radius: 40px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  overflow: hidden;
+  /* Smooth height expansion */
+  transition: gap 0.3s ease;
+}
+
+.me-widget--active {
+  gap: 24px;
+}
+
+/* ── Heading ─────────────────────────────────────────── */
+.me-widget__heading {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.me-widget__avatar {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.me-widget__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+.me-widget__text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.me-widget__name {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.16;
+  letter-spacing: 0.12px;
+  color: #3d3d3a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.me-widget__role {
+  font-family: 'Literata', serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.4;
+  letter-spacing: 0.026px;
+  color: #73726c;
+  /* Allow wrapping on narrow screens */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.me-widget__toggle {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+  background: none;
+  border-radius: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* ── Bio ─────────────────────────────────────────────── */
+.me-widget__bio {
+  padding: 0 8px;
+  overflow: hidden;
+  animation: bio-in 0.25s ease both;
+}
+
+@keyframes bio-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.me-widget__bio p {
+  font-family: 'Literata', serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.45;
+  letter-spacing: 0.03px;
+  color: #3d3d3a;
+}
+
+/* ── Footer ──────────────────────────────────────────── */
+.me-widget__footer {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+.me-widget__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  background: #fef2de;
+  border-radius: 24px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s ease;
+  flex-shrink: 0;
+}
+
+.me-widget__btn:active {
+  background: #fde8c4;
+}
+
+/* Download CV — fills remaining space */
+.me-widget__btn--cv {
+  flex: 1;
+  flex-shrink: 1;
+  gap: 6px;
+  padding: 0 12px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.me-widget__btn--cv svg {
+  flex-shrink: 0;
+}
+
+.me-widget__btn--cv span {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1;
+  color: #3d3d3a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Square icon buttons */
+.me-widget__btn--icon {
+  width: 48px;
+}
+
+/* Grouped buttons share inner rounded corners */
+.me-widget__btn-group {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.me-widget__btn--left {
+  border-radius: 24px 2px 2px 24px;
+  width: 48px;
+}
+
+.me-widget__btn--right {
+  border-radius: 2px 24px 24px 2px;
+  width: 48px;
+}
