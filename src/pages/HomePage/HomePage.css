@@ -35,5 +35,8 @@
   height: 20vh;
   flex-shrink: 0;
   width: 100%;
-  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 24px;
+  overflow: visible;
 }

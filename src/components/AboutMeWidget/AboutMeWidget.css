@@ -7,8 +7,6 @@
   flex-direction: column;
   gap: 16px;
   width: 100%;
-  max-width: 440px;
-  min-width: 345px;
   overflow: hidden;
   box-shadow: 0px 18px 36px 12px rgba(123, 68, 33, 0.11);
   transition: gap 0.3s ease;
@@ -18,30 +16,23 @@
   gap: 24px;
 }
 
-/* ── Toggle button ───────────────────────────────────── */
-.about-widget__toggle {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 24px;
-  height: 24px;
-  background: none;
-  border: none;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 1;
-}
-
-/* ── Heading ─────────────────────────────────────────── */
+/* ── Heading (full click zone) ───────────────────────── */
 .about-widget__heading {
   display: flex;
   gap: 8px;
   align-items: flex-start;
   width: 100%;
-  padding-right: 32px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.about-widget__toggle-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
 }
 
 .about-widget__avatar {
