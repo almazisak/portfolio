@@ -1,0 +1,120 @@
+.about-widget {
+  position: relative;
+  background: #ffffff;
+  border-radius: 32px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 440px;
+  min-width: 345px;
+  overflow: hidden;
+  box-shadow: 0px 18px 36px 12px rgba(123, 68, 33, 0.11);
+  transition: gap 0.3s ease;
+}
+
+.about-widget--active {
+  gap: 24px;
+}
+
+/* ── Toggle button ───────────────────────────────────── */
+.about-widget__toggle {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1;
+}
+
+/* ── Heading ─────────────────────────────────────────── */
+.about-widget__heading {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  width: 100%;
+  padding-right: 32px;
+}
+
+.about-widget__avatar {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.about-widget__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-widget__text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-widget__name {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.16;
+  letter-spacing: 0.12px;
+  color: #3d3d3a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.about-widget__role {
+  font-family: 'Literata', serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.4;
+  letter-spacing: 0.026px;
+  color: #73726c;
+}
+
+/* ── Bio ─────────────────────────────────────────────── */
+.about-widget__bio {
+  padding: 0 8px 12px;
+  animation: bio-in 0.25s ease both;
+}
+
+@keyframes bio-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.about-widget__bio p {
+  font-family: 'Literata', serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.45;
+  letter-spacing: 0.03px;
+  color: #3d3d3a;
+}
+
+/* ── Footer ──────────────────────────────────────────── */
+.about-widget__footer {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+}
+
+.about-widget__cv-btn {
+  flex: 1;
+  min-width: 0;
+}
