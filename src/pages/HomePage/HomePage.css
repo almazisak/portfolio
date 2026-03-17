@@ -1,19 +1,43 @@
+/* ── Main page wrapper ──────────────────────────────────── */
 .home-page {
-  position: relative;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: #faf9f5;
   display: flex;
   flex-direction: column;
+  padding: 0 24px;     /* Mobile [393px] */
   overflow: hidden;
   padding-bottom: 85px;
 }
 
-/* Fixed widget at bottom */
-.home-page__widget-wrap {
-  position: fixed;
-  bottom: 24px;
-  left: 24px;
-  right: 24px;
-  z-index: 100;
+/* Tablet [834px+] */
+@media (min-width: 834px) {
+  .home-page {
+    padding: 0 120px;
+  }
+}
+
+/* Desktop [1440px+] */
+@media (min-width: 1440px) {
+  .home-page {
+    padding: 0 116px;
+  }
+}
+
+/* ── Slots ──────────────────────────────────────────────── */
+.home-page__hero {
+  height: 80vh;
+  flex-shrink: 0;
+  width: 100%;
+  position: relative;
+}
+
+.home-page__about {
+  height: 20vh;
+  flex-shrink: 0;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 24px;
+  overflow: visible;
 }

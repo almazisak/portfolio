@@ -1,13 +1,15 @@
 import CardStack from '../../components/CardStack/CardStack'
-import MeWidget from '../../components/MeWidget/MeWidget'
+import AboutMeWidget from '../../components/AboutMeWidget/AboutMeWidget'
 import './HomePage.css'
 
 export default function HomePage() {
   return (
     <div className="home-page">
-      <CardStack />
-      <div className="home-page__widget-wrap">
-        <MeWidget />
+      <div className="home-page__hero">
+        <CardStack />
+      </div>
+      <div className="home-page__about">
+        <AboutMeWidget />
       </div>
     </div>
   )
