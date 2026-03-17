@@ -1,5 +1,7 @@
 import './SocialMediaBtnGroup.css'
 
+const sprite = `${import.meta.env.BASE_URL}icons.svg`
+
 export default function SocialMediaBtnGroup() {
   return (
     <div className="social-btn-group">
@@ -11,7 +13,7 @@ export default function SocialMediaBtnGroup() {
         aria-label="LinkedIn"
       >
         <svg width="24" height="24" aria-hidden="true">
-          <use href="/icons.svg#icon-linkedin" />
+          <use href={`${sprite}#icon-linkedin`} />
         </svg>
       </a>
 
@@ -25,7 +27,7 @@ export default function SocialMediaBtnGroup() {
         aria-label="Telegram"
       >
         <svg width="24" height="24" aria-hidden="true">
-          <use href="/icons.svg#icon-telegram" />
+          <use href={`${sprite}#icon-telegram`} />
         </svg>
       </a>
 
@@ -37,7 +39,7 @@ export default function SocialMediaBtnGroup() {
         aria-label="Email"
       >
         <svg width="24" height="24" aria-hidden="true">
-          <use href="/icons.svg#icon-mail" />
+          <use href={`${sprite}#icon-mail`} />
         </svg>
       </a>
     </div>

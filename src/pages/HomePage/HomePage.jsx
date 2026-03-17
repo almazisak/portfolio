@@ -1,5 +1,5 @@
 import CardStack from '../../components/CardStack/CardStack'
-import MeWidget from '../../components/MeWidget/MeWidget'
+import AboutMeWidget from '../../components/AboutMeWidget/AboutMeWidget'
 import './HomePage.css'
 
 export default function HomePage() {
@@ -9,7 +9,7 @@ export default function HomePage() {
         <CardStack />
       </div>
       <div className="home-page__about">
-        <MeWidget />
+        <AboutMeWidget />
       </div>
     </div>
   )
