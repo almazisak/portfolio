@@ -7,6 +7,7 @@
   flex-direction: column;
   padding: 0 24px;     /* Mobile [393px] */
   overflow: hidden;
+  padding-bottom: 85px;
 }
 
 /* Tablet [834px+] */
