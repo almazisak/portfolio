@@ -1,6 +1,7 @@
+import IcLinkedIn from '../../assets/icons/ic-linkedin.svg?react'
+import IcTelegram from '../../assets/icons/ic-telegram.svg?react'
+import IcMail from '../../assets/icons/ic-mail.svg?react'
 import './SocialMediaBtnGroup.css'
-
-const sprite = `${import.meta.env.BASE_URL}icons.svg`
 
 export default function SocialMediaBtnGroup() {
   return (
@@ -12,9 +13,7 @@ export default function SocialMediaBtnGroup() {
         className="social-btn-group__btn"
         aria-label="LinkedIn"
       >
-        <svg width="24" height="24" aria-hidden="true">
-          <use href={`${sprite}#icon-linkedin`} />
-        </svg>
+        <IcLinkedIn aria-hidden="true" />
       </a>
 
       <div className="social-btn-group__divider" aria-hidden="true" />
@@ -26,9 +25,7 @@ export default function SocialMediaBtnGroup() {
         className="social-btn-group__btn"
         aria-label="Telegram"
       >
-        <svg width="24" height="24" aria-hidden="true">
-          <use href={`${sprite}#icon-telegram`} />
-        </svg>
+        <IcTelegram aria-hidden="true" />
       </a>
 
       <div className="social-btn-group__divider" aria-hidden="true" />
@@ -38,9 +35,7 @@ export default function SocialMediaBtnGroup() {
         className="social-btn-group__btn"
         aria-label="Email"
       >
-        <svg width="24" height="24" aria-hidden="true">
-          <use href={`${sprite}#icon-mail`} />
-        </svg>
+        <IcMail aria-hidden="true" />
       </a>
     </div>
   )
