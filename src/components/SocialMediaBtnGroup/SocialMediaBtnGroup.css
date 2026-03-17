@@ -1,0 +1,33 @@
+.social-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 48px;
+  padding: 0 16px;
+  background: #fef6e6;
+  border-radius: 24px;
+  flex-shrink: 0;
+}
+
+.social-btn-group__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  transition: opacity 0.15s ease;
+}
+
+.social-btn-group__btn:hover {
+  opacity: 0.8;
+}
+
+.social-btn-group__divider {
+  width: 2px;
+  height: 14px;
+  background: #f29559;
+  border-radius: 2px;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
