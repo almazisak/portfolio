@@ -15,9 +15,30 @@ const DEPTH = [
   { w: 238, h: 204, yOffset: -187.5 }, // depth 4 — back
 ]
 
-const SIDE_MARGIN   = 24  // px each side
-const SWIPE_THRESH  = 72  // px
+const SIDE_MARGIN   = 24   // px each side
+const MIN_CARD_W    = 342  // px — minimum front card width
+const MAX_CARD_W    = 450  // px — maximum front card width
+const SWIPE_THRESH  = 72   // px
 const SWIPE_VEL     = 0.35 // px/ms
+
+// At scale 1.0, the visual extent of the full stack:
+//   top  = back card top  = |yOffset[4]| + h[4]/2 = 187.5 + 102    = 289.5 px above center
+//   bottom = front card bottom = yOffset[0] + h[0]/2 = -41.5 + 167.5 = 126   px below center
+const STACK_TOP_HALF    = (-DEPTH[DEPTH.length - 1].yOffset) + DEPTH[DEPTH.length - 1].h / 2  // 289.5
+const STACK_BOTTOM_HALF = DEPTH[0].yOffset + DEPTH[0].h / 2                                    // 126
+const STACK_VISUAL_H    = STACK_TOP_HALF + STACK_BOTTOM_HALF                                   // 415.5
+
+// Shift all cards down so the stack is visually centered in its container.
+// Without this, all yOffsets are negative (all cards above center) leaving dead space below.
+const STACK_CENTER_SHIFT = (STACK_TOP_HALF - STACK_BOTTOM_HALF) / 2  // 81.75
+
+const WIDGET_AREA = 160 // px — widget height (136) + bottom offset (24)
+
+function computeScale(vw) {
+  const scaleByW = Math.min(MAX_CARD_W / DEPTH[0].w, (vw - SIDE_MARGIN * 2) / DEPTH[0].w)
+  const scaleByH = (window.innerHeight - WIDGET_AREA) / STACK_VISUAL_H
+  return Math.min(scaleByW, scaleByH)
+}
 
 const CARDS = [
   { id: 'case-study-01', label: 'Case Study 01' },
@@ -34,17 +55,10 @@ export default function CardStack() {
   const wasDragging = useRef(false)
   const navigate = useNavigate()
 
-  // Responsive scale: keep front card within [SIDE_MARGIN, vw - SIDE_MARGIN]
-  const [scale, setScale] = useState(() => {
-    const avail = window.innerWidth - SIDE_MARGIN * 2
-    return Math.min(1, avail / DEPTH[0].w)
-  })
+  const [scale, setScale] = useState(() => computeScale(window.innerWidth))
 
   useEffect(() => {
-    function onResize() {
-      const avail = window.innerWidth - SIDE_MARGIN * 2
-      setScale(Math.min(1, avail / DEPTH[0].w))
-    }
+    function onResize() { setScale(computeScale(window.innerWidth)) }
     window.addEventListener('resize', onResize)
     return () => window.removeEventListener('resize', onResize)
   }, [])
@@ -88,8 +102,12 @@ export default function CardStack() {
   }
 
   // ── Render ──────────────────────────────────────────────────────────
+  // Container matches the exact visual span of the stack; cards are shifted so
+  // the stack is visually centred (equal space above back card and below front card).
+  const stackHeight = STACK_VISUAL_H * scale
+
   return (
-    <div className="card-stack">
+    <div className="card-stack" style={{ height: stackHeight }}>
       {[...order].reverse().map((id, revIdx) => {
         const depthIdx = order.length - 1 - revIdx  // 0 = front
         const isTop    = depthIdx === 0
@@ -97,7 +115,8 @@ export default function CardStack() {
 
         const w = d.w * scale
         const h = d.h * scale
-        const yOff = d.yOffset * scale  // scale vertical spacing proportionally
+        // STACK_CENTER_SHIFT re-centres the stack so the visual span fills the container evenly
+        const yOff = (d.yOffset + STACK_CENTER_SHIFT) * scale
 
         // Base: center the card at (50%, 50% + yOff)
         let dx = 0
