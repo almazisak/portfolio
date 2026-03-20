@@ -1,19 +1,16 @@
-import { useState } from 'react'
 import IcExpand from '../../assets/icons/ic-expand.svg?react'
 import IcCollapse from '../../assets/icons/ic-collapse.svg?react'
 import Button from '../Button/Button'
 import SocialMediaBtnGroup from '../SocialMediaBtnGroup/SocialMediaBtnGroup'
 import './AboutMeWidget.css'
 
-export default function AboutMeWidget() {
-  const [expanded, setExpanded] = useState(false)
-
+export default function AboutMeWidget({ expanded = false, onToggle }) {
   return (
     <div className={`about-widget${expanded ? ' about-widget--active' : ''}`}>
 
       <button
         className="about-widget__heading"
-        onClick={() => setExpanded((v) => !v)}
+        onClick={onToggle}
         aria-label={expanded ? 'Collapse' : 'Expand'}
       >
         <div className="about-widget__avatar">
