@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import IcDownload from '../../assets/icons/ic-download.svg?react'
 import IcMail from '../../assets/icons/ic-mail.svg?react'
 import './MeWidget.css'
@@ -58,15 +57,13 @@ function IconCollapse() {
 
 // ── MeWidget ──────────────────────────────────────────────────────────────────
 
-export default function MeWidget() {
-  const [expanded, setExpanded] = useState(false)
-
+export default function MeWidget({ expanded = false, onToggle }) {
   return (
     <div className={`me-widget${expanded ? ' me-widget--active' : ''}`}>
 
       <button
         className="me-widget__toggle"
-        onClick={() => setExpanded((v) => !v)}
+        onClick={onToggle}
         aria-label={expanded ? 'Collapse' : 'Expand'}
       >
         {expanded ? <IconCollapse /> : <IconExpand />}
