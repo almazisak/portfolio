@@ -40,6 +40,8 @@
   left: 24px;
   right: 24px;
   z-index: 100;
+  display: flex;
+  justify-content: center;
 }
 
 /* Desktop [1440px+] */
