@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import CardStack from '../../components/CardStack/CardStack'
-import MeWidget from '../../components/MeWidget/MeWidget'
+import AboutMeWidget from '../../components/AboutMeWidget/AboutMeWidget'
 import './HomePage.css'
 
 export default function HomePage() {
