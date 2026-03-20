@@ -1,15 +1,20 @@
+import { useState } from 'react'
 import CardStack from '../../components/CardStack/CardStack'
 import AboutMeWidget from '../../components/AboutMeWidget/AboutMeWidget'
 import './HomePage.css'
 
 export default function HomePage() {
+  const [widgetExpanded, setWidgetExpanded] = useState(false)
+
   return (
     <div className="home-page">
-      <div className="home-page__hero">
-        <CardStack />
-      </div>
-      <div className="home-page__about">
-        <AboutMeWidget />
+      <CardStack />
+      <div
+        className={`home-page__backdrop${widgetExpanded ? ' home-page__backdrop--visible' : ''}`}
+        aria-hidden="true"
+      />
+      <div className="home-page__widget-wrap">
+        <MeWidget expanded={widgetExpanded} onToggle={() => setWidgetExpanded(v => !v)} />
       </div>
     </div>
   )

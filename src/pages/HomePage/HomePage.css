@@ -17,6 +17,29 @@
   }
 }
 
+/* Backdrop — dims content behind the widget when expanded */
+.home-page__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: rgba(61, 61, 58, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.home-page__backdrop--visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Fixed widget at bottom */
+.home-page__widget-wrap {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  z-index: 100;
 /* Desktop [1440px+] */
 @media (min-width: 1440px) {
   .home-page {
