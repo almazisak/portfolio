@@ -14,7 +14,7 @@ export default function HomePage() {
         aria-hidden="true"
       />
       <div className="home-page__widget-wrap">
-        <MeWidget expanded={widgetExpanded} onToggle={() => setWidgetExpanded(v => !v)} />
+        <AboutMeWidget expanded={widgetExpanded} onToggle={() => setWidgetExpanded(v => !v)} />
       </div>
     </div>
   )
