@@ -1,21 +1,117 @@
 import { useState } from 'react'
-import CardStack from '../../components/CardStack/CardStack'
-import AboutMeWidget from '../../components/AboutMeWidget/AboutMeWidget'
+import HeroBar from '../../components/HeroBar/HeroBar'
 import './HomePage.css'
 
+function IconToggle({ open }) {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      width="24"
+      height="24"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      style={{ transform: open ? 'rotate(45deg)' : 'none', transition: 'transform 0.2s ease', flexShrink: 0 }}
+    >
+      <path
+        d="M2.925 2.922C6.821 -0.974 13.171 -0.974 17.067 2.922C20.970 6.825 20.963 13.168 17.067 17.064C17.067 17.064 16.867 17.259 16.867 17.259C12.950 20.966 6.762 20.901 2.925 17.064C-0.971 13.168 -0.978 6.825 2.925 2.922ZM6.601 9.243C6.187 9.244 5.851 9.579 5.851 9.993C5.851 10.407 6.187 10.743 6.601 10.743C6.601 10.743 9.242 10.743 9.242 10.743C9.242 10.743 9.242 13.382 9.242 13.382C9.243 13.795 9.579 14.131 9.992 14.132C10.406 14.132 10.742 13.796 10.742 13.382C10.742 13.382 10.742 10.743 10.742 10.743C10.742 10.743 13.384 10.744 13.384 10.744C13.798 10.744 14.134 10.408 14.134 9.994C14.134 9.580 13.798 9.244 13.384 9.244C13.384 9.244 10.742 9.243 10.742 9.243C10.742 9.243 10.742 6.605 10.742 6.605C10.742 6.191 10.407 5.855 9.992 5.855C9.578 5.855 9.242 6.191 9.242 6.605C9.242 6.605 9.242 9.243 9.242 9.243C9.242 9.243 6.601 9.243 6.601 9.243Z"
+        fillRule="evenodd"
+        fill="#F29559"
+      />
+    </svg>
+  )
+}
+
+const WORKS = [
+  {
+    id: 'halyk-market',
+    title: 'Halyk Market',
+    role: 'Product Design Lead',
+    desc: 'Growing GMV and NPS with a team, processes, and a design system I built over last 2 years',
+  },
+  {
+    id: 'dcb-seller',
+    title: 'DCB Seller',
+    role: 'Senior Product Designer',
+    desc: 'Designed MVP of a seller cabinet and admin panel of DCB Marketplace that sped up core operations',
+  },
+]
+
+const REVIEWS = [
+  { id: 'glen',  name: 'Glen Katsai',   rolePrefix: 'Product manager', company: 'PLATA',    companyUrl: 'https://bancoplata.mx/en' },
+  { id: 'ilyas', name: 'Ilyas Bazarov', rolePrefix: 'Product manager', company: 'Ozon Bank', companyUrl: 'https://finance.ozon.ru/' },
+  { id: 'ismar', name: 'Ismar Dzhon',   rolePrefix: 'Head of Design',  company: '360.tech',  companyUrl: null },
+]
+
 export default function HomePage() {
-  const [widgetExpanded, setWidgetExpanded] = useState(false)
+  const [openReview, setOpenReview] = useState(null)
+
+  function toggleReview(id) {
+    setOpenReview(prev => prev === id ? null : id)
+  }
 
   return (
     <div className="home-page">
-      <CardStack />
-      <div
-        className={`home-page__backdrop${widgetExpanded ? ' home-page__backdrop--visible' : ''}`}
-        aria-hidden="true"
-      />
-      <div className="home-page__widget-wrap">
-        <AboutMeWidget expanded={widgetExpanded} onToggle={() => setWidgetExpanded(v => !v)} />
-      </div>
+      <HeroBar onContactClick={() => {}} />
+
+      <main className="home-page__main">
+        {/* Intro */}
+        <p className="home-page__intro">
+          My design expertise and experience building creative teams and design practices
+          enable me to drive impact at every level – from hands-on execution and mentoring
+          designers to shaping product direction and scaling design operations
+        </p>
+
+        {/* Work cards */}
+        <section className="works">
+          {WORKS.map(w => (
+            <article key={w.id} className="work-card">
+              <div className="work-card__tile" />
+              <div className="work-card__info">
+                <div className="work-card__title-row">
+                  <span className="work-card__project">{w.title}</span>
+                  <span className="work-card__rule" aria-hidden="true" />
+                  <span className="work-card__role">{w.role}</span>
+                </div>
+                <p className="work-card__desc">{w.desc}</p>
+              </div>
+            </article>
+          ))}
+        </section>
+
+        {/* Reviews */}
+        <section className="reviews">
+          <div className="reviews__heading">
+            <h2 className="reviews__title">Reviews from colleagues</h2>
+          </div>
+          <ul className="reviews__list">
+            {REVIEWS.map(r => (
+              <li key={r.id} className="review-item">
+                <button
+                  className="review-item__header"
+                  onClick={() => toggleReview(r.id)}
+                  aria-expanded={openReview === r.id}
+                >
+                  <div className="review-item__meta">
+                    <span className="review-item__name">{r.name}</span>
+                    <span className="review-item__role">
+                      {r.rolePrefix},{' '}
+                      {r.companyUrl
+                        ? <a href={r.companyUrl} target="_blank" rel="noopener noreferrer" className="review-item__company-link">{r.company}</a>
+                        : r.company}
+                    </span>
+                  </div>
+                  <IconToggle open={openReview === r.id} />
+                </button>
+                <div className={`review-item__body-wrapper${openReview === r.id ? ' review-item__body-wrapper--open' : ''}`}>
+                  <div className="review-item__body">
+                    {/* Review quote content — to be added in a later iteration */}
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </main>
     </div>
   )
 }

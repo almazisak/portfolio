@@ -1,0 +1,110 @@
+.hero-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #F7F5F0;
+  transition: box-shadow 0.25s ease;
+  padding: 0 24px;
+}
+
+.hero-bar--scrolled {
+  box-shadow: 0 1px 12px rgba(26, 25, 24, 0.04);
+}
+
+.hero-bar__inner {
+  max-width: 550px;
+  margin: 0 auto;
+  padding: 18px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.hero-bar__profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-bar__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.hero-bar__name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #080708;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.hero-bar__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-bar__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s ease;
+}
+
+.hero-bar__btn--cv {
+  background: #FAEAD8;
+  color: #FF8811;
+}
+
+.hero-bar__btn--cv:hover {
+  background: #f5dfc4;
+}
+
+.hero-bar__btn-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.hero-bar__btn--contact {
+  background: #2092E9;
+  color: #F9F7F3;
+}
+
+.hero-bar__btn--contact:hover {
+  background: #1a82d4;
+}
+
+@media (max-width: 480px) {
+  .hero-bar__avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .hero-bar__btn {
+    height: 34px;
+    padding: 0 12px;
+    font-size: 13px;
+    gap: 4px;
+  }
+
+  .hero-bar__btn-icon {
+    width: 16px;
+    height: 16px;
+  }
+}

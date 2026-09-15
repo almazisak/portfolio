@@ -1,74 +1,196 @@
-/* ── Main page wrapper ──────────────────────────────────── */
+/* ── Page wrapper ───────────────────────────────────────── */
 .home-page {
-  width: 100%;
-  height: 100dvh;
-  background: #faf9f5;
+  min-height: 100dvh;
+  background: #F7F5F0;
+  overflow-x: clip;
+}
+
+.home-page__main {
+  padding: 40px 24px 80px;
   display: flex;
   flex-direction: column;
+  gap: 56px;
+}
+
+/* ── Intro ──────────────────────────────────────────────── */
+.home-page__intro {
+  font-size: 15px;
+  line-height: 24px;
+  color: #383737;
+  max-width: 550px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ── Work cards ─────────────────────────────────────────── */
+.works {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 24px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  /* Section spans full viewport width so cards clip at viewport edges, not mid-page */
+  margin-left: -24px;
+  width: calc(100% + 48px);
+  /* Padding positions first card to align with centered 550px content */
+  padding-left: max(24px, calc((100% - 550px) / 2 + 24px));
+  padding-right: 24px;
+}
+
+.work-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: min(455px, calc(100vw - 80px));
+  flex-shrink: 0;
+}
+
+.work-card__tile {
+  width: 100%;
+  max-width: 455px;
+  aspect-ratio: 3 / 2;
+  background: #F3E8D3;
+  border-radius: 20px;
+  flex-shrink: 0;
+}
+
+.work-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.work-card__title-row {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 0 24px 160px;   /* bottom reserves space for fixed widget (136px + 24px offset) */
-  overflow: hidden;
+  gap: 10px;
 }
 
-/* Tablet [834px+] */
-@media (min-width: 834px) {
-  .home-page {
-    padding: 0 120px 160px;
-  }
+.work-card__project {
+  font-size: 15px;
+  font-weight: 600;
+  color: #080708;
+  white-space: nowrap;
 }
 
-/* Backdrop — dims content behind the widget when expanded */
-.home-page__backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 99;
-  background: rgba(61, 61, 58, 0.4);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
+.work-card__rule {
+  flex: 1;
+  height: 1px;
+  background: rgb(255 136 17 / 30%);
 }
 
-.home-page__backdrop--visible {
-  opacity: 1;
-  pointer-events: auto;
+.work-card__role {
+  font-size: 15px;
+  font-weight: 600;
+  color: #080708;
+  white-space: nowrap;
 }
 
-/* Fixed widget at bottom */
-.home-page__widget-wrap {
-  position: fixed;
-  bottom: 24px;
-  left: 24px;
-  right: 24px;
-  z-index: 100;
-  display: flex;
-  justify-content: center;
+.work-card__desc {
+  font-size: 14px;
+  line-height: 22px;
+  color: #383737;
 }
 
-/* Desktop [1440px+] */
-@media (min-width: 1440px) {
-  .home-page {
-    padding: 0 116px 160px;
-  }
-}
-
-/* ── Slots ──────────────────────────────────────────────── */
-.home-page__hero {
-  height: 80vh;
-  flex-shrink: 0;
-  width: 100%;
-  position: relative;
+/* ── Reviews ────────────────────────────────────────────── */
+.reviews {
   display: flex;
   flex-direction: column;
-  padding-top: 83px;
+  gap: 16px;
+  max-width: 550px;
+  width: 100%;
+  margin: 0 auto;
 }
 
-.home-page__about {
-  height: 20vh;
-  flex-shrink: 0;
+.reviews__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgb(255 136 17 / 30%);
+}
+
+.reviews__title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #080708;
+}
+
+
+.reviews__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Review item (accordion) ────────────────────────────── */
+.review-item {
+}
+
+.review-item__header {
   width: 100%;
   display: flex;
-  align-items: flex-end;
-  padding-bottom: 24px;
-  overflow: visible;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  gap: 16px;
+}
+
+.review-item__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.review-item__name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #080708;
+}
+
+.review-item__role {
+  font-size: 13px;
+  color: #706E69;
+}
+
+.review-item__company-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+
+.review-item__body-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s ease;
+}
+
+.review-item__body-wrapper--open {
+  grid-template-rows: 1fr;
+}
+
+.review-item__body {
+  overflow: hidden;
+  padding-bottom: 0;
+  font-size: 14px;
+  line-height: 22px;
+  color: #383737;
+  transition: padding-bottom 0.25s ease;
+}
+
+.review-item__body-wrapper--open .review-item__body {
+  padding-bottom: 16px;
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .home-page__main {
+    gap: 40px;
+    padding-top: 28px;
+  }
 }
