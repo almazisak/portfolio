@@ -55,8 +55,7 @@
   gap: 6px;
   height: 40px;
   padding: 0 16px;
-  border-radius: 12px;
-  corner-shape: squircle;
+  border-radius: 16px;
   font-family: inherit;
   font-size: 14px;
   font-weight: 600;
@@ -89,6 +88,13 @@
 
 .hero-bar__btn--contact:hover {
   background: #1a82d4;
+}
+
+@supports (corner-shape: squircle) {
+  .hero-bar__btn {
+    border-radius: 20px;
+    corner-shape: squircle;
+  }
 }
 
 @media (max-width: 480px) {
