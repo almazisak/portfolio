@@ -72,7 +72,11 @@
 }
 
 .hero-bar__btn--cv:hover {
-  background: #f5dfc4;
+  background: #FAE5CF;
+}
+
+.hero-bar__btn--cv:active {
+  background: #FAE1C6;
 }
 
 .hero-bar__btn-icon {
@@ -87,7 +91,11 @@
 }
 
 .hero-bar__btn--contact:hover {
-  background: #1a82d4;
+  background: #1D85E0;
+}
+
+.hero-bar__btn--contact:active {
+  background: #1771C8;
 }
 
 @supports (corner-shape: squircle) {
