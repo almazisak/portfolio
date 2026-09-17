@@ -37,9 +37,44 @@ const WORKS = [
 ]
 
 const REVIEWS = [
-  { id: 'glen',  name: 'Glen Katsai',   rolePrefix: 'Product manager', company: 'PLATA',    companyUrl: 'https://bancoplata.mx/en' },
-  { id: 'ilyas', name: 'Ilyas Bazarov', rolePrefix: 'Product manager', company: 'Ozon Bank', companyUrl: 'https://finance.ozon.ru/' },
-  { id: 'ismar', name: 'Ismar Dzhon',   rolePrefix: 'Head of Design',  company: '360.tech',  companyUrl: null },
+  {
+    id: 'glen',
+    name: 'Glen Katsai',
+    rolePrefix: 'Product manager',
+    company: 'PLATA',
+    companyUrl: 'https://bancoplata.mx/en',
+    paragraphs: [
+      'I had the pleasure of working with Almaz at Halyk Market, where he led a team of 4 designers responsible for the entire customer-facing product experience: from storefront and discovery to checkout and order flows.',
+      'I highly recommend Almaz as a design leader. He is already capable of owning the design strategy for a large and complex product end-to-end: building the team, managing it, setting the direction, and delivering results. What I particularly valued in working with Almaz was that we could discuss product goals at a high level without me having to dive into design execution details. I could trust him as a manager to take ownership of the problem and figure out how his team should solve it.',
+      'Over our 2 years working together, Almaz and his team completely redesigned the marketplace\'s customer-facing experience. I think this also says something important about his approach: Almaz is someone you can build with for the long term. He can take a broad vision, systematically turn it into reality, and keep the team moving toward it over time.',
+      'I would gladly work with Almaz again and recommend him to anyone looking for a design leader who can take full ownership of a major product area.',
+    ],
+  },
+  {
+    id: 'ilyas',
+    name: 'Ilyas Bazarov',
+    rolePrefix: 'Product manager',
+    company: 'Ozon Bank',
+    companyUrl: 'https://finance.ozon.ru/',
+    paragraphs: [
+      'I\'ve had the pleasure of working closely with Almaz for over four years across various projects and workplaces, and I would want him on every team I lead moving forward. Almaz is a responsible professional with outstanding communication skills, easily finding common ground with people at all levels.',
+      'He was a valuable team member who grew quickly and often went beyond "just design." Throughout our collaboration, Almaz demonstrated significant professional growth and took initiative in solving complex problems. His thoughtful approach not only enhances user experience but also adds a unique style and refined taste to the product – both within digital channels and the overall brand, which he understands deeply.',
+      'Almaz doesn\'t just complete tasks effectively – he actively seeks new opportunities to improve processes and outcomes. His initiative and genuine passion for his work have made him an indispensable team member.',
+      'I recommend Almaz without hesitation for any company and am confident that his professionalism and talent will make him a valuable asset to any project.',
+    ],
+  },
+  {
+    id: 'ismar',
+    name: 'Ismar Dzhon',
+    rolePrefix: 'Head of Design',
+    company: '360.tech',
+    companyUrl: null,
+    paragraphs: [
+      'Almaz is one of the most talented product designers I\'ve had the pleasure of working with. He possesses not only technical expertise in creating design systems but also exceptional communication skills, enabling effective collaboration with development teams and product managers.',
+      'His systematic approach and ability to see the big picture have helped us optimize processes and improve our products\' quality. Almaz consistently finds ways to make design not only visually appealing but also highly functional – an essential quality in modern IT.',
+      'One of his key achievements was building a design system for the bank\'s ecosystem, which became the foundation for many of our products and significantly streamlined their development. His talent for solving complex problems and uncovering new optimization opportunities makes him an invaluable asset to any team.',
+    ],
+  },
 ]
 
 export default function HomePage() {
@@ -104,7 +139,9 @@ export default function HomePage() {
                 </button>
                 <div className={`review-item__body-wrapper${openReview === r.id ? ' review-item__body-wrapper--open' : ''}`}>
                   <div className="review-item__body">
-                    {/* Review quote content — to be added in a later iteration */}
+                    {r.paragraphs.map((p, i) => (
+                      <p key={i} className="review-item__para">{p}</p>
+                    ))}
                   </div>
                 </div>
               </li>
