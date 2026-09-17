@@ -52,6 +52,7 @@
   background: #F3E8D3;
   border-radius: 20px;
   flex-shrink: 0;
+  object-fit: cover;
 }
 
 .work-card__info {
