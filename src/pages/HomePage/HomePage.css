@@ -196,6 +196,99 @@
   margin-top: 16px;
 }
 
+/* ── Beyond product design ──────────────────────────────── */
+.beyond {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 550px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.beyond__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgb(255 136 17 / 30%);
+}
+
+.beyond__title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #080708;
+}
+
+.beyond__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.beyond-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.beyond-item__tile {
+  width: 124px;
+  height: 80px;
+  border-radius: 24px;
+  flex-shrink: 0;
+}
+
+.beyond-item__tile--placeholder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  background: #F3E8D3;
+  padding: 0 16px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #4A90E2;
+}
+
+.beyond-item__tile--image {
+  object-fit: cover;
+  background: #F3E8D3;
+}
+
+.beyond-item__info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  flex: 1;
+}
+
+.beyond-item__top {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.beyond-item__title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #080708;
+}
+
+.beyond-item__desc {
+  font-size: 14px;
+  line-height: 22px;
+  color: #383737;
+}
+
+.beyond-item__award {
+  font-size: 12px;
+  line-height: 17px;
+  color: #383737;
+}
+
 /* ── Responsive ─────────────────────────────────────────── */
 @media (max-width: 600px) {
   .home-page__main {
