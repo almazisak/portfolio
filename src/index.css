@@ -35,6 +35,7 @@ body {
   background: #F9F7F3;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-wrap: pretty;
 }
 
 button {
