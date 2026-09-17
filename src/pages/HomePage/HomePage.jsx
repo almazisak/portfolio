@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import HeroBar from '../../components/HeroBar/HeroBar'
 import balatyIllustration from '../../assets/balaty-illustration.png'
+import halykMarketCover from '../../assets/halyk-market-cover.png'
+import dcbCover from '../../assets/dcb-cover.png'
 import './HomePage.css'
 
 function IconToggle({ open }) {
@@ -28,12 +30,14 @@ const WORKS = [
     title: 'Halyk Market',
     role: 'Product Design Lead',
     desc: 'Growing GMV and NPS with a team, processes, and a design system I built over last 2 years',
+    cover: halykMarketCover,
   },
   {
     id: 'dcb-seller',
     title: 'DCB Seller',
     role: 'Senior Product Designer',
     desc: 'Designed MVP of a seller cabinet and admin panel of DCB Marketplace that sped up core operations',
+    cover: dcbCover,
   },
 ]
 
@@ -130,7 +134,7 @@ export default function HomePage() {
         <section className="works">
           {WORKS.map(w => (
             <article key={w.id} className="work-card">
-              <div className="work-card__tile" />
+              <img className="work-card__tile" src={w.cover} alt={`${w.title} cover`} />
               <div className="work-card__info">
                 <div className="work-card__title-row">
                   <span className="work-card__project">{w.title}</span>
