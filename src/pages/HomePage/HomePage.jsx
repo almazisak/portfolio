@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import HeroBar from '../../components/HeroBar/HeroBar'
+import balatyIllustration from '../../assets/balaty-illustration.png'
 import './HomePage.css'
 
 function IconToggle({ open }) {
@@ -77,6 +78,35 @@ const REVIEWS = [
   },
 ]
 
+const BEYOND = [
+  {
+    id: 'doscredobank',
+    title: 'Doscredobank · 2022',
+    desc: "Refreshed the bank's brand identity to reflect its digital transformation",
+    tile: 'placeholder',
+  },
+  {
+    id: 'emergency-exit',
+    title: 'Emergency Exit · 2018',
+    desc: "Created a site-specific art installation in Chișinău, Moldova, raising awareness of challenges facing local children's library",
+    tile: 'placeholder',
+  },
+  {
+    id: 'balaty',
+    title: 'Balaty · 2016',
+    desc: 'Conceived and art-directed a charity sticker pack',
+    award: '🏆 Gold, Craft: Illustration & 3D – Jolbors International Festival of Creativity',
+    tile: 'image',
+  },
+  {
+    id: 'object-1',
+    title: 'Object #1 · 2012',
+    desc: 'Shot a documentary photo series about children growing up in orphanages',
+    award: '🏆 Best Documentary Photo Series – Investigate Real Life grant program',
+    tile: 'placeholder',
+  },
+]
+
 export default function HomePage() {
   const [openReview, setOpenReview] = useState(null)
 
@@ -143,6 +173,40 @@ export default function HomePage() {
                       <p key={i} className="review-item__para">{p}</p>
                     ))}
                   </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {/* Beyond product design */}
+        <section className="beyond">
+          <div className="beyond__heading">
+            <h2 className="beyond__title">Beyond product design</h2>
+          </div>
+          <ul className="beyond__list">
+            {BEYOND.map(item => (
+              <li key={item.id} className="beyond-item">
+                {item.tile === 'image'
+                  ? (
+                    <img
+                      className="beyond-item__tile beyond-item__tile--image"
+                      src={balatyIllustration}
+                      alt=""
+                    />
+                  )
+                  : (
+                    <div className="beyond-item__tile beyond-item__tile--placeholder">
+                      <span>case</span>
+                      <span>in progress</span>
+                    </div>
+                  )}
+                <div className="beyond-item__info">
+                  <div className="beyond-item__top">
+                    <span className="beyond-item__title">{item.title}</span>
+                    <p className="beyond-item__desc">{item.desc}</p>
+                  </div>
+                  {item.award && <p className="beyond-item__award">{item.award}</p>}
                 </div>
               </li>
             ))}
