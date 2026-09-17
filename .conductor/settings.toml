@@ -1,0 +1,12 @@
+"$schema" = "https://conductor.build/schemas/settings.repo.schema.json"
+
+[scripts]
+setup = '''
+export PATH="$HOME/.nvm/versions/node/v24.14.0/bin:$PATH"
+npm install
+'''
+
+[scripts.run.dev]
+command = 'export PATH="$HOME/.nvm/versions/node/v24.14.0/bin:$PATH" && npm run dev -- --port $CONDUCTOR_PORT --strictPort'
+default = true
+icon = "play"
