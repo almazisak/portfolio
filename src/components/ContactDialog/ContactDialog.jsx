@@ -1,7 +1,7 @@
 import { useEffect, useId, useRef } from 'react'
 import IcClose from '../../assets/icons/ic-close-circle.svg?react'
 import IcTelegram from '../../assets/icons/ic-telegram-inverse.svg?react'
-import IcLinkedIn from '../../assets/icons/ic-linkedin-inverse.svg?react'
+import icLinkedIn from '../../assets/icons/ic-linkedin-inverted.png'
 import IcMail from '../../assets/icons/ic-mail-accent.svg?react'
 import './ContactDialog.css'
 
@@ -57,7 +57,7 @@ export default function ContactDialog({ open, onClose, title, description }) {
             rel="noopener noreferrer"
             className="contact-dialog__btn contact-dialog__btn--blue"
           >
-            <IcLinkedIn aria-hidden="true" />
+            <img src={icLinkedIn} alt="" width="24" height="24" />
             <span>LinkedIn</span>
           </a>
         </div>
