@@ -99,7 +99,8 @@
   min-width: 1px;
 }
 
-.contact-dialog__btn svg {
+.contact-dialog__btn svg,
+.contact-dialog__btn img {
   flex-shrink: 0;
   width: 24px;
   height: 24px;
