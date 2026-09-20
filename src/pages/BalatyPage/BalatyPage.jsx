@@ -63,6 +63,12 @@ export default function BalatyPage() {
     return () => observer.disconnect()
   }, [])
 
+  // On mobile the grid is wider than the screen and pans horizontally; start on its centre
+  useLayoutEffect(() => {
+    const el = honeycombRef.current
+    if (el) el.scrollLeft = (el.scrollWidth - el.clientWidth) / 2
+  }, [])
+
   // Show the CTA only while the sticker grid is in the viewport
   useEffect(() => {
     const el = honeycombRef.current
@@ -96,22 +102,27 @@ export default function BalatyPage() {
           className="balaty__honeycomb"
           role="img"
           aria-label="Collage of Balaty stickers: Kyrgyz children in national dress laughing, dancing, daydreaming and playing"
-          style={{ aspectRatio: `${HONEYCOMB.width} / ${HONEYCOMB.height}` }}
         >
-          {stickers.map(({ src, left, top, size }) => (
-            <img
-              key={src}
-              className="balaty__sticker"
-              src={src}
-              alt=""
-              loading="lazy"
-              style={{
-                left: `${(left / HONEYCOMB.width) * 100}%`,
-                top: `${(top / HONEYCOMB.height) * 100}%`,
-                width: `${(size / HONEYCOMB.width) * 100}%`,
-              }}
-            />
-          ))}
+          <div
+            className="balaty__honeycomb-canvas"
+            style={{ aspectRatio: `${HONEYCOMB.width} / ${HONEYCOMB.height}` }}
+          >
+            {stickers.map(({ src, left, top, size }) => (
+              <img
+                key={src}
+                className="balaty__sticker"
+                src={src}
+                alt=""
+                loading="lazy"
+                draggable={false}
+                style={{
+                  left: `${(left / HONEYCOMB.width) * 100}%`,
+                  top: `${(top / HONEYCOMB.height) * 100}%`,
+                  width: `${(size / HONEYCOMB.width) * 100}%`,
+                }}
+              />
+            ))}
+          </div>
         </div>
       </main>
 

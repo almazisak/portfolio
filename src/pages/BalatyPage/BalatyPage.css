@@ -55,8 +55,15 @@
   max-width: 1088px;
 }
 
+.balaty__honeycomb-canvas {
+  position: relative;
+  width: 100%;
+}
+
 .balaty__sticker {
   position: absolute;
+  user-select: none;
+  -webkit-user-drag: none;
   aspect-ratio: 1;
   object-fit: contain;
 }
@@ -102,5 +109,25 @@
   .balaty__main {
     gap: 40px;
     padding-top: 28px;
+  }
+
+  /* Full-bleed pan window: the grid is drawn at 0.75× its 989px source (742px), wider
+     than the screen, and the user swipes it sideways. Vertical swipes still scroll the page. */
+  .balaty__honeycomb {
+    width: calc(100% + 48px);
+    max-width: none;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .balaty__honeycomb::-webkit-scrollbar {
+    display: none;
+  }
+
+  .balaty__honeycomb-canvas {
+    flex: none;
+    width: 742px;
   }
 }
