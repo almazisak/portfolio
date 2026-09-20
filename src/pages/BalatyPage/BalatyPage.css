@@ -86,6 +86,11 @@
   transition-delay: 0s;
 }
 
+/* The bar ignores pointer events so it doesn't block the page; the button itself must stay clickable */
+.balaty__cta-bar .hero-bar__btn {
+  pointer-events: auto;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .balaty__cta-bar {
     transition: none;
