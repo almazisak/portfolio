@@ -74,13 +74,13 @@
 
 .case-layout__toc-link {
   font-size: 13px;
-  color: #706E69;
+  color: #080708;
   text-decoration: none;
-  transition: color 0.15s ease;
 }
 
 .case-layout__toc-link:hover {
-  color: #080708;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .case-layout__toc-link:focus-visible {
@@ -261,14 +261,14 @@
 }
 
 .case-layout__footer-home {
-  color: #706E69;
+  color: #080708;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.15s ease;
 }
 
 .case-layout__footer-home:hover {
-  color: #080708;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .case-layout__footer-home:focus-visible {
