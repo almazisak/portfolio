@@ -41,9 +41,14 @@ export default function BalatyPage() {
   const [titleGone, setTitleGone] = useState(false)
   const [ctaVisible, setCtaVisible] = useState(false)
 
-  // Client-side navigation keeps the previous page's scroll position
+  // Client-side navigation keeps the previous page's scroll position, and the browser
+  // restores the old offset on back/forward (mobile swipe gestures) and reload after
+  // our scrollTo runs. Opt this entry out of restoration so the page always opens on top.
   useLayoutEffect(() => {
+    const prev = window.history.scrollRestoration
+    window.history.scrollRestoration = 'manual'
     window.scrollTo(0, 0)
+    return () => { window.history.scrollRestoration = prev }
   }, [])
 
   // Show the title in the hero bar once the page's own title scrolls out of view
