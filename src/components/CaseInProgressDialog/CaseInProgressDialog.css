@@ -123,6 +123,13 @@
   color: #FF8811;
 }
 
+@supports (corner-shape: squircle) {
+  .case-dialog__btn {
+    border-radius: 20px;
+    corner-shape: squircle;
+  }
+}
+
 .case-dialog__close {
   position: absolute;
   top: 12px;
