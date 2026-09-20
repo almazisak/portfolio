@@ -6,7 +6,7 @@ import rehypeSlug from 'rehype-slug'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 
-const SITE_URL = 'https://portfolio-ruddy-omega-58.vercel.app'
+const SITE_URL = 'https://almaz.design'
 
 // Link-preview crawlers don't run JS, so per-page OG tags have to be baked into
 // static HTML. Emits dist/<route>/index.html; hosts serve real files before the SPA rewrite.
