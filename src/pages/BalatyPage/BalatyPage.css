@@ -51,8 +51,8 @@
 /* ── Honeycomb ────────────────────────────────────────────── */
 .balaty__honeycomb {
   position: relative;
-  width: 100%;
-  max-width: 989px;
+  width: 110%;
+  max-width: 1088px;
 }
 
 .balaty__sticker {
