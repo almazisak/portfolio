@@ -12,8 +12,12 @@ export default function CaseInProgressDialog({ open, onClose }) {
 
   useEffect(() => {
     const dialog = ref.current
-    if (open && !dialog.open) dialog.showModal()
-    else if (!open && dialog.open) dialog.close()
+    if (open && !dialog.open) {
+      dialog.showModal()
+      dialog.focus()
+    } else if (!open && dialog.open) {
+      dialog.close()
+    }
   }, [open])
 
   // Clicks on the ::backdrop are reported with the dialog itself as the target.
@@ -26,6 +30,7 @@ export default function CaseInProgressDialog({ open, onClose }) {
       ref={ref}
       className="case-dialog"
       aria-labelledby="case-dialog-title"
+      tabIndex={-1}
       onClose={onClose}
       onClick={onBackdropClick}
     >
