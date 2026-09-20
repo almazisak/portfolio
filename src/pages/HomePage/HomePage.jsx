@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import HeroBar from '../../components/HeroBar/HeroBar'
+import CaseInProgressDialog from '../../components/CaseInProgressDialog/CaseInProgressDialog'
 import balatyIllustration from '../../assets/balaty-illustration.png'
 import halykMarketCover from '../../assets/halyk-market-cover.png'
 import dcbCover from '../../assets/dcb-cover.png'
@@ -115,6 +116,7 @@ const BEYOND = [
 
 export default function HomePage() {
   const [openReview, setOpenReview] = useState(null)
+  const [caseDialogOpen, setCaseDialogOpen] = useState(false)
 
   function toggleReview(id) {
     setOpenReview(prev => prev === id ? null : id)
@@ -135,17 +137,22 @@ export default function HomePage() {
         {/* Work cards */}
         <section className="works">
           {WORKS.map(w => (
-            <article key={w.id} className="work-card">
+            <button
+              key={w.id}
+              type="button"
+              className="work-card"
+              onClick={() => setCaseDialogOpen(true)}
+            >
               <img className="work-card__tile" src={w.cover} alt={`${w.title} cover`} />
-              <div className="work-card__info">
-                <div className="work-card__title-row">
+              <span className="work-card__info">
+                <span className="work-card__title-row">
                   <span className="work-card__project">{w.title}</span>
                   <span className="work-card__rule" aria-hidden="true" />
                   <span className="work-card__role">{w.role}</span>
-                </div>
-                <p className="work-card__desc">{w.desc}</p>
-              </div>
-            </article>
+                </span>
+                <span className="work-card__desc">{w.desc}</span>
+              </span>
+            </button>
           ))}
         </section>
 
@@ -224,6 +231,8 @@ export default function HomePage() {
           </ul>
         </section>
       </main>
+
+      <CaseInProgressDialog open={caseDialogOpen} onClose={() => setCaseDialogOpen(false)} />
     </div>
   )
 }
