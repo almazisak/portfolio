@@ -88,29 +88,29 @@ const REVIEWS = [
 
 const BEYOND = [
   {
+    id: 'balaty',
+    href: '/work/balaty',
+    title: 'Balaty · 2016',
+    desc: 'Conceived and directed Balaty – a Kyrgyz national sticker pack for Telegram that carried cultural identity into everyday chat, and raised support for children from vulnerable backgrounds',
+    award: '🏆 Gold, Craft: Illustration & 3D – Jolbors International Festival of Creativity',
+    tile: 'image',
+  },
+  {
     id: 'doscredobank',
     title: 'Doscredobank · 2022',
-    desc: "Refreshed the bank's brand identity to reflect its digital transformation",
+    desc: "Rebranded Doscredobank – reshaping a traditional bank's identity into a confident digital-first brand that spoke to a new generation of customers",
     tile: 'placeholder',
   },
   {
     id: 'emergency-exit',
     title: 'Emergency Exit · 2018',
-    desc: "Created a site-specific art installation in Chișinău, Moldova, raising awareness of challenges facing local children's library",
+    desc: "Created a site-specific installation in Chișinău, Moldova that spotlighted a children's library stranded in legal limbo since the Soviet collapse",
     tile: 'placeholder',
-  },
-  {
-    id: 'balaty',
-    href: '/work/balaty',
-    title: 'Balaty · 2016',
-    desc: 'Conceived and art-directed a charity sticker pack',
-    award: '🏆 Gold, Craft: Illustration & 3D – Jolbors International Festival of Creativity',
-    tile: 'image',
   },
   {
     id: 'object-1',
     title: 'Object #1 · 2012',
-    desc: 'Shot a documentary photo series about children growing up in orphanages',
+    desc: 'Shot – a documentary photo series following children growing up in orphanages, giving a human face to a childhood most people never see',
     award: '🏆 Best Documentary Photo Series – Investigate Real Life grant program',
     tile: 'placeholder',
   },
@@ -222,12 +222,9 @@ export default function HomePage() {
                         />
                       )
                       : (
-                        <div className="beyond-item__tile beyond-item__tile--placeholder">
-                          <span>case</span>
-                          <span>in progress</span>
-                        </div>
+                        <div className="beyond-item__tile beyond-item__tile--placeholder">Soon</div>
                       )}
-                    <div className="beyond-item__info">
+                    <div className={`beyond-item__info${item.tile === 'placeholder' ? ' beyond-item__info--muted' : ''}`}>
                       <div className="beyond-item__top">
                         <span className="beyond-item__title">{item.title}</span>
                         <p className="beyond-item__desc">{item.desc}</p>
