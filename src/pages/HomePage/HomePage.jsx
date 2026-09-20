@@ -6,6 +6,7 @@ import ContactDialog from '../../components/ContactDialog/ContactDialog'
 import balatyIllustration from '../../assets/balaty-illustration.png'
 import halykMarketCover from '../../assets/halyk-market-cover.png'
 import dcbCover from '../../assets/dcb-cover.png'
+import icLinkedin from '../../assets/icons/ic-linkedin.png'
 import './HomePage.css'
 
 function IconToggle({ open }) {
@@ -50,7 +51,7 @@ const REVIEWS = [
     name: 'Glen Katsai',
     rolePrefix: 'Product manager',
     company: 'PLATA',
-    companyUrl: 'https://bancoplata.mx/en',
+    linkedinUrl: 'https://www.linkedin.com/in/glen-katsai/',
     paragraphs: [
       'I had the pleasure of working with Almaz at Halyk Market, where he led a team of 4 designers responsible for the entire customer-facing product experience: from storefront and discovery to checkout and order flows.',
       'I highly recommend Almaz as a design leader. He is already capable of owning the design strategy for a large and complex product end-to-end: building the team, managing it, setting the direction, and delivering results. What I particularly valued in working with Almaz was that we could discuss product goals at a high level without me having to dive into design execution details. I could trust him as a manager to take ownership of the problem and figure out how his team should solve it.',
@@ -63,7 +64,7 @@ const REVIEWS = [
     name: 'Ilyas Bazarov',
     rolePrefix: 'Product manager',
     company: 'Ozon Bank',
-    companyUrl: 'https://finance.ozon.ru/',
+    linkedinUrl: 'https://www.linkedin.com/in/ilyas-bazarov-943590a9/',
     paragraphs: [
       'I\'ve had the pleasure of working closely with Almaz for over four years across various projects and workplaces, and I would want him on every team I lead moving forward. Almaz is a responsible professional with outstanding communication skills, easily finding common ground with people at all levels.',
       'He was a valuable team member who grew quickly and often went beyond "just design." Throughout our collaboration, Almaz demonstrated significant professional growth and took initiative in solving complex problems. His thoughtful approach not only enhances user experience but also adds a unique style and refined taste to the product – both within digital channels and the overall brand, which he understands deeply.',
@@ -76,7 +77,7 @@ const REVIEWS = [
     name: 'Ismar Dzhon',
     rolePrefix: 'Head of Design',
     company: '360.tech',
-    companyUrl: null,
+    linkedinUrl: 'https://www.linkedin.com/in/ismar-dzhon-7ba107a0/',
     paragraphs: [
       'Almaz is one of the most talented product designers I\'ve had the pleasure of working with. He possesses not only technical expertise in creating design systems but also exceptional communication skills, enabling effective collaboration with development teams and product managers.',
       'His systematic approach and ability to see the big picture have helped us optimize processes and improve our products\' quality. Almaz consistently finds ways to make design not only visually appealing but also highly functional – an essential quality in modern IT.',
@@ -172,13 +173,20 @@ export default function HomePage() {
                   aria-expanded={openReview === r.id}
                 >
                   <div className="review-item__meta">
-                    <span className="review-item__name">{r.name}</span>
-                    <span className="review-item__role">
-                      {r.rolePrefix},{' '}
-                      {r.companyUrl
-                        ? <a href={r.companyUrl} target="_blank" rel="noopener noreferrer" className="review-item__company-link">{r.company}</a>
-                        : r.company}
+                    <span className="review-item__name-row">
+                      <span className="review-item__name">{r.name}</span>
+                      <a
+                        href={r.linkedinUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="review-item__linkedin"
+                        aria-label={`${r.name} on LinkedIn`}
+                        onClick={e => e.stopPropagation()}
+                      >
+                        <img src={icLinkedin} alt="" width="24" height="24" />
+                      </a>
                     </span>
+                    <span className="review-item__role">{r.rolePrefix}, {r.company}</span>
                   </div>
                   <IconToggle open={openReview === r.id} />
                 </button>
