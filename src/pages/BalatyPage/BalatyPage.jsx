@@ -63,10 +63,12 @@ export default function BalatyPage() {
     return () => observer.disconnect()
   }, [])
 
-  // On mobile the grid is wider than the screen and pans horizontally; start on its centre
+  // On mobile the grid is larger than its window and pans on both axes; start on its centre
   useLayoutEffect(() => {
     const el = honeycombRef.current
-    if (el) el.scrollLeft = (el.scrollWidth - el.clientWidth) / 2
+    if (!el) return
+    el.scrollLeft = (el.scrollWidth - el.clientWidth) / 2
+    el.scrollTop = (el.scrollHeight - el.clientHeight) / 2
   }, [])
 
   // Show the CTA only while the sticker grid is in the viewport

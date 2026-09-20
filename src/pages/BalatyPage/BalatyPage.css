@@ -111,12 +111,17 @@
     padding-top: 28px;
   }
 
-  /* Full-bleed pan window: the grid is drawn at 0.75× its 989px source (742px), wider
-     than the screen, and the user swipes it sideways. Vertical swipes still scroll the page. */
+  /* Full-bleed canvas window: as tall as the screen below the hero bar, so stickers only
+     clip at the screen edges, never mid-page. The grid is drawn at 0.75× its 989px source
+     (742px) with breathing room around it, and the user pans it freely on X and Y. Once
+     the canvas hits an edge vertically, the swipe chains on to scroll the page. */
   .balaty__honeycomb {
+    display: flex;
+    align-items: flex-start;
     width: calc(100% + 48px);
     max-width: none;
-    overflow-x: auto;
+    height: calc(100dvh - 76px);
+    overflow: auto;
     overscroll-behavior-x: contain;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
@@ -129,5 +134,8 @@
   .balaty__honeycomb-canvas {
     flex: none;
     width: 742px;
+    /* Vertical padding scales with the window so the canvas always overflows it by at
+       least ~240px (window height − 76px bar − 695px canvas + 240px, halved) on tall screens */
+    margin: max(96px, calc(50dvh - 265px)) 96px;
   }
 }
