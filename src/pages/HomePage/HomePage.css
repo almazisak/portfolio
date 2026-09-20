@@ -43,6 +43,7 @@
   gap: 16px;
   width: min(455px, calc(100vw - 80px));
   flex-shrink: 0;
+  text-align: left;
 }
 
 .work-card__tile {
@@ -88,6 +89,7 @@
 }
 
 .work-card__desc {
+  display: block;
   font-size: 14px;
   line-height: 22px;
   color: #383737;
