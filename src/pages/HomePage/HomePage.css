@@ -160,10 +160,19 @@
   color: #706E69;
 }
 
-.review-item__company-link {
-  color: #080708;
-  text-decoration: underline;
-  text-underline-offset: 2px;
+.review-item__name-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.review-item__linkedin {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.review-item__linkedin img {
+  display: block;
 }
 
 
