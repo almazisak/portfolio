@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import HeroBar from '../../components/HeroBar/HeroBar'
 import balatyIllustration from '../../assets/balaty-illustration.png'
 import halykMarketCover from '../../assets/halyk-market-cover.png'
@@ -97,6 +98,7 @@ const BEYOND = [
   },
   {
     id: 'balaty',
+    href: '/work/balaty',
     title: 'Balaty · 2016',
     desc: 'Conceived and art-directed a charity sticker pack',
     award: '🏆 Gold, Craft: Illustration & 3D – Jolbors International Festival of Creativity',
@@ -189,31 +191,36 @@ export default function HomePage() {
             <h2 className="beyond__title">Beyond product design</h2>
           </div>
           <ul className="beyond__list">
-            {BEYOND.map(item => (
-              <li key={item.id} className="beyond-item">
-                {item.tile === 'image'
-                  ? (
-                    <img
-                      className="beyond-item__tile beyond-item__tile--image"
-                      src={balatyIllustration}
-                      alt=""
-                    />
-                  )
-                  : (
-                    <div className="beyond-item__tile beyond-item__tile--placeholder">
-                      <span>case</span>
-                      <span>in progress</span>
+            {BEYOND.map(item => {
+              const Item = item.href ? Link : 'div'
+              return (
+                <li key={item.id}>
+                  <Item className="beyond-item" {...(item.href && { to: item.href })}>
+                    {item.tile === 'image'
+                      ? (
+                        <img
+                          className="beyond-item__tile beyond-item__tile--image"
+                          src={balatyIllustration}
+                          alt=""
+                        />
+                      )
+                      : (
+                        <div className="beyond-item__tile beyond-item__tile--placeholder">
+                          <span>case</span>
+                          <span>in progress</span>
+                        </div>
+                      )}
+                    <div className="beyond-item__info">
+                      <div className="beyond-item__top">
+                        <span className="beyond-item__title">{item.title}</span>
+                        <p className="beyond-item__desc">{item.desc}</p>
+                      </div>
+                      {item.award && <p className="beyond-item__award">{item.award}</p>}
                     </div>
-                  )}
-                <div className="beyond-item__info">
-                  <div className="beyond-item__top">
-                    <span className="beyond-item__title">{item.title}</span>
-                    <p className="beyond-item__desc">{item.desc}</p>
-                  </div>
-                  {item.award && <p className="beyond-item__award">{item.award}</p>}
-                </div>
-              </li>
-            ))}
+                  </Item>
+                </li>
+              )
+            })}
           </ul>
         </section>
       </main>
