@@ -226,8 +226,10 @@
 }
 
 .beyond__title {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
+  line-height: 140%;
+  letter-spacing: 0.005em;
   color: #080708;
 }
 
@@ -246,26 +248,25 @@
 
 .beyond-item__tile {
   width: 124px;
-  height: 80px;
+  height: 124px;
   border-radius: 24px;
   flex-shrink: 0;
 }
 
 .beyond-item__tile--placeholder {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  gap: 2px;
-  background: #F3E8D3;
-  padding: 0 16px;
-  font-size: 15px;
+  background: #FAEAD8;
+  font-size: 16px;
   font-weight: 600;
-  color: #4A90E2;
+  line-height: 140%;
+  letter-spacing: 0.005em;
+  color: #FF8811;
 }
 
 .beyond-item__tile--image {
   object-fit: cover;
-  background: #F3E8D3;
 }
 
 .beyond-item__info {
@@ -276,6 +277,10 @@
   flex: 1;
 }
 
+.beyond-item__info--muted {
+  opacity: 0.4;
+}
+
 .beyond-item__top {
   display: flex;
   flex-direction: column;
@@ -283,20 +288,23 @@
 }
 
 .beyond-item__title {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   color: #080708;
 }
 
 .beyond-item__desc {
   font-size: 14px;
-  line-height: 22px;
+  line-height: 140%;
+  letter-spacing: 0.005em;
   color: #383737;
+  text-wrap: pretty;
 }
 
 .beyond-item__award {
   font-size: 12px;
-  line-height: 17px;
+  line-height: 140%;
+  letter-spacing: 0.005em;
   color: #383737;
 }
 
