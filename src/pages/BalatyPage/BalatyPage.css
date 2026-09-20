@@ -65,6 +65,10 @@
   position: absolute;
   user-select: none;
   -webkit-user-drag: none;
+  /* Images never become the event target, so there's no "Save image as" / "Copy image"
+     right-click menu, and no long-press callout on iOS */
+  pointer-events: none;
+  -webkit-touch-callout: none;
   aspect-ratio: 1;
   object-fit: contain;
 }
