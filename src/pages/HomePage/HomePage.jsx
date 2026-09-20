@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import HeroBar from '../../components/HeroBar/HeroBar'
 import CaseInProgressDialog from '../../components/CaseInProgressDialog/CaseInProgressDialog'
+import ContactDialog from '../../components/ContactDialog/ContactDialog'
 import balatyIllustration from '../../assets/balaty-illustration.png'
 import halykMarketCover from '../../assets/halyk-market-cover.png'
 import dcbCover from '../../assets/dcb-cover.png'
@@ -117,6 +118,7 @@ const BEYOND = [
 export default function HomePage() {
   const [openReview, setOpenReview] = useState(null)
   const [caseDialogOpen, setCaseDialogOpen] = useState(false)
+  const [contactDialogOpen, setContactDialogOpen] = useState(false)
 
   function toggleReview(id) {
     setOpenReview(prev => prev === id ? null : id)
@@ -124,7 +126,7 @@ export default function HomePage() {
 
   return (
     <div className="home-page">
-      <HeroBar onContactClick={() => {}} />
+      <HeroBar onContactClick={() => setContactDialogOpen(true)} />
 
       <main className="home-page__main">
         {/* Intro */}
@@ -233,6 +235,12 @@ export default function HomePage() {
       </main>
 
       <CaseInProgressDialog open={caseDialogOpen} onClose={() => setCaseDialogOpen(false)} />
+      <ContactDialog
+        open={contactDialogOpen}
+        onClose={() => setContactDialogOpen(false)}
+        title="Let's talk"
+        description="Whether it's work, a collaboration, or a quick question – I'm one message away"
+      />
     </div>
   )
 }
