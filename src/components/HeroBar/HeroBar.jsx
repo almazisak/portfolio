@@ -33,7 +33,7 @@ export default function HeroBar({ onContactClick, onBack, title, showTitle = fal
             </>
           ) : (
             <>
-              <img className="hero-bar__avatar" src="/avatar.jpg" alt="Almaz Isakov" />
+              <img className="hero-bar__avatar" src="/avatar-hero.jpg" alt="Almaz Isakov" />
               <span className="hero-bar__name">Almaz Isakov</span>
             </>
           )}
