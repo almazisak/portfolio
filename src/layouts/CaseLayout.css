@@ -1,0 +1,278 @@
+/* ── Reading progress bar ─────────────────────────────────── */
+.case-layout__progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #FF8811;
+  transform-origin: left;
+  transform: scaleX(0);
+  z-index: 100;
+  transition: transform 0.1s linear;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-layout__progress {
+    transition: none;
+  }
+}
+
+/* ── Page wrapper ─────────────────────────────────────────── */
+.case-layout {
+  min-height: 100dvh;
+  background: #F9F7F3;
+}
+
+/* ── Top nav ──────────────────────────────────────────────── */
+.case-layout__topnav {
+  padding: 20px 24px 0;
+  max-width: 660px;
+  margin: 0 auto;
+}
+
+.case-layout__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #706E69;
+  padding: 6px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.case-layout__back:hover {
+  color: #080708;
+}
+
+.case-layout__back:focus-visible {
+  outline: 2px solid #FF8811;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* ── TOC ──────────────────────────────────────────────────── */
+.case-layout__toc {
+  max-width: 660px;
+  margin: 32px auto 0;
+  padding: 0 24px;
+}
+
+.case-layout__toc-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  border-left: 2px solid rgb(255 136 17 / 30%);
+  padding-left: 16px;
+  gap: 10px;
+}
+
+.case-layout__toc-link {
+  font-size: 13px;
+  color: #706E69;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.case-layout__toc-link:hover {
+  color: #080708;
+}
+
+.case-layout__toc-link:focus-visible {
+  outline: 2px solid #FF8811;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ── Article — CSS Grid reading column ───────────────────── */
+/*
+ * All direct children land in the content column by default.
+ * Blocks that should span the full viewport (Hero cover, FullBleed)
+ * override via grid-column: full in blocks.css.
+ */
+.case-layout__article {
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(24px, 1fr)
+    [content-start] min(660px, 100% - 48px)
+    [content-end] minmax(24px, 1fr)
+    [full-end];
+  row-gap: 0;
+  padding: 40px 0 80px;
+}
+
+.case-layout__article > * {
+  grid-column: content;
+}
+
+/* Prose styles for bare MDX output */
+.case-layout__article h2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #080708;
+  letter-spacing: -0.01em;
+  margin-top: 56px;
+  margin-bottom: 20px;
+  scroll-margin-top: 24px;
+}
+
+.case-layout__article h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: #080708;
+  margin-top: 36px;
+  margin-bottom: 12px;
+  scroll-margin-top: 24px;
+}
+
+.case-layout__article p {
+  font-family: 'Literata', serif;
+  font-size: 17px;
+  line-height: 1.75;
+  color: #383737;
+  margin-bottom: 20px;
+}
+
+.case-layout__article ul,
+.case-layout__article ol {
+  font-family: 'Literata', serif;
+  font-size: 17px;
+  line-height: 1.75;
+  color: #383737;
+  padding-left: 24px;
+  margin-bottom: 20px;
+}
+
+.case-layout__article ul li + li,
+.case-layout__article ol li + li {
+  margin-top: 8px;
+}
+
+.case-layout__article strong {
+  font-weight: 600;
+  color: #080708;
+}
+
+.case-layout__article em {
+  font-style: italic;
+}
+
+/* Spacing between block components */
+.case-layout__article > .cs-figure,
+.case-layout__article > .cs-pull-quote,
+.case-layout__article > .cs-steps,
+.case-layout__article > .cs-callout,
+.case-layout__article > .cs-diptych,
+.case-layout__article > .cs-metric {
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+/* Loading skeleton */
+.case-layout__skeleton {
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Full-bleed override ──────────────────────────────────── */
+/* Lets Hero and FullBleed components escape the reading column */
+.case-layout__article > .cs-hero,
+.case-layout__article > .cs-full-bleed {
+  grid-column: full;
+}
+
+/* ── Adjacent case nav ────────────────────────────────────── */
+.case-layout__adjacent {
+  border-top: 1px solid rgb(255 136 17 / 30%);
+  padding: 0 24px;
+}
+
+.case-layout__adjacent-inner {
+  max-width: 660px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 32px 0;
+}
+
+.case-layout__adj-link {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-decoration: none;
+  max-width: 240px;
+}
+
+.case-layout__adj-link--next {
+  text-align: right;
+  margin-left: auto;
+}
+
+.case-layout__adj-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #706E69;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.case-layout__adj-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #080708;
+  transition: color 0.15s ease;
+}
+
+.case-layout__adj-link:hover .case-layout__adj-title {
+  color: #FF8811;
+}
+
+.case-layout__adj-link:focus-visible {
+  outline: 2px solid #FF8811;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* ── Footer ───────────────────────────────────────────────── */
+.case-layout__footer {
+  border-top: 1px solid rgb(255 136 17 / 30%);
+  padding: 0 24px;
+}
+
+.case-layout__footer-inner {
+  max-width: 660px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0;
+  font-size: 13px;
+  color: #706E69;
+}
+
+.case-layout__footer-home {
+  color: #706E69;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.case-layout__footer-home:hover {
+  color: #080708;
+}
+
+.case-layout__footer-home:focus-visible {
+  outline: 2px solid #FF8811;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
