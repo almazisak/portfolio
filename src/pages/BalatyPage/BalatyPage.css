@@ -30,10 +30,17 @@
 
 .balaty__meta,
 .balaty__body {
-  font-size: 16px;
   letter-spacing: 0.005em;
   line-height: 150%;
   color: #383737;
+}
+
+.balaty__meta {
+  font-size: 16px;
+}
+
+.balaty__body {
+  font-size: 15px;
 }
 
 .balaty__link {
