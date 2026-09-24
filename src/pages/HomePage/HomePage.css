@@ -90,7 +90,7 @@
 
 .work-card__desc {
   display: block;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 22px;
   color: #383737;
 }
@@ -189,7 +189,7 @@
 .review-item__body {
   overflow: hidden;
   padding-bottom: 0;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 22px;
   color: #383737;
   transition: padding-bottom 0.25s ease;
@@ -292,7 +292,7 @@
 }
 
 .beyond-item__desc {
-  font-size: 14px;
+  font-size: 15px;
   line-height: 140%;
   letter-spacing: 0.005em;
   color: #383737;
