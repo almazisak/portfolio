@@ -614,10 +614,15 @@ figcaption.cs-diptych__caption {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
+  max-width: 1040px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 24px;
 }
 
 .cs-evidence-cards__item {
   flex: 1 1 200px;
+  aspect-ratio: 1;
   display: flex;
   flex-direction: column;
   background: var(--cs-surface);
@@ -626,7 +631,7 @@ figcaption.cs-diptych__caption {
 }
 
 .cs-evidence-cards__placeholder {
-  aspect-ratio: 1;
+  flex: 1;
   background: #F3E8D3;
 }
 
@@ -646,7 +651,7 @@ figcaption.cs-diptych__caption {
 .cs-evidence-cards__body {
   font-size: 13px;
   line-height: 1.5;
-  color: var(--cs-muted);
+  color: var(--cs-text);
 }
 
 /* ── Callout ───────────────────────────────────────────────── */
