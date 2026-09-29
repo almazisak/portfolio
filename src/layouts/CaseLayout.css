@@ -48,7 +48,7 @@
 
 /* Prose styles for bare MDX output */
 .case-layout__article h2 {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Geist', 'Inter', sans-serif;
   font-size: 22px;
   font-weight: 700;
   color: #080708;
@@ -59,7 +59,7 @@
 }
 
 .case-layout__article h3 {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Geist', 'Inter', sans-serif;
   font-size: 17px;
   font-weight: 600;
   color: #080708;
@@ -69,7 +69,7 @@
 }
 
 .case-layout__article p {
-  font-family: 'Literata', serif;
+  font-family: 'Geist', 'Inter', sans-serif;
   font-size: 17px;
   line-height: 1.75;
   color: #383737;
@@ -78,7 +78,7 @@
 
 .case-layout__article ul,
 .case-layout__article ol {
-  font-family: 'Literata', serif;
+  font-family: 'Geist', 'Inter', sans-serif;
   font-size: 17px;
   line-height: 1.75;
   color: #383737;

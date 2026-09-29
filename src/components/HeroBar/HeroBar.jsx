@@ -16,7 +16,7 @@ export default function HeroBar({ onContactClick, onBack, title, showTitle = fal
   }, [])
 
   return (
-    <header className={`hero-bar${scrolled ? ' hero-bar--scrolled' : ''}`}>
+    <header className={`hero-bar${scrolled ? ' hero-bar--scrolled' : ''}${onBack ? ' hero-bar--case' : ''}`}>
       <div className="hero-bar__inner">
         <div className="hero-bar__profile">
           {onBack ? (
