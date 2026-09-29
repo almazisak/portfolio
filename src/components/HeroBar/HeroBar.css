@@ -21,6 +21,11 @@
   gap: 12px;
 }
 
+/* Case pages read at 660px, not the home page's 550px — match the article column */
+.hero-bar--case .hero-bar__inner {
+  max-width: 660px;
+}
+
 .hero-bar__profile {
   display: flex;
   align-items: center;
