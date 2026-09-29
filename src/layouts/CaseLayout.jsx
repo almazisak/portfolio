@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { getAdjacentCases, getCaseBySlug } from '../lib/cases'
 import * as CaseBlocks from '../components/case'
 import './CaseLayout.css'
@@ -14,6 +14,18 @@ export default function CaseLayout() {
 
   const meta = getCaseBySlug(slug)
   const { prev, next } = getAdjacentCases(slug ?? '')
+
+  // Client-side navigation keeps the previous page's scroll position, and the browser
+  // restores the old offset on back/forward (mobile swipe gestures) and reload after
+  // our scrollTo runs. Opt this entry out of restoration so the page always opens on top —
+  // otherwise the nav bar's sticky shadow and case title can flash on mount, computed from
+  // the old scroll position before this resets it.
+  useLayoutEffect(() => {
+    const prevRestoration = window.history.scrollRestoration
+    window.history.scrollRestoration = 'manual'
+    window.scrollTo(0, 0)
+    return () => { window.history.scrollRestoration = prevRestoration }
+  }, [slug])
 
   // Dynamically load the case MDX module
   useEffect(() => {

@@ -56,7 +56,10 @@ export default function BalatyPage() {
     const el = titleRef.current
     if (!el) return
     const observer = new IntersectionObserver(
-      ([entry]) => setTitleGone(!entry.isIntersecting),
+      // isIntersecting is also false before the title has scrolled into view at all
+      // (e.g. still hidden below a tall cover on load) — only count it "gone" once
+      // it has actually exited past the top of the viewport.
+      ([entry]) => setTitleGone(!entry.isIntersecting && entry.boundingClientRect.top < 0),
       { rootMargin: `-${HERO_BAR_HEIGHT}px 0px 0px 0px` },
     )
     observer.observe(el)
