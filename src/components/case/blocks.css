@@ -151,7 +151,8 @@ figcaption.cs-figure__caption {
 
 /* ── Diptych ───────────────────────────────────────────────── */
 .cs-diptych {
-  margin: 0;
+  margin: 0 auto;
+  max-width: 1040px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -160,7 +161,7 @@ figcaption.cs-figure__caption {
 .cs-diptych__panels {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 16px;
 }
 
 @media (max-width: 540px) {
