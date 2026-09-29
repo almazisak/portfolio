@@ -25,70 +25,6 @@
   background: #F9F7F3;
 }
 
-/* ── Top nav ──────────────────────────────────────────────── */
-.case-layout__topnav {
-  padding: 20px 24px 0;
-  max-width: 660px;
-  margin: 0 auto;
-}
-
-.case-layout__back {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #706E69;
-  padding: 6px 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: color 0.15s ease;
-}
-
-.case-layout__back:hover {
-  color: #080708;
-}
-
-.case-layout__back:focus-visible {
-  outline: 2px solid #FF8811;
-  outline-offset: 4px;
-  border-radius: 4px;
-}
-
-/* ── TOC ──────────────────────────────────────────────────── */
-.case-layout__toc {
-  max-width: 660px;
-  margin: 32px auto 0;
-  padding: 0 24px;
-}
-
-.case-layout__toc-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  border-left: 2px solid rgb(255 136 17 / 30%);
-  padding-left: 16px;
-  gap: 10px;
-}
-
-.case-layout__toc-link {
-  font-size: 13px;
-  color: #080708;
-  text-decoration: none;
-}
-
-.case-layout__toc-link:hover {
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.case-layout__toc-link:focus-visible {
-  outline: 2px solid #FF8811;
-  outline-offset: 2px;
-  border-radius: 2px;
-}
-
 /* ── Article — CSS Grid reading column ───────────────────── */
 /*
  * All direct children land in the content column by default.
@@ -103,7 +39,7 @@
     [content-end] minmax(24px, 1fr)
     [full-end];
   row-gap: 0;
-  padding: 40px 0 80px;
+  padding: 0 0 80px;
 }
 
 .case-layout__article > * {
@@ -170,7 +106,14 @@
 .case-layout__article > .cs-steps,
 .case-layout__article > .cs-callout,
 .case-layout__article > .cs-diptych,
-.case-layout__article > .cs-metric {
+.case-layout__article > .cs-metric,
+.case-layout__article > .cs-facts,
+.case-layout__article > .cs-tldr,
+.case-layout__article > .cs-finding,
+.case-layout__article > .cs-numbered-list,
+.case-layout__article > .cs-hypotheses,
+.case-layout__article > .cs-versions,
+.case-layout__article > .cs-evidence-cards {
   margin-top: 32px;
   margin-bottom: 32px;
 }
@@ -184,8 +127,9 @@
 }
 
 /* ── Full-bleed override ──────────────────────────────────── */
-/* Lets Hero and FullBleed components escape the reading column */
-.case-layout__article > .cs-hero,
+/* Lets Hero's cover/nav and FullBleed escape the reading column */
+.case-layout__article > .cs-hero__cover,
+.case-layout__article > .hero-bar,
 .case-layout__article > .cs-full-bleed {
   grid-column: full;
 }
