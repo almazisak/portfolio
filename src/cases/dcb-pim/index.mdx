@@ -1,0 +1,208 @@
+import {
+  Hero, Figure, FullBleed, Diptych, Facts, TLDR, Finding,
+  NumberedList, HypothesesGrid, VersionCompare, EvidenceCards,
+} from '../../components/case'
+
+<Hero
+  title="SKU creation in a marketplace Product Information Management"
+  navTitle="DCB PIM"
+  coverAlt="DCB PIM — SKU creation flow, cover placeholder"
+/>
+
+<Facts items={[
+  { label: 'Product', value: 'DCB Marketplace, internal back-office tool' },
+  { label: 'Role', value: 'Product Designer' },
+  { label: 'Timeline', value: '2020' },
+  { label: 'Platform', value: 'Desktop web' },
+  { label: 'Team', value: 'Designer (me), CPO, PM, developers, 5 content managers' },
+]} />
+
+<TLDR
+  intro="DCB Marketplace is the e-commerce arm of Doscredobank, a Kyrgyz bank whose main retail product is installment credit: shoppers buy goods on installments, and one canonical card per product carries every seller's offer. In 2020 I joined the bank's IT lab as the first designer on the in-house marketplace team, to replace the vendor back office with our own PIM – the tool content managers use to build the catalogue. This case covers one flow in that PIM: creating a new SKU."
+  owned={[
+    { title: 'Research', body: 'contextual inquiry and interviews with all five content managers, plus a benchmark of top marketplaces in the CIS region.' },
+    { title: 'Data model and flow', body: 'how product types, attributes, values, units and variants connect, and the SKU creation flow built on top of it.' },
+    { title: 'Prototyping and testing', body: 'moderated usability tests on Figma prototypes, then timed runs on real catalogue data.' },
+    { title: 'UI kit', body: 'the web kit the PIM was built on, later the base for order management, CMS and other internal and B2B tools.' },
+  ]}
+  stat={{
+    headline: "Creating one SKU from a seller's price list took 20–25 minutes of manual entry. The new flow cut it to about 10.",
+    beforeLabel: 'Vendor',
+    afterLabel: 'New PIM',
+    beforeValue: 22.5,
+    afterValue: 10,
+  }}
+/>
+
+## Context
+
+DCB Marketplace runs on a golden-card model: the catalogue belongs to the marketplace, not to sellers. The content team creates one canonical card per product, and every seller attaches an offer – price and stock – to that card. Shoppers see one product page, compare offers and pay in installments through the bank. Kaspi.kz, the leading marketplace in Kazakhstan, works the same way.
+
+That model puts catalogue quality on the marketplace's own team. Until 2020 the catalogue lived in an off-the-shelf back office licensed from a vendor; the bank decided to replace it with an in-house product, and the PIM came first. This case follows one feature in it – creating a new SKU, from choosing a product type to saving the last variant. Alongside it I built the web UI kit, extending patterns from the bank's DCB 360 app.
+
+## Problem
+
+Sellers didn't create products themselves: the marketplace was young and the back office was hard to learn. Instead, sellers sent price lists to account managers, who passed them to 5 content managers, who entered every product by hand.
+
+A price list could hold up to 1,000 items – more than any manager could finish in a day – so they coloured finished rows green in Excel to track where to resume. A product in an existing category took 20–25 minutes; one that needed a new category and attributes took up to 40. Most of that time went not into entering data but into working around the back office. Time to market for a seller's catalogue depended on headcount, and the cost sat in the bank's operating expenses.
+
+## Goal
+
+Shorten time to market for seller catalogues and raise content-team throughput without hiring. The board saw the team couldn't keep up; the CPO's view was that more managers would clear the backlog but wouldn't solve scaling. A faster creation flow was also the first step towards bulk upload – Excel, CSV import and seller APIs.
+
+## Discovery
+
+### Contextual inquiry
+
+For 2 weeks I sat with all five content managers three times a week as they entered real price lists, and entered products myself in the vendor back office. With no product analytics, observation gave me the baseline time on task. The typical case was a product in an existing category with one or two attributes or values missing. Three mechanisms drove time on task up:
+
+<EvidenceCards items={[
+  { title: 'Context switches for missing data', body: 'A missing attribute or value meant leaving the product for the Attributes section, refreshing the dictionary, and returning to the draft.' },
+  { title: 'Free-text values', body: 'Value and unit shared one unvalidated text field, so the same unit – and even the same attribute – existed in several versions.' },
+  { title: 'Variants as separate work', body: 'Variants lived in a separate module: after saving a card, the manager had to find it again and build combinations there.' },
+]} />
+
+<Finding
+  headline="The duplicates came from the data model, not carelessness"
+  body="So I had to redesign how categories, attributes, values, units and variants connect, not only the screens."
+/>
+
+### Interviews
+
+After sessions I asked where managers got stuck and how they learned the system. One finding changed the direction of the variant work:
+
+<Finding
+  headline="The matrix was learned, not understood"
+  body="Every manager admitted it had been hard to grasp at first, so the model had to match how people think about products, not how the database stores them."
+/>
+
+### Competitive benchmarking
+
+No marketplace exposes its admin, so I reconstructed how Ozon and Wildberries build product cards from their seller docs, official tutorials and blogger walkthroughs.
+
+<NumberedList items={[
+  { title: 'Inline creation works at scale', body: 'Both let sellers add a missing attribute inside product creation.' },
+  { title: 'Their catalogue model differs at the root', body: "They're open catalogues, where every seller creates or attaches a card. In our golden-card model a mistake reaches every seller's offer on that card, so I could borrow their patterns for entering data, not for owning it." },
+]} />
+
+<FullBleed>
+  <Diptych caption="Evidence board (left) from contextual inquiry sessions, and the Ozon / Wildberries benchmark board (right)">
+    <Figure placeholder="Evidence board" />
+    <Figure placeholder="Benchmark board" />
+  </Diptych>
+</FullBleed>
+
+## Hypotheses
+
+<HypothesesGrid items={[
+  'If managers can add a missing value without leaving the product, time on task will drop.',
+  'If the unit is a separate field with suggestions, managers will stop creating duplicates.',
+  'If variants look like separate physical items rather than a matrix, new managers will understand the flow faster.',
+  'If the common/variant choice is made once per product type, not on every product, managers will stop second-guessing it.',
+]} />
+
+The first came straight from research; the CPO backed it and left the final call to the developers. The others took shape while I designed and went straight into mockups, where the team discussed them. The last one appeared only after the first round of tests.
+
+## Process
+
+### Constraints
+
+There was no launch deadline – the old marketplace kept running – so I could design the data model, not only the screens. The constraints came from elsewhere:
+
+<NumberedList items={[
+  { marker: '—', title: 'One designer, no design system', body: 'Every component I drew became part of the UI kit for the rest of the admin and the future seller portal.' },
+  { marker: '—', title: 'Shared engineering', body: 'The developers split their time with another project.' },
+  { marker: '—', title: 'Dirty legacy data', body: 'Data from the vendor back office was cleaned in an isolated database before it reached the new PIM, so the new flow had to keep data clean from day one.' },
+]} />
+
+### How I tested
+
+I ran moderated usability tests on Figma prototypes with the managers, each followed by a short interview: what was clear, what they expected, what actually happened. I tested for comprehension, not speed – mock data and prototype lag would have distorted timings – and benchmarked time on task later, on real catalogue data.
+
+<FullBleed>
+  <Figure placeholder="Test board" caption="Usability test setup — moderated sessions on Figma prototypes with all five content managers" />
+</FullBleed>
+
+### Adding a missing value without leaving the product
+
+Unlike Ozon and Wildberries, the flow doesn't create whole attributes inline. An attribute carries rules – its type, unit and variant flag – that should be set once, deliberately, in the Attributes section. What managers needed mid-product was the missing value: a new screen type, a new colour.
+
+Value fields open the full list on focus, so a manager who sees the right item doesn't type at all: arrow keys, Enter. Typing filters the list. The question was what happens when nothing matches:
+
+<VersionCompare
+  image
+  items={[
+    { title: 'v1 – modal', body: "Enter opened a modal with the new value's settings. Managers rejected it: an extra layer was too much friction for such a repetitive task." },
+    { title: 'v2 – "Add" in the dropdown (shipped)', body: 'With no match, the dropdown flags the missing value and offers an Add button under the field – one extra click, which managers accepted.', shipped: true },
+    { title: 'v3 – soft creation (rejected)', body: 'Creating unmatched text on blur was faster, but a typo plus Tab would silently add a wrong value – and it would reach every offer on the card.' },
+  ]}
+/>
+
+The guard against duplicates is the list plus the confirmation: existing items appear before anything new is created, and nothing is created without a deliberate click. But a contains match still misses the Russian spelling of an English unit – the gap that shows up in Outcome.
+
+### Units in their own field
+
+I split value and unit into two fields, with the unit picked from a dictionary through autocomplete. It adds a field, but units now come from one list instead of free text.
+
+<FullBleed>
+  <Figure placeholder="Unit field — before / after" caption="Value and unit as one free-text field, before, versus unit picked from a dictionary, after" />
+</FullBleed>
+
+### Variants as items, not a matrix
+
+The flow runs in blocks: product type → General info → Common attributes → Variants (skippable). Common attributes describe the model as a whole; each variant card is its own SKU. The database stores variants as a matrix, and the old back office showed that matrix to managers. I designed variants as cards instead, one per physical item: a white 256 GB iPhone, a black 256 GB and a black 512 GB are three separate objects in the real world and on the storefront. Used combinations are excluded from new cards, duplicates are flagged, and all variants save in one batch.
+
+<FullBleed>
+  <Figure placeholder="Variant cards demo" caption="Variants as individual cards — one per physical SKU, not a matrix of attribute combinations" />
+</FullBleed>
+
+### A variant flag on the attribute
+
+Cards settled how variants look; the next question was which attributes go on them.
+
+<VersionCompare items={[
+  { title: 'Version A (first tested)', body: "The manager marked the varying attributes on each product, and they moved to the end of the flow. Managers followed the logic, but deciding it on every product wasn't clear to them." },
+  { title: 'Version B (shipped)', body: 'The decision moved to the attribute itself: a variant flag, set once per product type. Flagged attributes leave Common attributes and appear at the end as variant attributes.', shipped: true },
+]} />
+
+This works because attributes live in product types – the third-level categories where products are created – so "Colour" can vary for smartphones and stay common elsewhere. Same-named attributes don't collide because the system prefixes their IDs.
+
+<FullBleed>
+  <Figure placeholder="Attribute routing flow" caption="How a variant-flagged attribute routes from Common attributes into the variant cards" />
+</FullBleed>
+
+## Outcome
+
+### Time on task
+
+In five timed runs on a test environment with a cleaned subset of real catalogue data, using the typical case from discovery, time on task fell from 20–25 minutes in the old back office to about 10 in the new PIM – 50–60% less. By my estimate from the benchmark, not a production measurement, an hour of focused entry went from 2–3 SKUs to about 6: roughly double the throughput from the same five managers, without hiring.
+
+### Time to proficiency
+
+New managers understood the whole flow within one working day. I have no baseline from the old back office, so I don't claim a speed-up.
+
+### Variant routing
+
+In moderated tests managers preferred Version B.
+
+### Data quality
+
+Duplicates persisted. The dictionary held each unit in one form, so a manager who saw only "mAh" could create "мА·ч" – which looked right on a Russian-language storefront. The system didn't match spelling or language variants.
+
+### UI kit
+
+The kit I started for the PIM became the base for order management, the marketing CMS and the bank's other internal and B2B systems.
+
+<FullBleed>
+  <Figure placeholder="Time on task chart" caption="Time on task, old back office versus new PIM, across five timed runs" />
+</FullBleed>
+
+## Reflection
+
+<Finding headline="The data model alone would have given me a correct flow, not a usable one." />
+
+The V1 modal was logically sound, and managers still rejected it. What made the difference was that the content team sat one floor away, and I could walk over with each new version.
+
+I solved duplicates only partly. The explicit Add step stopped accidental values, not deliberate ones: a manager who added "мА·ч" did it on purpose, and nothing in the model tied it to "mAh".
+
+My biggest blind spot was the storefront. Binding attributes to product types worked for creating products, but a first- or second-level listing had to show filters from every nested category, so each query went down to the product-type level and pulled every filterable attribute. I only saw it later, as lead of the storefront. Development fixed it with curated filter presets for each first- and second-level category.
