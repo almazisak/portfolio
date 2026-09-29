@@ -163,6 +163,7 @@
 }
 
 .case-layout__adj-label {
+  font-family: 'Geist Mono', monospace;
   font-size: 12px;
   font-weight: 500;
   color: #706E69;

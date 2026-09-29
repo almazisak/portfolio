@@ -299,6 +299,7 @@ figcaption.cs-diptych__caption {
 .cs-facts__label {
   flex-shrink: 0;
   width: 100px;
+  font-family: 'Geist Mono', monospace;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -321,6 +322,7 @@ figcaption.cs-diptych__caption {
 
 .cs-tldr__label,
 .cs-tldr__owned-label {
+  font-family: 'Geist Mono', monospace;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -425,6 +427,7 @@ figcaption.cs-diptych__caption {
   display: flex;
   align-items: center;
   gap: 8px;
+  font-family: 'Geist Mono', monospace;
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
