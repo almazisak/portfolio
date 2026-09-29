@@ -130,7 +130,8 @@
 /* Lets Hero's cover/nav and FullBleed escape the reading column */
 .case-layout__article > .cs-hero__cover,
 .case-layout__article > .hero-bar,
-.case-layout__article > .cs-full-bleed {
+.case-layout__article > .cs-full-bleed,
+.case-layout__article > .cs-evidence-cards {
   grid-column: full;
 }
 
