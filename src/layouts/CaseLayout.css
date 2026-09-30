@@ -58,6 +58,10 @@
   scroll-margin-top: 24px;
 }
 
+.case-layout__article .cs-tldr__label {
+  margin: 0;
+}
+
 .case-layout__article h3 {
   font-family: 'Geist', 'Inter', sans-serif;
   font-size: 17px;
