@@ -4,9 +4,9 @@ import {
 } from '../../components/case'
 
 <Hero
-  title="SKU creation in a marketplace Product Information Management"
-  navTitle="SKU creation"
-  coverAlt="DCB PIM — SKU creation flow, cover placeholder"
+  title="Product creation in a marketplace Product Information Management"
+  navTitle="Product creation"
+  coverAlt="DCB PIM — product creation flow, cover placeholder"
 />
 
 <Facts items={[
@@ -18,15 +18,15 @@ import {
 ]} />
 
 <TLDR
-  intro="DCB Marketplace is the e-commerce arm of Doscredobank, a Kyrgyz bank whose main retail product is installment credit: shoppers buy goods on installments, and one canonical card per product carries every seller's offer. In 2020 I joined the bank's IT lab as the first designer on the in-house marketplace team, to replace the vendor back office with our own PIM – the tool content managers use to build the catalogue."
+  intro="DCB Marketplace is the e-commerce arm of Doscredobank, a Kyrgyz bank whose core retail business is installment credit: shoppers buy on installments, and each product exists in the catalogue once, carrying every seller's offer. In 2020 I joined the bank's IT lab as the first designer on the in-house marketplace team, to replace the vendor back office with our own PIM – the tool content managers use to build the catalogue."
   owned={[
     { title: 'Research', body: 'contextual inquiry and interviews with all five content managers, plus a benchmark of top marketplaces in the CIS region.' },
-    { title: 'Data model and flow', body: 'how product types, attributes, values, units and variants connect, and the SKU creation flow built on top of it.' },
+    { title: 'Data model and flow', body: 'how product types, attributes, values, units and variants connect, and the product creation flow built on top of it.' },
     { title: 'Prototyping and testing', body: 'moderated usability tests on Figma prototypes, then timed runs on real catalogue data.' },
     { title: 'UI kit', body: 'the web kit the PIM was built on, later the base for order management, CMS and other internal and B2B tools.' },
   ]}
   stat={{
-    headline: "Creating one SKU from a seller's price list took 20–25 minutes of manual entry. The new flow cut it to about 10.",
+    headline: "Creating one product from a seller's price list took 20–25 minutes of manual entry. The new flow cut it to about 10.",
     beforeLabel: 'Vendor',
     afterLabel: 'New PIM',
     beforeValue: 22.5,
@@ -36,15 +36,15 @@ import {
 
 ## Context
 
-DCB Marketplace runs on a golden-card model: the catalogue belongs to the marketplace, not to sellers. The content team creates one canonical card per product, and every seller attaches an offer – price and stock – to that card. Shoppers see one product page, compare offers and pay in installments through the bank. Kaspi.kz, the leading marketplace in Kazakhstan, works the same way.
+DCB Marketplace runs on a golden-record model: the catalogue belongs to the marketplace, not to sellers. The content team creates each product once, and every seller attaches an offer – price and stock – to it. Shoppers see one product page, compare offers and pay in installments through the bank. Kaspi.kz, the leading marketplace in Kazakhstan, works the same way.
 
-That model puts catalogue quality on the marketplace's own team. Until 2020 the catalogue lived in an off-the-shelf back office licensed from a vendor; the bank decided to replace it with an in-house product, and the PIM came first. This case follows one feature in it – creating a new SKU, from choosing a product type to saving the last variant. Alongside it I built the web UI kit, extending patterns from the bank's DCB 360 app.
+That model puts catalogue quality on the marketplace's own team. Until 2020 the catalogue lived in an off-the-shelf back office licensed from a vendor; the bank decided to replace it with an in-house system, and the PIM came first. This case follows one feature in it – creating a new product, from choosing a product type to saving the last variant. Alongside it I built the web UI kit, extending patterns from the bank's DCB 360 app.
 
 ## Problem
 
 Sellers didn't create products themselves: the marketplace was young and the back office was hard to learn. Instead, sellers sent price lists to account managers, who passed them to 5 content managers, who entered every product by hand.
 
-A price list could hold up to 1,000 items – more than any manager could finish in a day – so they coloured finished rows green in Excel to track where to resume. A product in an existing category took 20–25 minutes; one that needed a new category and attributes took up to 40. Most of that time went not into entering data but into working around the back office. Time to market for a seller's catalogue depended on headcount, and the cost sat in the bank's operating expenses.
+A price list could hold up to 1,000 rows – more than any manager could finish in a day – so they coloured finished rows green in Excel to track where to resume. A product in an existing category took 20–25 minutes; one that needed a new category and attributes took up to 40. Most of that time went not into entering data but into working around the back office. Time to market for a seller's catalogue depended on headcount, and the cost sat in the bank's operating expenses.
 
 <FullBleed>
   <Figure placeholder="Price list in Excel" caption="A seller's price list in Excel with completed rows coloured green" />
@@ -56,11 +56,11 @@ Shorten time to market for seller catalogues and raise content-team throughput w
 
 ## Discovery
 
-With no product analytics, I got the baseline by watching. For 2 weeks I sat with all five content managers three times a week as they entered real price lists, and entered products myself in the vendor back office. After each session I asked where they got stuck and how they had learned the system. I also reconstructed how Ozon and Wildberries build product cards from their seller docs, official tutorials and blogger walkthroughs – no marketplace exposes its admin.
+With no product analytics, I got the baseline by watching. For 2 weeks I sat with all five content managers three times a week as they entered real price lists, and entered products myself in the vendor back office. After each session I asked where they got stuck and how they had learned the system. I also reconstructed how Ozon and Wildberries sellers create products, from their seller docs, official tutorials and blogger walkthroughs – no marketplace exposes its admin.
 
 <Finding
   headline="The duplicates came from the data model, not carelessness"
-  body="The typical case was a product in an existing category with one or two attributes or values missing, and three mechanisms made it slow. A missing attribute or value meant leaving the product for the Attributes section, refreshing the dictionary and returning to the draft. Value and unit shared one unvalidated text field, so the same unit lived as 'mAh', 'mah' and 'мА·ч', and some attributes existed twice. Variants sat in a separate module, where the manager had to find the saved card again and fill in a matrix of combinations. Fixing the screens wasn't enough: I had to redesign how attributes, values, units and variants connect."
+  body="The typical case was a product in an existing category with one or two attributes or values missing, and three mechanisms made it slow. A missing attribute or value meant leaving the product for the Attributes section, refreshing the dictionary and returning to the draft. Value and unit shared one unvalidated text field, so the same unit lived as 'mAh', 'mah' and 'мА·ч', and some attributes existed twice. Variants sat in a separate module, where the manager had to find the saved product again and fill in a matrix of combinations. Fixing the screens wasn't enough: I had to redesign how attributes, values, units and variants connect."
 />
 
 <Finding
@@ -80,10 +80,10 @@ With no product analytics, I got the baseline by watching. For 2 weeks I sat wit
 <HypothesesGrid items={[
   'If managers can add a missing value without leaving the product, time on task will drop.',
   'If the unit is a separate field with suggestions, managers will stop creating duplicates.',
-  'If variants look like separate physical items rather than a matrix, new managers will understand the flow faster.',
+  'If each variant is entered on its own, like a physical object, rather than as a cell in a matrix, new managers will understand the flow faster.',
 ]} />
 
-The first came straight from research. The others took shape while I designed and went straight into mockups, where the team discussed them.
+The first came straight from research; the CPO backed it and left the final call to the developers. The others took shape while I designed and went straight into mockups, where the team discussed them.
 
 ## Process
 
@@ -107,27 +107,27 @@ I ran moderated usability tests on Figma prototypes with the managers, each foll
 
 ### Adding a missing value without leaving the product
 
-Ozon and Wildberries let sellers create a missing attribute inside product creation, but they are open catalogues; in our golden-card model a wrong attribute would reach every seller's offer on the card. An attribute also carries rules – type, unit, variant flag – that should be set once, deliberately, in the Attributes section. So I borrowed the inline pattern only for what managers needed mid-product: the missing value, like a new screen type or a new colour. A missing attribute still meant a trip to the Attributes section, but a shorter one: creating it had less friction, and the dictionary re-indexed in the background, with no manual refresh.
+Ozon and Wildberries let sellers create a missing attribute inside product creation, but they are open catalogues; in our golden-record model a wrong attribute would reach every seller's offer on the product. An attribute also carries rules – type, unit, variant flag – that should be set once, deliberately, in the Attributes section. So I borrowed the inline pattern only for what managers needed mid-product: the missing value, like a new screen type or a new colour. A missing attribute still meant a trip to the Attributes section, but a shorter one: creating it had less friction, and the dictionary re-indexed in the background, with no manual refresh.
 
 <FullBleed>
-  <Diptych caption="Benchmark board: Ozon and Wildberries card-creation steps reconstructed from seller docs and tutorials, next to the old flow; open catalogue vs golden card">
+  <Diptych caption="Benchmark board: Ozon and Wildberries product-creation steps reconstructed from seller docs and tutorials, next to the old flow; open catalogue vs golden record">
     <Figure placeholder="Benchmark board" />
     <Figure placeholder="Old flow comparison" />
   </Diptych>
 </FullBleed>
 
-Value fields open the full list on focus, so a manager who sees the right item doesn't type at all: arrow keys, Enter. Typing filters the list. The question was what happens when nothing matches:
+Value fields open the full list on focus, so a manager who sees the right value doesn't type at all: arrow keys, Enter. Typing filters the list. The question was what happens when nothing matches:
 
 <VersionCompare
   image
   items={[
     { title: 'v1 – modal', body: "Enter opened a modal with the new value's settings. Managers rejected it: an extra layer was too much friction for such a repetitive task." },
     { title: 'v2 – "Add" in the dropdown (shipped)', body: 'With no match, the dropdown flags the missing value and offers an Add button under the field – one extra click, which managers accepted.', shipped: true },
-    { title: 'v3 – soft creation (rejected)', body: 'Creating unmatched text on blur was faster, but a typo plus Tab would silently add a wrong value – and it would reach every offer on the card.' },
+    { title: 'v3 – soft creation (rejected)', body: 'Creating unmatched text on blur was faster, but a typo plus Tab would silently add a wrong value – and it would reach every offer on the product.' },
   ]}
 />
 
-The guard against duplicates is the list plus the confirmation: existing items appear before anything new is created, and nothing is created without a deliberate click.
+The guard against duplicates is the list plus the confirmation: existing values appear before anything new is created, and nothing is created without a deliberate click.
 
 ### Units in their own field
 
@@ -137,30 +137,30 @@ I split value and unit into two fields, with the unit picked from a dictionary t
   <Figure placeholder="Unit field — before / after" caption="Value and unit as one free-text field, before, versus unit picked from a dictionary, after" />
 </FullBleed>
 
-### Variants as items, not a matrix
+### Variants one by one, not a matrix
 
-The flow runs in blocks: product type → General info → Variant attributes → Common attributes → Variants (skippable). Common attributes describe the model as a whole; each variant card is its own SKU. The database stores variants as a matrix, and the old back office showed that matrix to managers. I designed variants as cards instead, one per physical item: a white 256 GB iPhone, a black 256 GB and a black 512 GB are three separate objects in the real world and on the storefront. Used combinations are excluded from new cards, duplicates are flagged, and all variants save in one batch.
+The flow runs in steps: product type → General info → Variant attributes → Common attributes → Variants (skippable). Common attributes describe the product as a whole; each variant has its own SKU. The database stores variants as a matrix, and the old back office showed that matrix to managers. I designed variants as separate blocks instead, one per physical object: a white 256 GB iPhone, a black 256 GB and a black 512 GB are three separate objects in the real world and on the storefront. Used combinations are excluded from new blocks, duplicates are flagged, and all variants save in one batch.
 
 <FullBleed>
-  <Figure placeholder="Variant cards demo" caption="Adding variant cards, with used combinations disabled" />
+  <Figure placeholder="Variant blocks demo" caption="Adding variant blocks, with used combinations disabled" />
 </FullBleed>
 
 ### Choosing variant attributes
 
-Cards settled how variants look; the next question was which attributes go on them. In the Attributes section an attribute can carry a variant flag. Attributes live in product types – the third-level categories where products are created – so "Colour" can be flagged for smartphones and stay common elsewhere; same-named attributes don't collide because the system prefixes their IDs. On each product, the manager picks which of the flagged attributes actually vary.
+Blocks settled how variants look; the next question was which attributes go on them. In the Attributes section an attribute can carry a variant flag. Attributes live in product types – the third-level categories where products are created – so "Colour" can be flagged for smartphones and stay common elsewhere; same-named attributes don't collide because the system prefixes their IDs. On each product, the manager picks which of the flagged attributes actually vary.
 
 <VersionCompare items={[
-  { title: 'Version A – modal (first tested)', body: "After General info, the master card saved in the background and a modal listed the flagged attributes. The manager checked the ones that vary, and the flow moved on to Common attributes and the variant cards. The modal never came back – and managers pointed out that a listed product sometimes gained new variant attributes later." },
+  { title: 'Version A – modal (first tested)', body: "After General info, the master product was created in the background and a modal listed the flagged attributes. The manager checked the ones that vary, and the flow moved on to Common attributes and the variant blocks. The modal never came back – and managers pointed out that a listed product sometimes gained new variant attributes later." },
   { title: 'Version B – inline step (shipped)', body: 'Variant attributes became a regular step after General info, one managers could return to while creating or editing a product. In moderated tests managers preferred it.', shipped: true },
 ]} />
 
 <FullBleed>
-  <Figure placeholder="Attribute routing flow" caption="Attribute settings with variant, multi-value and key-characteristic flags; Version A (one-time modal) vs Version B (Variant attributes step), with flagged attributes routed to the variant cards" />
+  <Figure placeholder="Attribute routing flow" caption="Attribute settings with variant, multi-value and key-characteristic flags; Version A (one-time modal) vs Version B (Variant attributes step), with flagged attributes routed to the variant blocks, and the top-five summary on the product page" />
 </FullBleed>
 
 ## Outcome
 
-**Time on task – hypothesis 1 confirmed.** In five timed runs on a test environment with a cleaned subset of real catalogue data, using the typical case from Discovery, including creating a missing attribute, it fell from 20–25 minutes in the old back office to about 10 in the new PIM – 50–60% less. By my estimate from these runs, not a production measurement, an hour of focused entry went from 2–3 SKUs to about 6: roughly double the throughput from the same five managers, without hiring.
+**Time on task – hypothesis 1 confirmed.** In five timed runs on a test environment with a cleaned subset of real catalogue data, using the typical case from Discovery, including creating a missing attribute, it fell from 20–25 minutes in the old back office to about 10 in the new PIM – 50–60% less. By my estimate from these runs, not a production measurement, an hour of focused entry went from 2–3 products to about 6: roughly double the throughput from the same five managers, without hiring.
 
 **Duplicates – hypothesis 2 partly confirmed.** The explicit Add step stopped accidental duplicates, not deliberate ones. A manager who found only "mAh" in the dictionary could still add "мА·ч" on purpose – it looked right on a Russian-language storefront – and nothing in the model tied the two together.
 
@@ -169,7 +169,7 @@ Cards settled how variants look; the next question was which attributes go on th
 **UI kit.** The kit I started for the PIM became the base for order management, the marketing CMS and the bank's other internal and B2B systems.
 
 <FullBleed>
-  <Figure placeholder="Time on task chart" caption="Time on task per SKU in the same scenario, old back office (20–25 min) vs new PIM (~10 min), n = 5 runs" />
+  <Figure placeholder="Time on task chart" caption="Time on task per product in the same scenario, old back office (20–25 min) vs new PIM (~10 min), n = 5 runs" />
 </FullBleed>
 
 ## Reflection
