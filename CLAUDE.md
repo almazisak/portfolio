@@ -1,35 +1,13 @@
 # Portfolio – Claude Code Guide
 
-## Project structure
-
-This is a React + Vite portfolio site.
-
-```
-src/
-  assets/
-    icons/      ← SVG icons exported from Figma (used in components)
-    hero.png    ← hero image
-  components/   ← shared UI components
-  pages/        ← page-level components
-public/
-  icons.svg     ← SVG sprite for social/brand icons (referenced via <use>)
-  fonts/
-  avatar.jpg
-  cv.pdf
-```
-
 ## Icons
 
 ### UI icons (`src/assets/icons/`)
-Functional icons exported from Figma live here. Current icons:
-- `ic-download.svg` – download / CV button
-- `ic-mail.svg` – email button
+Functional icons exported from Figma live here.
 
 **How to use in a component:**
 
 ```jsx
-import { ReactComponent as IconDownload } from '@/assets/icons/ic-download.svg'
-// or with Vite's ?react suffix:
 import IconDownload from './assets/icons/ic-download.svg?react'
 
 <IconDownload aria-hidden="true" />
