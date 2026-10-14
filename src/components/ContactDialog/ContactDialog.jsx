@@ -1,8 +1,6 @@
 import { useEffect, useId, useRef } from 'react'
 import IcClose from '../../assets/icons/ic-close-circle.svg?react'
-import IcTelegram from '../../assets/icons/ic-telegram-inverse.svg?react'
-import icLinkedIn from '../../assets/icons/ic-linkedin-inverted.png'
-import IcMail from '../../assets/icons/ic-mail-accent.svg?react'
+import IcArrow from '../../assets/icons/ic-arrow-up-right-sm.svg?react'
 import './ContactDialog.css'
 
 // Dialog with the ways to reach me. Built on the native <dialog>, which
@@ -40,36 +38,41 @@ export default function ContactDialog({ open, onClose, title, description }) {
         <p className="contact-dialog__desc">{description}</p>
       </div>
 
-      <div className="contact-dialog__actions">
-        <div className="contact-dialog__row">
+      <button type="button" className="contact-dialog__close" onClick={onClose} aria-label="Close">
+        <IcClose aria-hidden="true" />
+      </button>
+
+      <ul className="contact-dialog__list">
+        <li className="contact-dialog__item">
           <a
             href="https://t.me/jonelealmaz"
             target="_blank"
             rel="noopener noreferrer"
-            className="contact-dialog__btn contact-dialog__btn--blue"
+            className="contact-dialog__link"
           >
-            <IcTelegram aria-hidden="true" />
-            <span>Telegram</span>
+            <IcArrow aria-hidden="true" />
+            <span className="contact-dialog__label">Telegram</span>
+            <span className="contact-dialog__tag">fastest</span>
           </a>
+        </li>
+        <li className="contact-dialog__item">
           <a
             href="https://www.linkedin.com/in/almazisakov/"
             target="_blank"
             rel="noopener noreferrer"
-            className="contact-dialog__btn contact-dialog__btn--blue"
+            className="contact-dialog__link"
           >
-            <img src={icLinkedIn} alt="" width="24" height="24" />
-            <span>LinkedIn</span>
+            <IcArrow aria-hidden="true" />
+            <span className="contact-dialog__label">LinkedIn</span>
           </a>
-        </div>
-        <a href="mailto:almazisakoff@gmail.com" className="contact-dialog__btn contact-dialog__btn--accent">
-          <IcMail aria-hidden="true" />
-          <span>almazisakoff@gmail.com</span>
-        </a>
-      </div>
-
-      <button type="button" className="contact-dialog__close" onClick={onClose} aria-label="Close">
-        <IcClose aria-hidden="true" />
-      </button>
+        </li>
+        <li className="contact-dialog__item">
+          <a href="mailto:almazisakoff@gmail.com" className="contact-dialog__link">
+            <IcArrow aria-hidden="true" />
+            <span className="contact-dialog__label">almazisakoff@gmail.com</span>
+          </a>
+        </li>
+      </ul>
     </dialog>
   )
 }
