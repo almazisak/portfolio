@@ -103,7 +103,24 @@
 }
 
 .contact-dialog__item {
+  position: relative;
   border-bottom: 1px solid #DCD3C7;
+}
+
+.contact-dialog__item::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 0;
+  height: 1px;
+  background: #323232;
+  transition: width 0.3s ease;
+}
+
+.contact-dialog__item:has(.contact-dialog__link:hover)::after,
+.contact-dialog__item:has(.contact-dialog__link:active)::after {
+  width: 100%;
 }
 
 .contact-dialog__link {
@@ -111,15 +128,6 @@
   align-items: center;
   gap: 8px;
   padding: 8px 0;
-  transition: opacity 0.15s ease;
-}
-
-.contact-dialog__link:hover {
-  opacity: 0.72;
-}
-
-.contact-dialog__link:active {
-  opacity: 0.56;
 }
 
 .contact-dialog__link svg {
