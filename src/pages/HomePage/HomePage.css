@@ -1,7 +1,7 @@
 /* ── Page wrapper ───────────────────────────────────────── */
 .home-page {
   min-height: 100dvh;
-  background: #F4EFEA;
+  background: #F4EFEA; /* token: --color-bg-warm */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,101 +12,144 @@
 .intro-card {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 40px;
   width: 420px;
   max-width: 100%;
-  min-height: 560px;
-  background: #fff;
+  background: #FFFFFF; /* token: --color-surface */
   border-radius: 20px;
-  padding: 48px;
+  padding: 28px;
+}
+
+.intro-card__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.intro-card__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .intro-card__avatar {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   border-radius: 999px;
   object-fit: cover;
   flex-shrink: 0;
 }
 
+.intro-card__name,
 .intro-card__headline {
-  font-size: 48px;
-  line-height: 1.24;
-  color: #1A1A1A;
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 1.2;
+  color: #1A1A1A; /* token: --color-ink-alt */
+}
+
+.intro-card__name {
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.intro-card__headline {
+  padding: 0 4px;
   text-wrap: pretty;
 }
 
-.intro-card__light {
-  font-weight: 300;
-}
-
 .intro-card__serif {
-  font-family: 'Playfair Display', 'Literata', serif;
+  font-family: 'Playfair Display', serif;
   font-weight: 600;
   font-style: italic;
 }
 
 .intro-card__actions {
-  margin-top: auto;
   display: flex;
+  align-items: center;
+  justify-content: flex-end;
   gap: 12px;
 }
 
 .intro-card__btn {
-  flex: 1;
   height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 999px;
+  gap: 8px;
+  padding: 0 16px;
+  border-radius: 24px;
   font-size: 16px;
   font-weight: 500;
+  line-height: 1.4;
   letter-spacing: 0.08px;
   transition: background 0.15s ease, color 0.15s ease;
 }
 
+.intro-card__btn:focus-visible {
+  outline: 2px solid #2092E9; /* token: --color-primary */
+  outline-offset: 2px;
+}
+
+.intro-card__btn-icon {
+  flex-shrink: 0;
+}
+
 .intro-card__btn--secondary {
-  background: #F4EFEA;
-  color: #1A1A1A;
+  flex-shrink: 0;
+  background: #E8DED5; /* PROPOSED token: --color-secondary (not in docs/color-tokens.md yet) */
+  color: #1A1A1A; /* token: --color-ink-alt */
 }
 
 .intro-card__btn--secondary:hover {
-  background: #323232;
-  color: #FFFFFF;
+  background: #323232; /* token: --color-ink-soft */
+  color: #FFFFFF; /* token: --color-surface */
 }
 
 .intro-card__btn--secondary:active {
-  background: #1A1A1A;
-  color: #FFFFFF;
+  background: #1A1A1A; /* token: --color-ink-alt */
+  color: #FFFFFF; /* token: --color-surface */
 }
 
 .intro-card__btn--primary {
-  background: #5D9BFF;
-  color: #FFFFFF;
+  flex: 1;
+  min-width: 0;
+  background: #5D9BFF; /* token: --color-primary-alt */
+  color: #FFFFFF; /* token: --color-surface */
 }
 
 .intro-card__btn--primary:hover {
-  background: #4377DB;
+  background: #4377DB; /* token: --color-primary-alt-hover */
 }
 
 .intro-card__btn--primary:active {
-  background: #2E58B7;
+  background: #2E58B7; /* token: --color-primary-alt-pressed */
 }
 
 /* ── Responsive ─────────────────────────────────────────── */
 @media (max-width: 600px) {
-  .home-page {
-    padding: 22px;
+  .intro-card {
+    width: 352px;
+    padding: 24px;
   }
 
-  .intro-card {
-    gap: 26px;
-    width: 348px;
-    min-height: 464px;
-    padding: 32px;
+  .intro-card__avatar {
+    width: 52px;
+    height: 52px;
+  }
+
+  .intro-card__name,
+  .intro-card__headline {
+    font-size: 32px;
+    line-height: 1.24;
+  }
+
+  .intro-card__name {
+    flex: 1;
+    white-space: normal;
   }
 
   .intro-card__headline {
-    font-size: 44px;
+    padding: 0 8px;
   }
 }
