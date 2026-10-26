@@ -7,7 +7,7 @@ export function TLDR({ intro, owned, stat }) {
 
   return (
     <div className="cs-tldr">
-      <div className="cs-tldr__label">TL;DR</div>
+      <h2 className="cs-tldr__label">TL;DR</h2>
       <div className="cs-tldr__intro">{intro}</div>
 
       <div className="cs-tldr__owned">
