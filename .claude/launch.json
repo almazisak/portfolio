@@ -4,7 +4,7 @@
     {
       "name": "Portfolio Dev Server",
       "runtimeExecutable": "/Users/almazisakov/.nvm/versions/node/v24.14.0/bin/node",
-      "runtimeArgs": ["/Users/almazisakov/Documents/PRTFL 26/CC-project/node_modules/.bin/vite"],
+      "runtimeArgs": ["/Users/almazisakov/Documents/Loft/portfolio/node_modules/.bin/vite"],
       "port": 5173,
       "autoPort": true
     }
