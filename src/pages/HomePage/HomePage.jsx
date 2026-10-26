@@ -51,7 +51,7 @@ export default function HomePage() {
         open={contactDialogOpen}
         onClose={() => setContactDialogOpen(false)}
         title="Let's talk"
-        description="Whether it's work, a collaboration, or a quick question – I'm one message away"
+        description="Hiring, collaborating, or curious about a case? Write me, I'd love to hear from you"
       />
     </div>
   )
