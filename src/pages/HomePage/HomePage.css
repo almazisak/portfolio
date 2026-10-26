@@ -1,7 +1,9 @@
 /* ── Page wrapper ───────────────────────────────────────── */
 .home-page {
   min-height: 100dvh;
-  background: #F4EFEA; /* token: --color-bg-warm */
+  background-color: #F4EFEA; /* token: --color-bg-warm */
+  background-image: radial-gradient(circle at center, #CCC0AF 1px, transparent 1.5px);
+  background-size: 44px 44px;
   display: flex;
   align-items: center;
   justify-content: center;
