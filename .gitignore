@@ -5,3 +5,7 @@ sandbox/
 dist/
 .claude/worktrees/
 .zed/
+
+# Generated from the public notes repo by scripts/fetch-notes.mjs
+src/lib/notes.generated.json
+public/notes/
