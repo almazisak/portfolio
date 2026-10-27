@@ -21,27 +21,61 @@ const ogPages = [
 
 const escapeAttr = (value) => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;')
 
+// Notes come from the public notes repo (scripts/fetch-notes.mjs). They have no 1200×630
+// image, so their previews are text-only.
+const plainText = (md) => md.replace(/!\[[^\]]*\]\([^)]*\)/g, '').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/[#>*_`]/g, '').replace(/(^|\s)-\s/g, '$1').replace(/\s+/g, ' ').trim()
+const clip = (text, max = 160) => (text.length > max ? `${text.slice(0, max - 1).trimEnd()}…` : text)
+
+async function notesPages(root) {
+  let projects = []
+  try {
+    projects = JSON.parse(await readFile(path.join(root, 'src/lib/notes.generated.json'), 'utf8')).projects
+  } catch {
+    return []
+  }
+  return [
+    ...projects.flatMap((project) => [
+      {
+        route: `notes/${project.slug}`,
+        title: `${project.title} – Notes – Almaz Isakov`,
+        description: clip(project.summary || plainText(project.intro)),
+      },
+      ...project.entries.map((note) => ({
+        route: `notes/${project.slug}/${note.slug}`,
+        title: `${note.title || note.date} – ${project.title} – Almaz Isakov`,
+        description: clip(plainText(note.body)),
+      })),
+    ]),
+  ]
+}
+
 function ogPagesPlugin() {
   let outDir
+  let root
   return {
     name: 'og-pages',
     apply: 'build',
     configResolved(config) {
+      root = config.root
       outDir = path.resolve(config.root, config.build.outDir)
     },
     async writeBundle() {
       const template = await readFile(path.join(outDir, 'index.html'), 'utf8')
-      for (const { route, title, description, image } of ogPages) {
+      for (const { route, title, description, image } of [...ogPages, ...(await notesPages(root))]) {
         const tags = [
           ['name', 'description', description],
           ['property', 'og:type', 'website'],
           ['property', 'og:title', title],
           ['property', 'og:description', description],
           ['property', 'og:url', `${SITE_URL}/${route}`],
-          ['property', 'og:image', `${SITE_URL}${image}`],
-          ['property', 'og:image:width', '1200'],
-          ['property', 'og:image:height', '630'],
-          ['name', 'twitter:card', 'summary_large_image'],
+          ...(image
+            ? [
+                ['property', 'og:image', `${SITE_URL}${image}`],
+                ['property', 'og:image:width', '1200'],
+                ['property', 'og:image:height', '630'],
+              ]
+            : []),
+          ['name', 'twitter:card', image ? 'summary_large_image' : 'summary'],
         ]
           .map(([attr, key, content]) => `    <meta ${attr}="${key}" content="${escapeAttr(content)}" />`)
           .join('\n')

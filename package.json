@@ -7,7 +7,9 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
+    "predev": "node scripts/fetch-notes.mjs",
     "dev": "vite",
+    "prebuild": "node scripts/fetch-notes.mjs",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
