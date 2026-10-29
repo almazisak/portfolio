@@ -5,7 +5,6 @@ import { formatDate, getNote, getProject } from '../../lib/notes'
 import renderMarkdown from '../../lib/renderMarkdown'
 import './NotesPage.css'
 
-const STATUS_LABEL = { exploring: 'Exploring', 'in progress': 'In progress', shipped: 'Shipped' }
 
 function useDocumentTitle(title) {
   useEffect(() => {
@@ -60,11 +59,6 @@ function Shell({ title, backTo, revealTitle = false, children }) {
   )
 }
 
-function Status({ value }) {
-  if (!value) return null
-  return <span className="notes-page__status">{STATUS_LABEL[value] ?? value}</span>
-}
-
 function NotFound() {
   useDocumentTitle('Not found – Almaz Isakov')
   return (
@@ -115,12 +109,9 @@ export function NotesProject() {
     <Shell title={project.title} backTo="/" revealTitle>
       <header className="notes-page__head">
         <h1 className="notes-page__title">{project.title}</h1>
-        <div className="notes-page__badges">
-          <Status value={project.status} />
-          {project.case && (
-            <a className="notes-page__case" href={project.case} target="_blank" rel="noopener noreferrer">Read the case</a>
-          )}
-        </div>
+        {project.case && (
+          <a className="notes-page__case" href={project.case} target="_blank" rel="noopener noreferrer">Read the case</a>
+        )}
         {project.cover && <img className="notes-page__cover" src={project.cover} alt="" />}
         <div className="notes-page__prose">
           {project.intro
