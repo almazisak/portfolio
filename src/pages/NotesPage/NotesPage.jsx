@@ -146,7 +146,11 @@ export function NotesProject() {
           )}
         </div>
         {project.cover && <img className="notes-page__cover" src={project.cover} alt="" />}
-        <div className="notes-page__prose">{renderMarkdown(project.intro, `/notes/${project.slug}`)}</div>
+        <div className="notes-page__prose">
+          {project.intro
+            ? renderMarkdown(project.intro, `/notes/${project.slug}`)
+            : project.summary && <p>{project.summary}</p>}
+        </div>
       </header>
       <div className="notes-feed">
         {project.entries.map(note => <Post key={note.slug} project={project} note={note} feed />)}
