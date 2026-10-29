@@ -6,25 +6,24 @@ Status: draft, 2026-10-26. Sections marked **PROPOSED** are not agreed yet: conf
 
 | Area | Today | File |
 |---|---|---|
-| Routes | `/` home, `/work/balaty` custom page, `/work/:slug` MDX long-read | `src/App.jsx` |
+| Routes | `/` home, `/work/balaty` custom page, `/notes/:project` and `/notes/:project/:slug` notes | `src/App.jsx` |
 | Home | One centered intro card (photo, headline, "Get CV", "Contact me") + contact dialog. **No masonry, no dotted paper yet** | `src/pages/HomePage/` |
 | Case: Balaty | Fully custom page (sticker honeycomb, own CSS) | `src/pages/BalatyPage/` |
-| Case: DCB PIM | MDX long-read built from blocks (Hero, TLDR, Facts, Figure…), rendered by one layout | `src/cases/dcb-pim/`, `src/layouts/CaseLayout.jsx`, `src/components/case/` |
-| Case registry | `import.meta.glob('/src/cases/*/meta.js')`, sorted by `order`. Balaty is **not** in it | `src/lib/cases.js` |
+| Notes | Per-project microblog feed. Content comes from the public `almazisak/portfolio-notes` repo (Obsidian → repo), pulled at `dev`/`build` by `scripts/fetch-notes.mjs` into the gitignored `src/lib/notes.generated.json` and `public/notes/`. **Protected, do not remove in cleanups** | `scripts/fetch-notes.mjs`, `src/lib/notes.js`, `src/pages/NotesPage/` |
+| Case registry | None. Balaty is a hardcoded route. A registry is part of the target, see section 3 | `src/App.jsx` |
 | Dialog | Native `<dialog>` + `showModal()`: focus trap, Esc and focus restore come for free | `src/components/ContactDialog/` |
-| Shared bar | Sticky `HeroBar` on case pages | `src/components/HeroBar/` |
-| Styles | Plain CSS per component; **no token layer**, colors hardcoded; case blocks use local `--cs-*` variables | see `docs/color-tokens.md` |
+| Shared bar | Sticky `HeroBar` on Balaty and Notes pages | `src/components/HeroBar/` |
+| Styles | Plain CSS per component; tokens in `src/styles/tokens.css` (used by Notes and the Notes hero bar), other files still hardcode colors | see `docs/color-tokens.md` |
 | Fonts | Google Fonts link in `index.html` (Geist, Geist Mono, Playfair Display). `public/fonts` (Inter, Literata) are leftovers used as fallbacks | `index.html`, `src/index.css` |
 
 ### Target vs today
 The concept (masonry home, motion-presentation cases) is ahead of the code. Reconcile like this:
-- **MDX long-read blocks and `CaseLayout` stay working.** DCB PIM is live and shareable. Do not delete or rewrite them unless Almaz asks. New cases do not have to use them. Almaz plans to rethink each case into a ~5-slide motion presentation.
+- **The MDX long-read machinery is gone.** DCB PIM, `CaseLayout`, the case blocks and the MDX plugin were removed in the cleanup (PR #70). DCB PIM will be republished in another form. Each case is its own object, as Balaty is.
 - Home becomes a masonry grid with the intro card in the center. Today's intro card is the seed of that central card, keep its content and behavior.
 - Balaty already shows the intended approach: a case as its own object with its own layout.
 
 ### Known issues to be aware of (do not fix silently, ask first)
 - `index.html` viewport has `maximum-scale=1.0, user-scalable=no`, which disables pinch zoom. Conflicts with the accessibility goal.
-- `src/App.css` and `src/assets/{react,vite}.svg`, `hero.png` look like leftovers from the Vite template (the `.counter`/`.hero` rules and `--accent*` vars are not part of the design).
 - Overlapping colors exist in code (two blues, three near-identical darks, two warm backgrounds): see section 3 of `docs/color-tokens.md`.
 - Mixed type fallbacks (`'Geist', 'Inter'`, `'Playfair Display', 'Literata'`): Inter and Literata are not in the approved pair.
 
@@ -66,7 +65,7 @@ How each `kind` behaves:
 - **motion**: the card goes to `/work/<slug>`. The case is its own React component (`src/cases/<slug>/index.jsx`): ~5 slides, minimal text, usable on the site **and** as a live presentation (keyboard ←/→, visible focus, reduced-motion fallback).
 - **external**: the card opens `href` in a new tab (`rel="noopener noreferrer"`). The site teaser is content; the full story lives elsewhere.
 
-Open points: how `/work/:slug` resolves `index.mdx` (today) vs `index.jsx` (motion), and moving Balaty into the registry instead of the hardcoded route in `App.jsx`. Propose the smallest change and confirm.
+Open points: how `/work/:slug` resolves a case component, and moving Balaty into the registry instead of the hardcoded route in `App.jsx`. The registry (`src/lib/cases.js`) and the `/work/:slug` route were removed in the cleanup and have to be re-added. Propose the smallest change and confirm.
 
 ## 4. Adding things
 
@@ -82,7 +81,7 @@ Open points: how `/work/:slug` resolves `index.mdx` (today) vs `index.jsx` (moti
 Use the native `<dialog>` like `ContactDialog`: `showModal()`, `aria-labelledby`, `Esc`, backdrop click, close button with `aria-label`, focus returns to the trigger. Backdrop is `--color-overlay`.
 
 ### A new shared component
-Put it in `src/components/<Name>/` with `<Name>.jsx` + `<Name>.css`. Class names follow `block__element--modifier`. Case-only blocks stay in `src/components/case/`.
+Put it in `src/components/<Name>/` with `<Name>.jsx` + `<Name>.css`. Class names follow `block__element--modifier`. 
 
 ### A new color, font or token
 Never inline it. Propose the token name and role to Almaz first; he adds it as a Figma variable, then it goes into `docs/color-tokens.md` and the tokens file.
@@ -91,5 +90,5 @@ Never inline it. Propose the token name and role to Almaz first; he adds it as a
 - Text contrast meets WCAG AA; do not rely on color alone.
 - Interactive elements are real `button`/`a`; visible `:focus-visible`; tap targets ≥ 44px.
 - Dialogs: focus trap, Esc, focus restore, labelled.
-- Motion has a `prefers-reduced-motion: reduce` fallback (existing pattern in `CaseLayout.css`, `HeroBar.css`, `ContactDialog.css`).
+- Motion has a `prefers-reduced-motion: reduce` fallback (existing pattern in `HeroBar.css`, `ContactDialog.css`).
 - Images have meaningful `alt` or `alt=""` with `aria-hidden` for decoration; icons are `aria-hidden`.
