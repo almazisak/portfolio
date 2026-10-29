@@ -47,7 +47,7 @@
   font-size: 40px;
   font-weight: 300;
   line-height: 1.2;
-  color: #1A1A1A; /* token: --color-ink-alt */
+  color: var(--color-ink);
 }
 
 .intro-card__name {
@@ -100,7 +100,7 @@
 .intro-card__btn--secondary {
   flex-shrink: 0;
   background: #E8DED5; /* PROPOSED token: --color-secondary (not in docs/color-tokens.md yet) */
-  color: #1A1A1A; /* token: --color-ink-alt */
+  color: var(--color-ink);
 }
 
 .intro-card__btn--secondary:hover {

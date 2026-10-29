@@ -1,0 +1,34 @@
+/* Design tokens. Source of truth for names and roles: docs/color-tokens.md.
+   Only tokens that components already consume live here; migrate the rest one component at a time. */
+:root {
+  /* Fonts */
+  --font-sans: 'Geist', 'Inter', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
+
+  /* Text */
+  --color-ink: #1A1A1A;        /* primary: headings, post text */
+  --color-ink-soft: #323232;   /* secondary: dialog text, neighbouring copy */
+  --color-ink-light: #898989;  /* tertiary: meta, timestamps, captions */
+
+  /* Surfaces */
+  --color-bg: #F9F7F3;
+  --color-bg-warm: #F4EFEA;
+  --color-surface: #FFFFFF;
+  --color-sand: #F3E8D3;
+  --color-secondary: #E8DED5;
+
+  /* Accent and primary */
+  --color-accent: #FF8811;
+  --color-primary: #2092E9;
+  --color-primary-alt: #5D9BFF;
+  --color-primary-alt-hover: #4377DB;
+  --color-primary-alt-pressed: #2E58B7;
+
+  /* Status */
+  --color-status: #FCC934;
+
+  /* Lines */
+  --color-dot: #CCC0AF;
+  --color-divider: #F4EFEA;
+}

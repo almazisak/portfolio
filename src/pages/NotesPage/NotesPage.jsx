@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
 import HeroBar from '../../components/HeroBar/HeroBar'
 import { formatDate, getNote, getProject } from '../../lib/notes'
@@ -25,12 +25,33 @@ function useScrollToHash(key) {
   }, [key])
 }
 
-function Shell({ title, backTo, children }) {
+// With `revealTitle` the bar shows the title only once the page's own h1 has scrolled
+// under it, so the two never appear together. 76px is roughly the bar's height.
+function Shell({ title, backTo, revealTitle = false, children }) {
   const navigate = useNavigate()
+  const mainRef = useRef(null)
+  const [h1Visible, setH1Visible] = useState(true)
+
+  useEffect(() => {
+    const h1 = revealTitle && mainRef.current?.querySelector('h1')
+    if (!h1) return undefined
+    const observer = new IntersectionObserver(
+      ([entry]) => setH1Visible(entry.isIntersecting),
+      { rootMargin: '-76px 0px 0px 0px' },
+    )
+    observer.observe(h1)
+    return () => observer.disconnect()
+  }, [revealTitle])
+
   return (
     <div className="notes-page">
-      <HeroBar onBack={() => navigate(backTo)} title={title} showTitle />
-      <main className="notes-page__main">{children}</main>
+      <HeroBar
+        onBack={() => navigate(backTo)}
+        title={title}
+        showTitle={!revealTitle || !h1Visible}
+        variant="notes"
+      />
+      <main ref={mainRef} className="notes-page__main">{children}</main>
       <footer className="notes-page__footer">
         <span>Almaz Isakov</span>
         <Link to="/" className="notes-page__footer-link">Home</Link>
@@ -47,52 +68,10 @@ function Status({ value }) {
 function NotFound() {
   useDocumentTitle('Not found – Almaz Isakov')
   return (
-    <Shell title="Not found" backTo="/">
+    <Shell title="Not found" backTo="/" revealTitle>
       <h1 className="notes-page__title">Not found</h1>
       <p className="notes-page__lead">There is nothing at this address. <Link to="/">Back to home</Link></p>
     </Shell>
-  )
-}
-
-// Feed posts taller than this are collapsed behind "Read more". The extra slack keeps a post
-// that overflows by a line or two from being collapsed for almost nothing.
-const COLLAPSED_HEIGHT = 320
-const COLLAPSE_SLACK = 48
-
-function PostBody({ children, collapsible, startOpen }) {
-  const ref = useRef(null)
-  const id = useId()
-  const [overflowing, setOverflowing] = useState(false)
-  const [open, setOpen] = useState(startOpen)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!collapsible || !el) return undefined
-    // Fires once on observe and again whenever the width (and so the height) changes.
-    const observer = new ResizeObserver(() => {
-      setOverflowing(el.scrollHeight > COLLAPSED_HEIGHT + COLLAPSE_SLACK)
-    })
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [collapsible])
-
-  const collapsed = collapsible && overflowing && !open
-  return (
-    <>
-      <div
-        ref={ref}
-        id={id}
-        className={`notes-post__body${collapsed ? ' notes-post__body--collapsed' : ''}`}
-        style={collapsed ? { maxHeight: COLLAPSED_HEIGHT } : undefined}
-      >
-        {children}
-      </div>
-      {collapsible && overflowing && (
-        <button type="button" className="notes-post__toggle" aria-expanded={open} aria-controls={id} onClick={() => setOpen(!open)}>
-          {open ? 'Show less' : 'Read more'}
-        </button>
-      )}
-    </>
   )
 }
 
@@ -103,7 +82,6 @@ function Post({ project, note, feed }) {
   const label = `${note.title || project.title}, ${formatDate(note.date)}`
   const date = <time dateTime={note.date}>{formatDate(note.date)}</time>
   const Title = feed ? 'h2' : 'h1'
-  const startOpen = feed && window.location.hash === `#${note.slug}`
   return (
     <article className="notes-post" id={feed ? note.slug : undefined}>
       <p className="notes-post__date">
@@ -114,11 +92,9 @@ function Post({ project, note, feed }) {
       ) : (
         !feed && <h1 className="notes-post__sr">{label}</h1>
       )}
-      <PostBody collapsible={feed} startOpen={startOpen}>
-        <div className="notes-page__prose">
-          {renderMarkdown(note.body, `/notes/${project.slug}`, feed && note.title ? 3 : 2)}
-        </div>
-      </PostBody>
+      <div className="notes-page__prose">
+        {renderMarkdown(note.body, `/notes/${project.slug}`, feed && note.title ? 3 : 2)}
+      </div>
     </article>
   )
 }
@@ -136,7 +112,7 @@ export function NotesProject() {
   if (!project) return <NotFound />
 
   return (
-    <Shell title={project.title} backTo="/">
+    <Shell title={project.title} backTo="/" revealTitle>
       <header className="notes-page__head">
         <h1 className="notes-page__title">{project.title}</h1>
         <div className="notes-page__badges">
@@ -169,7 +145,6 @@ export function NotesEntry() {
 
   return (
     <Shell title={project.title} backTo={`/notes/${project.slug}`}>
-      <p className="notes-page__crumb"><Link to={`/notes/${project.slug}`}>← {project.title}</Link></p>
       <Post project={project} note={note} />
     </Shell>
   )

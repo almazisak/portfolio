@@ -2,12 +2,12 @@
 
 Status: **as-found**. This table is built from an audit of `src/` on 2026-10-26: every color value the code actually uses, nothing more. It replaces the earlier copy of the Paper palette. Extend it from Figma (see section 4).
 
-The code has no token layer yet: colors are hardcoded in each component CSS file, and case pages have their own `--cs-*` variables in `src/components/case/blocks.css`. The names below are the proposed token names for these exact values.
+`src/styles/tokens.css` now exists and holds the tokens used by Notes and the Notes hero bar; the rest of the code still hardcodes colors in component CSS files, and case pages have their own `--cs-*` variables in `src/components/case/blocks.css`. The names below are the proposed token names for these exact values.
 
 ## 1. Format
 - One flat semantic layer, no primitives. Name: `--color-{role}[-{variant}]` (e.g. `--color-accent-subtle`, `--color-primary-hover`).
 - Variants: `-subtle`, `-hover`, `-pressed`, `-border`, `-alt`, `-bright`. Roles describe use, not appearance.
-- Defined once in `:root` in `src/styles/tokens.css` (**PROPOSED path**, create it when the first component is migrated; import it first in `src/main.jsx`). Components use only `var(--color-*)`.
+- Defined once in `:root` in `src/styles/tokens.css` (imported first in `src/main.jsx`). Fonts are `--font-sans`, `--font-serif`, `--font-mono` there too. Components use only `var(--color-*)`.
 - Alpha values are written as `rgb(r g b / %)`.
 - No dark theme.
 
@@ -16,13 +16,15 @@ The code has no token layer yet: colors are hardcoded in each component CSS file
 "Uses" counts declarations in `src/**/*.css`, `.jsx`, `.mdx` (a `--cs-*` definition counts once; its consumers are not counted). "Figma" is to be filled when the variable is synced.
 
 ### Text
+Three text colors for everything outside the case pages (Balaty, DCB PIM and `--cs-*` keep their own values for now and are ignored by this scheme).
+
 | Token | Value | Role | Uses / where | Today's name | Figma |
 |---|---|---|---|---|---|
-| `--color-ink` | `#080708` | Headings, titles, links on light | 10: case headings, hero bar, Balaty title/links | `--cs-heading` | — |
-| `--color-ink-alt` | `#1A1A1A` | Intro-card headline, secondary button label and pressed bg, dialog tag label | 4: HomePage, ContactDialog | — | — |
-| `--color-ink-soft` | `#323232` | Contact dialog text, title, labels; row hover fill; secondary button hover bg | 6: ContactDialog, HomePage | — | — |
-| `--color-body` | `#383737` | Running text in cases | 4: case article, Balaty body | `--cs-text` | — |
-| `--color-muted` | `#706E69` | Secondary text, captions, footer | 3: case layout | `--cs-muted` | — |
+| `--color-ink` | `#1A1A1A` | Primary: post and intro text, headings, project title, secondary button label, hero bar | HomePage, NotesPage, HeroBar, ContactDialog tag | — | — |
+| `--color-ink-soft` | `#323232` | Secondary: contact dialog text, blockquotes, neighbouring copy; also the hover fill of the secondary button | ContactDialog, NotesPage, HomePage | — | — |
+| `--color-ink-light` | `#898989` | Tertiary: meta text, timestamps, breadcrumbs, footer, captions | NotesPage | — | — |
+
+Retired for non-case code: `#080708`, `#383737`, `#706E69` (still used in `CaseLayout.css`, `case/blocks.css`, Balaty).
 
 ### Surfaces
 | Token | Value | Role | Uses / where | Today's name | Figma |
@@ -30,6 +32,7 @@ The code has no token layer yet: colors are hardcoded in each component CSS file
 | `--color-bg` | `#F9F7F3` | Page background; also the label color on the primary button in the hero bar | 6: body, hero bar, case layout, Balaty | `--cs-bg` | — |
 | `--color-bg-warm` | `#F4EFEA` | Home page background; secondary button background | 2: HomePage | — | — |
 | `--color-surface` | `#FFFFFF` | Cards, dialog; text on dark buttons | 6: intro card (`#FFF`), dialog, secondary button hover/pressed label, primary button label (home) | `--cs-surface` | — |
+| `--color-secondary` | `#E8DED5` | Secondary button bg (home); Notes status pill and hero-bar back hover | 1 + Notes | — | — |
 | `--color-sand` | `#F3E8D3` | Tan placeholder / cover backgrounds | 4: case blocks | — | — |
 
 ### Accent (orange)
@@ -57,12 +60,15 @@ Two different blues are used for the same role. Both are listed as found.
 ### Status
 | Token | Value | Role | Uses / where | Today's name | Figma |
 |---|---|---|---|---|---|
+| `--color-status` | `#FCC934` | Status pill background on Notes pages | NotesPage | — | — |
 | `--color-success` | `#2C9E5A` | Positive metric delta (text) | 1: case blocks | — | — |
 | `--color-success-bright` | `#48F08B` | "fastest" tag background in contact dialog | 1: ContactDialog | — | — |
 
 ### Lines, overlay, shadows
 | Token | Value | Role | Uses / where | Today's name | Figma |
 |---|---|---|---|---|---|
+| `--color-dot` | `#CCC0AF` | Dots of the home background | HomePage (hardcoded) | — | — |
+| `--color-divider` | `#F4EFEA` | Dividers on Notes pages: between posts, `hr`, blockquote rule, footer. Same value as `--color-bg-warm` | NotesPage | — | — |
 | `--color-border` | `#DCD3C7` | Row dividers in contact dialog | 1 | — | — |
 | `--color-border-subtle` | `rgb(8 7 8 / 12%)` | Left rule on version-compare items | 1: case blocks | — | — |
 | `--color-overlay` | `rgb(8 7 8 / 42%)` | Dialog backdrop | 1: ContactDialog | — | — |
@@ -80,10 +86,10 @@ Used on top of the `--color-ink` panel. All three are `--color-bg` (`#F9F7F3`) a
 
 ## 3. Overlaps and conflicts found (decide in Figma)
 - **Two blues** for primary buttons: `#2092E9` family (hero bar) vs `#5D9BFF` family (home). Pick one, then drop `-alt`.
-- **Three near-identical darks**: `#080708`, `#1A1A1A`, `#323232`. Probably collapse to `--color-ink` plus one soft variant.
+- **Text darks**: resolved for non-case code (`#1A1A1A` ink, `#323232` soft, `#898989` light). Case pages still use `#080708`, `#383737`, `#706E69`.
 - **Two warm backgrounds**: `#F9F7F3` (everywhere else) vs `#F4EFEA` (home only).
 - **Label on primary button**: `#F9F7F3` in the hero bar, `#FFFFFF` on the home button.
-- **Focus outline color** is inconsistent: orange in case pages, blue in hero bar and dialog. Needs a single `--color-focus`.
+- **Focus outline color** is inconsistent: orange in case pages, blue in hero bar, dialog, home and Notes (Notes follows home). Needs a single `--color-focus`.
 - **Hover/pressed for dark and orange-subtle buttons** use one-off values (`#FAE5CF`, `#FAE1C6`, `#323232`, `#1A1A1A`). Decide the state system once.
 - **Shadows** use different base colors (`8 7 8` vs `26 25 24`).
 - `--cs-accent-faint` and `--cs-rule` are alphas of the accent; keep them as accent variants.
@@ -101,5 +107,5 @@ Used on top of the `--color-ink` panel. All three are `--color-bg` (`#F9F7F3`) a
 
 ## 6. Rules for Claude Code
 - Do not add a hex or `rgb()` value that is not in section 2. Need a new color: propose a token name and role, wait for Figma.
-- Until `tokens.css` exists, write the value from this table and add `/* token: --color-xxx */` next to it so migration is mechanical.
+- Use `var(--color-*)` from `src/styles/tokens.css`. If a token is listed here but not yet defined there, add it to `tokens.css` first. In files not yet migrated, a hardcoded value gets `/* token: --color-xxx */` next to it.
 - Do not silently merge or snap values listed in section 3: they are visible design decisions.
