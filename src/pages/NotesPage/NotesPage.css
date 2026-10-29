@@ -1,43 +1,35 @@
-/* Notes: minimal pages on existing tokens (docs/color-tokens.md). Same 660px column as cases. */
+/* Notes: white page, home-page type and colors (tokens in src/styles/tokens.css). 540px column. */
 .notes-page {
+  text-wrap: pretty; /* one wrapping rule for every text on Notes pages, titles included */
   min-height: 100dvh;
-  background: #F9F7F3;
+  background: var(--color-surface);
   display: flex;
   flex-direction: column;
 }
 
 .notes-page__main {
   flex: 1;
-  width: min(660px, 100% - 48px);
+  width: min(540px, 100% - 48px);
   margin: 0 auto;
   padding: 24px 0 80px;
-  font-family: 'Geist', 'Inter', sans-serif;
-  color: #383737;
+  font-family: var(--font-sans);
+  color: var(--color-ink);
 }
 
 .notes-page__title {
-  font-size: 32px;
+  font-family: var(--font-serif);
+  font-size: 40px;
   line-height: 1.2;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: #080708;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--color-ink);
   margin-bottom: 12px;
-  text-wrap: balance;
 }
 
-.notes-page__crumb {
-  font-size: 14px;
-  margin-bottom: 12px;
-  color: #706E69;
-}
-
-.notes-page__crumb a:hover,
 .notes-page__prose a {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-
-.notes-page__crumb a:hover { color: #FF8811; }
 
 .notes-page__badges {
   display: flex;
@@ -51,8 +43,8 @@
   display: inline-block;
   padding: 4px 10px;
   border-radius: 999px;
-  background: #FAEAD8;
-  color: #080708;
+  background: var(--color-status);
+  color: var(--color-ink);
   font-size: 13px;
   font-weight: 500;
   line-height: 1.4;
@@ -64,19 +56,19 @@
   min-height: 44px;
   font-size: 15px;
   font-weight: 500;
-  color: #080708;
+  color: var(--color-ink);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
-.notes-page__case:hover { color: #FF8811; }
+.notes-page__case:hover { color: var(--color-primary-alt-pressed); }
 
 .notes-page__cover {
   display: block;
   width: 100%;
   height: auto;
   border-radius: 12px;
-  background: #F3E8D3;
+  background: var(--color-sand);
   margin-bottom: 24px;
 }
 
@@ -84,12 +76,12 @@
   font-size: 22px;
   font-weight: 700;
   letter-spacing: -0.01em;
-  color: #080708;
+  color: var(--color-ink);
   margin: 48px 0 12px;
 }
 
 /* ── Prose (rendered Markdown) ───────────────────────────── */
-.notes-page__prose { font-size: 17px; line-height: 1.75; }
+.notes-page__prose { font-size: 15px; line-height: 1.5; }
 
 .notes-page__prose > * + * { margin-top: 20px; }
 
@@ -98,7 +90,7 @@
   line-height: 1.3;
   font-weight: 700;
   letter-spacing: -0.01em;
-  color: #080708;
+  color: var(--color-ink);
   margin-top: 40px;
 }
 
@@ -106,7 +98,7 @@
 .notes-page__prose h4 {
   font-size: 17px;
   font-weight: 600;
-  color: #080708;
+  color: var(--color-ink);
   margin-top: 32px;
 }
 
@@ -115,9 +107,9 @@
 
 .notes-page__prose li + li { margin-top: 8px; }
 
-.notes-page__prose strong { font-weight: 600; color: #080708; }
+.notes-page__prose strong { font-weight: 600; color: var(--color-ink); }
 
-.notes-page__prose a:hover { color: #FF8811; }
+.notes-page__prose a:hover { color: var(--color-primary-alt-pressed); }
 
 .notes-page__prose img {
   display: block;
@@ -128,27 +120,27 @@
 
 .notes-page__prose blockquote {
   padding-left: 16px;
-  border-left: 2px solid rgb(255 136 17 / 30%);
-  color: #706E69;
+  border-left: 2px solid var(--color-divider);
+  color: var(--color-ink-soft);
 }
 
 .notes-page__prose hr {
   border: none;
-  border-top: 1px solid rgb(255 136 17 / 30%);
+  border-top: 1px solid var(--color-divider);
   margin: 40px 0;
 }
 
 .notes-page__prose code {
-  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-family: var(--font-mono);
   font-size: 0.9em;
-  background: #F3E8D3;
+  background: var(--color-bg-warm);
   padding: 2px 6px;
   border-radius: 4px;
 }
 
 .notes-page__prose pre {
   overflow-x: auto;
-  background: #F3E8D3;
+  background: var(--color-bg-warm);
   padding: 16px;
   border-radius: 12px;
   line-height: 1.5;
@@ -163,14 +155,14 @@
 
 .notes-post {
   padding: 28px 0 32px;
-  border-top: 1px solid rgb(255 136 17 / 30%);
+  border-top: 1px solid var(--color-divider);
   scroll-margin-top: 80px;
 }
 
 .notes-post__date {
   font-size: 14px;
   line-height: 1.4;
-  color: #706E69;
+  color: var(--color-ink-light);
   margin-bottom: 8px;
 }
 
@@ -181,51 +173,19 @@
   margin: -12px 0;
 }
 
-.notes-post__date a:hover { color: #FF8811; text-decoration: underline; text-underline-offset: 3px; }
+.notes-post__date a:hover { color: var(--color-primary-alt-pressed); text-decoration: underline; text-underline-offset: 3px; }
 
 .notes-post__title {
   font-size: 22px;
   line-height: 1.3;
   font-weight: 700;
   letter-spacing: -0.01em;
-  color: #080708;
+  color: var(--color-ink);
   margin-bottom: 12px;
-  text-wrap: balance;
 }
 
-.notes-post__body { position: relative; }
-
-.notes-post__body--collapsed { overflow: hidden; }
-
-/* Fade into the page background (#F9F7F3) so the cut reads as "there is more" */
-.notes-post__body--collapsed::after {
-  content: '';
-  position: absolute;
-  inset: auto 0 0;
-  height: 96px;
-  background: linear-gradient(to bottom, rgb(249 247 243 / 0%), #F9F7F3);
-  pointer-events: none;
-}
-
-.notes-post__toggle {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  margin-top: 4px;
-  font-size: 15px;
-  font-weight: 500;
-  color: #080708;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.notes-post__toggle:hover { color: #FF8811; }
-
-.notes-post__toggle:focus-visible {
-  outline: 2px solid #FF8811;
-  outline-offset: 2px;
-  border-radius: 4px;
-}
+/* A post alone on its own page has nothing above it to divide from */
+.notes-page__main > .notes-post:first-child { border-top: none; }
 
 /* Page h1 for untitled posts: present for screen readers and search, not shown */
 .notes-post__sr {
@@ -240,28 +200,36 @@
 /* On a post's own page the title is the page h1 */
 h1.notes-post__title { font-size: 32px; letter-spacing: -0.02em; }
 
+/* Post and intro text: Geist Regular, tight leading (home-page voice) */
+.notes-post .notes-page__prose,
+.notes-page__head .notes-page__prose {
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-ink);
+}
+
 /* ── Footer ──────────────────────────────────────────────── */
 .notes-page__footer {
   display: flex;
   justify-content: space-between;
-  width: min(660px, 100% - 48px);
+  width: min(540px, 100% - 48px);
   margin: 0 auto;
   padding: 24px 0 32px;
-  border-top: 1px solid rgb(255 136 17 / 30%);
-  font-family: 'Geist', 'Inter', sans-serif;
+  border-top: 1px solid var(--color-divider);
+  font-family: var(--font-sans);
   font-size: 14px;
-  color: #706E69;
+  color: var(--color-ink-light);
 }
 
 .notes-page__footer-link { text-decoration: underline; text-underline-offset: 3px; }
 
 .notes-page a:focus-visible {
-  outline: 2px solid #FF8811;
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
   border-radius: 4px;
 }
 
 @media (max-width: 480px) {
-  .notes-page__title { font-size: 28px; }
+  .notes-page__title { font-size: 32px; line-height: 1.24; }
   h1.notes-post__title { font-size: 28px; }
 }

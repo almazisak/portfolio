@@ -5,8 +5,8 @@ import './HeroBar.css'
 
 // Home: avatar + name. Pass `onBack` for inner pages: the back chevron takes the
 // avatar's place, `title` fades in where the name sits once `showTitle` is true,
-// and the action buttons are dropped.
-export default function HeroBar({ onContactClick, onBack, title, showTitle = false }) {
+// and the action buttons are dropped. `variant="notes"` recolors the bar to match the home page.
+export default function HeroBar({ onContactClick, onBack, title, showTitle = false, variant }) {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export default function HeroBar({ onContactClick, onBack, title, showTitle = fal
   }, [])
 
   return (
-    <header className={`hero-bar${scrolled ? ' hero-bar--scrolled' : ''}${onBack ? ' hero-bar--case' : ''}`}>
+    <header className={`hero-bar${scrolled ? ' hero-bar--scrolled' : ''}${onBack ? ' hero-bar--case' : ''}${variant ? ` hero-bar--${variant}` : ''}`}>
       <div className="hero-bar__inner">
         <div className="hero-bar__profile">
           {onBack ? (
