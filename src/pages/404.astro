@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro'
+---
+
+<Base title="Not found – Almaz Isakov" description="There is nothing at this address.">
+  <main class="not-found">
+    <h1>Not found</h1>
+    <p>There is nothing at this address. <a href="/">Back to home</a></p>
+  </main>
+</Base>
+
+<style>
+  .not-found {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 96px 24px;
+    color: var(--color-ink);
+  }
+  .not-found h1 {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+  .not-found a {
+    text-decoration: underline;
+  }
+</style>

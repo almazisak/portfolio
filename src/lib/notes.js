@@ -16,3 +16,11 @@ export function formatDate(iso) {
   if (Number.isNaN(date.getTime())) return iso
   return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })
 }
+
+// Plain-text summary for <meta name="description"> and link previews.
+const plainText = md => md.replace(/!\[[^\]]*\]\([^)]*\)/g, '').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/[#>*_`]/g, '').replace(/(^|\s)-\s/g, '$1').replace(/\s+/g, ' ').trim()
+
+export function describe(text, max = 160) {
+  const plain = plainText(text)
+  return plain.length > max ? `${plain.slice(0, max - 1).trimEnd()}…` : plain
+}

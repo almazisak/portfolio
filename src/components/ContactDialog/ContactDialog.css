@@ -53,7 +53,7 @@
 .contact-dialog__title {
   /* Keep clear of the close button */
   padding-right: 32px;
-  font-family: 'Playfair Display', 'Literata', serif;
+  font-family: var(--font-serif);
   font-size: 24px;
   font-weight: 600;
   font-style: italic;

@@ -12,10 +12,10 @@ The site is for a job search in EU/USA (big tech longer-term). The reader is a r
 - Numbers come only from Almaz's notes. Never invent or round them; if missing, mark "needs a number".
 
 ## Stack and commands
-Vite 8 + React 19 + react-router-dom 7, MDX (`@mdx-js/rollup`), SVGR. Plain CSS files per component (BEM-like names, e.g. `intro-card__btn--primary`). No TypeScript, no CSS framework.
+Astro 7 (static output) + React 19 islands, SVGR. Plain CSS files per component (BEM-like names, e.g. `intro-card__btn--primary`). No TypeScript, no CSS framework.
 - `npm run dev` – dev server (`./dev.sh` also works)
 - `npm run build` – production build to `dist/` (gitignored); `npm run lint` – ESLint
-- Per-page OG tags for link previews are baked in `vite.config.js` (`ogPages`). A new shareable case page needs an entry there.
+- Per-page title, description and OG image are props of `src/layouts/Base.astro`. A new shareable page passes them (OG image 1200×630 JPEG in `public/og/`).
 - Repo: almazisak/portfolio. Work in feature branches and PRs into `main`; never push to `main` directly.
 - Mockups: Figma and Paper (file PRTFL'26). **Figma is the source for tokens**; new or changed colors come from Figma variables.
 

@@ -14,7 +14,7 @@ Status: draft, 2026-10-26. Sections marked **PROPOSED** are not agreed yet: conf
 | Dialog | Native `<dialog>` + `showModal()`: focus trap, Esc and focus restore come for free | `src/components/ContactDialog/` |
 | Shared bar | Sticky `HeroBar` on Balaty and Notes pages | `src/components/HeroBar/` |
 | Styles | Plain CSS per component; tokens in `src/styles/tokens.css` (used by Notes and the Notes hero bar), other files still hardcode colors | see `docs/color-tokens.md` |
-| Fonts | Google Fonts link in `index.html` (Geist, Geist Mono, Playfair Display). `public/fonts` (Inter, Literata) are leftovers used as fallbacks | `index.html`, `src/index.css` |
+| Fonts | Astro Fonts API (Google provider, self-hosted at build) for Geist, Geist Mono, Playfair Display, exposed as `--font-*` variables in `src/styles/tokens.css` | `astro.config.mjs`, `src/layouts/Base.astro` |
 
 ### Target vs today
 The concept (masonry home, motion-presentation cases) is ahead of the code. Reconcile like this:
@@ -23,7 +23,6 @@ The concept (masonry home, motion-presentation cases) is ahead of the code. Reco
 - Balaty already shows the intended approach: a case as its own object with its own layout.
 
 ### Known issues to be aware of (do not fix silently, ask first)
-- `index.html` viewport has `maximum-scale=1.0, user-scalable=no`, which disables pinch zoom. Conflicts with the accessibility goal.
 - Overlapping colors exist in code (two blues, three near-identical darks, two warm backgrounds): see section 3 of `docs/color-tokens.md`.
 - Mixed type fallbacks (`'Geist', 'Inter'`, `'Playfair Display', 'Literata'`): Inter and Literata are not in the approved pair.
 
@@ -74,7 +73,7 @@ Open points: how `/work/:slug` resolves a case component, and moving Balaty into
 2. Create `src/cases/<slug>/` with `meta.js` and the case component or content. Keep assets inside the folder.
 3. Do **not** copy another case's layout. Reuse only tokens, fonts, the grid and the tone. Shared pieces (HeroBar, dialog) are fine.
 4. Use tokens for every color; the Playfair accent only for emphasis.
-5. If the page should preview well when shared, add it to `ogPages` in `vite.config.js` and add `public/og/<slug>.jpg` (1200×630).
+5. If the page should preview well when shared, pass `title`, `description` and `image` to `Base.astro` and add `public/og/<slug>.jpg` (1200×630).
 6. Check at ~390px and at desktop width; check keyboard navigation and `prefers-reduced-motion`.
 
 ### A new dialog

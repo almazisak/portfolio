@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 
 // Minimal Markdown renderer for notes: headings, paragraphs, lists, quotes, fenced code,
 // rules, images, and inline bold / italic / code / links. Builds React elements only
@@ -15,7 +14,7 @@ function renderLink(label, href, key) {
   if (/^https?:\/\//.test(href) || href.startsWith('mailto:')) {
     return <a key={key} href={href} target="_blank" rel="noopener noreferrer">{label}</a>
   }
-  if (href.startsWith('/')) return <Link key={key} to={href}>{label}</Link>
+  if (href.startsWith('/')) return <a key={key} href={href}>{label}</a>
   return label // relative .md links are not routable on the site
 }
 

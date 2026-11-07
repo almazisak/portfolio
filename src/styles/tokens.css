@@ -2,9 +2,9 @@
    Only tokens that components already consume live here; migrate the rest one component at a time. */
 :root {
   /* Fonts */
-  --font-sans: 'Geist', 'Inter', sans-serif;
-  --font-serif: 'Playfair Display', serif;
-  --font-mono: 'Geist Mono', ui-monospace, monospace;
+  --font-sans: var(--font-geist);
+  --font-serif: var(--font-playfair);
+  --font-mono: var(--font-geist-mono);
 
   /* Text */
   --color-ink: #1A1A1A;        /* primary: headings, post text */
