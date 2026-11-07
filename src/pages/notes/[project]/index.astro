@@ -1,0 +1,18 @@
+---
+import Base from '../../../layouts/Base.astro'
+import { NotesProject } from '../../../views/NotesPage/NotesPage.jsx'
+import { projects, describe } from '../../../lib/notes.js'
+
+export function getStaticPaths() {
+  return projects.map((project) => ({ params: { project: project.slug }, props: { project } }))
+}
+
+const { project } = Astro.props
+---
+
+<Base
+  title={`${project.title} – Notes – Almaz Isakov`}
+  description={project.summary || describe(project.intro)}
+>
+  <NotesProject client:load project={project} />
+</Base>

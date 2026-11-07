@@ -61,7 +61,7 @@
 }
 
 .intro-card__serif {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif);
   font-weight: 600;
   font-style: italic;
 }

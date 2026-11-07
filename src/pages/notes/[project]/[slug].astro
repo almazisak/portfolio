@@ -1,0 +1,23 @@
+---
+import Base from '../../../layouts/Base.astro'
+import { NotesEntry } from '../../../views/NotesPage/NotesPage.jsx'
+import { projects, formatDate, describe } from '../../../lib/notes.js'
+
+export function getStaticPaths() {
+  return projects.flatMap((project) =>
+    project.entries.map((note) => ({
+      params: { project: project.slug, slug: note.slug },
+      props: { project, note },
+    })),
+  )
+}
+
+const { project, note } = Astro.props
+---
+
+<Base
+  title={`${note.title || formatDate(note.date)} – ${project.title} – Almaz Isakov`}
+  description={describe(note.body)}
+>
+  <NotesEntry client:load project={project} note={note} />
+</Base>

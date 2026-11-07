@@ -1,7 +1,7 @@
 // Positions from the Paper honeycomb artboard (989 × 926), in px. Listed back to front.
 export const HONEYCOMB = { width: 989, height: 926 }
 
-const files = import.meta.glob('./assets/sticker-*.webp', { eager: true, import: 'default' })
+const files = import.meta.glob('./assets/sticker-*.webp', { eager: true, query: '?url', import: 'default' })
 
 export const stickers = [
   { src: files['./assets/sticker-01.webp'], left: 190, top: 778, size: 70 },

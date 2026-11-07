@@ -1,0 +1,59 @@
+---
+import { Image } from 'astro:assets'
+import Base from '../layouts/Base.astro'
+import ContactButton from '../components/ContactButton/ContactButton.jsx'
+import IconArrowCircleDown from '../assets/icons/ic-arrow-circle-down.svg?react'
+import avatarCard from '../assets/avatar-card.jpg'
+import '../views/HomePage/HomePage.css'
+
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Almaz Isakov',
+  jobTitle: 'Lead Product Designer',
+  url: 'https://almaz.design',
+  image: 'https://almaz.design/avatar-hero.jpg',
+  sameAs: [
+    'https://www.linkedin.com/in/almazisakov/',
+    'https://github.com/almazisak',
+    'https://t.me/jonelealmaz',
+  ],
+}
+---
+
+<Base>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />
+  <div class="home-page">
+    <div class="intro-card">
+      <div class="intro-card__intro">
+        <div class="intro-card__header">
+          <Image class="intro-card__avatar" src={avatarCard} alt="" loading="eager" />
+          <h1 class="intro-card__name">Hi, I'm Almaz</h1>
+        </div>
+
+        <p class="intro-card__headline">
+          {'I create with '}<span class="intro-card__serif">love</span>{' '}<span aria-hidden="true">❤️</span>{' for '}<span class="intro-card__serif">craft</span>{' and '}<span class="intro-card__serif">people</span>
+        </p>
+      </div>
+
+      <div class="intro-card__actions">
+        <a
+          href="/cv.pdf"
+          download="Almaz_Isakov_CV.pdf"
+          class="intro-card__btn intro-card__btn--secondary"
+        >
+          <IconArrowCircleDown class="intro-card__btn-icon" aria-hidden="true" />
+          Get CV
+        </a>
+        <ContactButton
+          client:load
+          className="intro-card__btn intro-card__btn--primary"
+          title="Let's talk"
+          description="Hiring, collaborating, or curious about a case? Write me, I'd love to hear from you"
+        >
+          Contact me
+        </ContactButton>
+      </div>
+    </div>
+  </div>
+</Base>
