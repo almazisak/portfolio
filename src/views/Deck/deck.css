@@ -28,13 +28,13 @@
   color-scheme:light;
 }
 html{scroll-snap-type:none}
-body{background:var(--color-bg);color:var(--color-ink-soft);font-family:var(--font-sans);margin:0;
+body{background:var(--color-bg-warm);color:var(--color-ink-soft);font-family:var(--font-sans);margin:0;
   padding-left:max(0px,env(safe-area-inset-left,0px));padding-right:max(0px,env(safe-area-inset-right,0px))}
 #track{position:relative;width:1px}
 #track i{position:absolute;left:0;width:1px;height:1px;scroll-snap-align:start}
 @media (min-width:768px){html,body{min-width:768px}}
 .viewport{position:fixed;inset:0;overflow:hidden;min-width:768px;
-  background:radial-gradient(circle,var(--color-dot) 1.5px,transparent 2px) 0 0/44px 44px,var(--color-bg)}
+  background:var(--color-bg-warm)}
 .stage{position:absolute;left:50%;top:50%;transform-origin:50% 50%}
 
 /* ---------- chrome ---------- */
