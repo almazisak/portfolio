@@ -1,0 +1,416 @@
+<!-- Phones (<768px): temporary stub, the deck needs a larger screen -->
+<div class="deck-stub">
+  <p class="deck-stub__eyebrow">Portfolio 2026</p>
+  <h1 class="deck-stub__title">This deck is made for <span class="serif">a bigger screen.</span></h1>
+  <p class="deck-stub__text">Open this link on a computer or a tablet. Meanwhile, here is my CV.</p>
+  <div class="deck-stub__actions">
+    <a class="btn-primary" href="/cv.pdf" target="_blank" rel="noopener">Get CV</a>
+    <a class="btn-ghost" href="https://t.me/jonelealmaz" target="_blank" rel="noopener">Telegram</a>
+    <a class="btn-ghost" href="mailto:almazisakoff@gmail.com">Email</a>
+  </div>
+</div>
+
+<div id="track" aria-hidden="true"></div>
+
+<div class="chrome" id="chrome">
+  <span class="me">Almaz Isakov</span>
+  <nav aria-label="Chapters" id="nav">
+    <button type="button" data-go="intro">Intro</button>
+    <button type="button" data-go="checkout">Checkout</button>
+    <button type="button" data-go="pim">PIM</button>
+    <button type="button" data-go="system">System</button>
+    <button type="button" data-go="outro">Contact</button>
+  </nav>
+  <span class="count" id="count" aria-hidden="true">1 / 18</span>
+</div>
+<div class="hint" id="hint"><span>Scroll or</span><kbd>←</kbd><kbd>→</kbd><span>· chapters</span><kbd>1</kbd>–<kbd>5</kbd></div>
+<div class="progress" id="progress"></div>
+<aside class="tune" id="tune" hidden aria-label="Design controls">
+  <div class="tune-h"><b>Design controls</b><span>T to hide</span></div>
+  <div id="tuneBody"></div>
+  <div class="tune-f"><button type="button" id="tuneCopy">Copy changes</button><button type="button" id="tuneReset">Reset all</button></div>
+  <textarea id="tuneOut" readonly rows="3" aria-label="Changed values"></textarea>
+</aside>
+<div class="sr" aria-live="polite" id="live"></div>
+
+<main class="viewport" id="viewport">
+<div class="stage" id="stage">
+<div class="safe" aria-hidden="true"></div>
+
+<!-- ================= INTRO ================= -->
+<section class="slide intro" data-ch="intro" data-steps="1" aria-roledescription="slide" aria-label="Intro">
+  <div class="txt">
+    <div class="eyebrow">Portfolio <b>2026</b></div>
+    <h1 class="serif hello"><span class="roman">Hi, I’m</span> Almaz</h1>
+    <div class="more">
+    <p class="sub">Lead Product Designer with 10+ years in e‑Commerce, fintech and B2B tools. I design flows by hand and build the teams and systems around them.</p>
+    </div>
+  </div>
+  <div class="vis">
+    <img class="intro-photo" src="/deck/img/intro-photo.jpg" alt="Portrait of Almaz Isakov" width="721" height="721">
+  </div>
+</section>
+
+<section class="slide wide" data-ch="intro" data-steps="1" aria-roledescription="slide" aria-label="Three stories">
+  <div class="txt"><div>
+    <div class="eyebrow">Inside</div>
+    <h2>Three stories, <span class="serif">one at a time.</span></h2>
+  </div></div>
+  <div class="vis ch-vis" style="align-items:flex-start">
+    <ol class="chapters">
+      <li ><button type="button" data-go="checkout"><span class="n">01</span><span class="t">Checkout: <em>five screens into one</em></span><span class="m">Halyk Market</span></button></li>
+      <li ><button type="button" data-go="pim"><span class="n">02</span><span class="t">Product creation <em>in a shared catalogue</em></span><span class="m">DCB Marketplace</span></button></li>
+      <li ><button type="button" data-go="system"><span class="n">03</span><span class="t">Design system <span class="soon">Soon</span></span><span class="m">Halyk Market</span></button></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= CHECKOUT ================= -->
+<section class="slide" data-ch="checkout" data-steps="2" aria-roledescription="slide" aria-label="Checkout: five screens into one">
+  <div class="txt">
+    <div class="eyebrow">Chapter <b>01</b> · Checkout</div>
+    <h2>Checkout: <span class="serif">five screens into one</span></h2>
+    <p class="meta"><span>Halyk Market</span><span>2025</span><span>Lead Product Designer</span></p>
+    <p class="ctx">A marketplace inside Halyk Bank’s super‑app with 8M+ users. I designed and tested the redesign by hand, discovery to release.</p>
+    <div class="metric rv" style="--at:1">
+      <small>Checkout start → order placed</small>
+      <div class="val"><span class="before"><span data-count data-from="65.6" data-to="70.2" data-dec="1" data-at="1" data-from-fixed>65.6</span>%</span><span class="arrow">→</span><span class="serif" data-count data-from="65.6" data-to="70.2" data-dec="1" data-at="1">70.2</span><span class="serif">%</span></div>
+    </div>
+  </div>
+  <div class="vis">
+    <div class="ph phone"><b>Visual · Hook</b><p>Final new checkout on paper: one page with delivery, payment method and the Place order button. The answer, shown before the story.</p></div>
+  </div>
+</section>
+
+<section class="slide wide s-problem" data-ch="checkout" data-steps="3" aria-roledescription="slide" aria-label="Every screen change loses someone">
+  <div class="txt"><div>
+    <div class="eyebrow">Problem</div>
+    <h2>Every screen change <span class="serif">loses someone</span></h2>
+  </div><p class="meta">5 screens · 2 owned by a separate payment system</p></div>
+  <div class="vis">
+    <div class="flow5">
+      <div class="fs rv" style="--at:1">
+        <img class="shot" src="/deck/img/problem-1.webp" alt="Old checkout, step 1: delivery method" width="600" height="1219">
+        <span class="lbl">Delivery</span><span class="owner rv" style="--at:2">Our app</span>
+      </div>
+      <div class="arr"><i class="seam hl" style="--hat:2.1"></i></div>
+      <div class="fs rv" style="--at:1.12">
+        <img class="shot" src="/deck/img/problem-2.webp" alt="Old checkout, step 2: order and payment method" width="600" height="1219">
+        <span class="lbl">Order &amp; payment*</span><span class="owner rv" style="--at:2.05">Our app</span>
+        <span class="exit rv" style="--at:2.4">* Installments add <b>+8 screens</b><br>in the bank app before purchase</span>
+      </div>
+      <div class="arr"><i class="seam hl" style="--hat:2.25"></i></div>
+      <div class="fs rv" style="--at:1.24">
+        <img class="shot" src="/deck/img/problem-3.webp" alt="Old checkout, step 3: external payment page" width="600" height="1219">
+        <span class="lbl">Payment page</span><span class="owner ext rv" style="--at:2.1">Payment system</span>
+      </div>
+      <div class="arr"><i class="seam hl" style="--hat:2.4"></i></div>
+      <div class="fs rv" style="--at:1.36">
+        <img class="shot" src="/deck/img/problem-4.webp" alt="Old checkout, step 4: payment system success screen" width="600" height="1219">
+        <span class="lbl">Payment success</span><span class="owner ext rv" style="--at:2.15">Payment system</span>
+      </div>
+      <div class="arr"><i class="seam hl" style="--hat:2.55"></i></div>
+      <div class="fs rv" style="--at:1.48">
+        <img class="shot" src="/deck/img/problem-5.webp" alt="Old checkout, step 5: order confirmation" width="600" height="1219">
+        <span class="lbl">Order confirmed</span><span class="owner rv" style="--at:2.2">Our app</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide wide" data-ch="checkout" data-steps="3" aria-roledescription="slide" aria-label="They didn't leave over price">
+  <div class="txt"><div>
+    <div class="eyebrow">Discovery</div>
+    <h2>They didn’t leave <span class="serif">over price.</span></h2>
+  </div></div>
+  <div class="vis" style="align-items:flex-start">
+    <div class="frags">
+      <div class="evi rv" style="--at:1"><div class="evi-img fb"><img src="/deck/img/evidence-call-center.webp" alt="Customer reviews log with ratings and review text" width="1200" height="900"><img class="bubble" src="/deck/img/evidence-review.webp" alt="Review: The installment option was shown on the product page but disappeared at checkout. Had to start the whole order over." width="660" height="136" style="--at:1.5"></div><div class="cap-in"><b>Evidence · Call center</b><p>Customer reviews about checkout</p></div></div>
+      <div class="evi rv" style="--at:1.15"><div class="evi-img tags"><ul aria-label="UX audit findings on the old checkout"><li class="tag rv" style="--at:1.20;left:3%;top:5%;--r:-4deg">Delivery options hidden behind tabs</li><li class="tag rv" style="--at:1.27;left:36%;top:3%;--r:3deg">Two identical green CTAs</li><li class="tag rv" style="--at:1.34;left:68%;top:8%;--r:-2deg">No address, method or date in the summary</li><li class="tag rv" style="--at:1.41;left:17%;top:50%;--r:2.5deg">Payment chosen twice, now from 5 options</li><li class="tag rv" style="--at:1.48;left:52%;top:52%;--r:-3.5deg">No “what’s next”</li></ul></div><div class="cap-in"><b>Evidence · UX audit</b><p>Checkout findings from the product-wide audit</p></div></div>
+      <div class="evi rv" style="--at:1.3"><div class="evi-img"><img src="/deck/img/evidence-benchmark.webp" alt="Benchmark: checkout screens of three large regional marketplaces" width="1200" height="900"></div><div class="cap-in"><b>Evidence · Benchmark</b><p>3 large regional marketplaces</p></div></div>
+    </div>
+    <p class="finding serif rv" style="--at:2">They lost momentum between screens.</p>
+  </div>
+</section>
+
+<section class="slide" data-ch="checkout" data-steps="3" aria-roledescription="slide" aria-label="One page. One scroll.">
+  <div class="txt">
+    <div class="eyebrow">Decision</div>
+    <h2>One page. <span class="serif">One scroll.</span></h2>
+    <p class="sub rv" style="--at:1">Saved cards inside. New card and installments still hand off.</p>
+    <p class="meta rv" style="--at:2">Ruled out: never leaving the page</p>
+  </div>
+  <div class="vis">
+    <div class="decide">
+      <div class="col rv" style="--at:1">
+        <div class="ph phone"><b>Visual · New flow</b><p>The long page scrolls: delivery, order summary, saved‑card choice, Place order. Old screens shrink and fold into it.</p></div>
+        <span class="cap">Shipped</span>
+        <div class="exits rv" style="--at:2"><span>New card</span><span>Installments</span></div>
+      </div>
+      <div class="col rv" style="--at:2">
+        <div class="ph phone ghost"><div class="lock" aria-hidden="true">⌀</div><p style="margin-top:16px">Ideal: no exits at all</p></div>
+        <span class="cap">Blocked by card‑data security rules on the payment page</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide s-craft" data-ch="checkout" data-steps="4" aria-roledescription="slide" aria-label="A card that looks like your card">
+  <div class="txt">
+    <div class="eyebrow">Craft</div>
+    <h2>A card that looks <span class="serif">like your card</span></h2>
+    <p class="meta">Saved‑card selection</p>
+  </div>
+  <div class="vis">
+    <div class="craft" aria-label="A deck of three bank cards; one by one each card lands in the saved-card list of the checkout card picker">
+      <div class="craft-phone"><img src="/deck/img/craft-phone.webp" alt="Checkout card picker with empty card placeholders">
+        <i class="crow" style="--i:0;clip-path:inset(45.572% 0 46.783% 0)"></i>
+        <i class="crow" style="--i:1;clip-path:inset(53.217% 0 39.099% 0)"></i>
+        <i class="crow" style="--i:2;clip-path:inset(60.901% 0 31.453% 0)"></i>
+      </div>
+      <span class="clabel" style="--i:0">Halyk Bonus</span>
+      <span class="clabel" style="--i:1">Halyk Black</span>
+      <span class="clabel" style="--i:2">Halyk Digital</span>
+      <img class="ccard" style="--i:0;--y2:544.1px;z-index:3" src="/deck/img/card-halyk-bonus.svg" alt="">
+      <img class="ccard" style="--i:1;--y2:621.3px;z-index:2" src="/deck/img/card-halyk-black.svg" alt="">
+      <img class="ccard" style="--i:2;--y2:698.5px;z-index:1" src="/deck/img/card-halyk-digital.svg" alt="">
+    </div>
+  </div>
+</section>
+
+<section class="slide wide" data-ch="checkout" data-steps="3" aria-roledescription="slide" aria-label="Result">
+  <div class="txt"><div>
+    <div class="eyebrow">Result</div>
+    <h2>2‑week A/B · <span class="serif">random 20% of users</span> (~600K)</h2>
+  </div></div>
+  <div class="vis">
+    <div class="res4">
+      <div class="conv-card rv" style="--at:1">
+        <small class="rp-t">Checkout start → order placed</small>
+        <div class="hero-num serif rv" style="--at:1">+4.6 pp</div>
+        <div class="conv-plot rv" style="--at:1.3">
+          <svg class="trend" viewBox="0 0 600 300" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Conversion from checkout start to order placed rose from 65.6% to 70.2%">
+            <g class="tg"><line x1="0" x2="600" y1="193.3" y2="193.3"/><text x="584" y="187.3" text-anchor="end">65%</text><line x1="0" x2="600" y1="116.7" y2="116.7"/><text x="584" y="110.7" text-anchor="end">70%</text><line x1="0" x2="600" y1="40.0" y2="40.0"/><text x="584" y="34.0" text-anchor="end">75%</text></g>
+            <path class="t-area" d="M0 184.1 L600 113.6 L600 300 L0 300Z"/>
+            <path class="t-line" pathLength="100" d="M0 184.1 L600 113.6"/>
+            <circle class="t-a" cx="110" cy="171.2" r="8"/><circle class="t-b" cx="470" cy="128.9" r="9"/>
+            <text class="t-va" x="110" y="149.2" text-anchor="middle">65.6%</text>
+            <text class="t-vb" x="470" y="104.9" text-anchor="middle">70.2%</text>
+            <text class="t-x" x="110" y="284" text-anchor="middle">Old checkout</text>
+            <text class="t-x" x="470" y="284" text-anchor="middle">One page</text>
+          </svg>
+        </div>
+      </div>
+      <div class="res-side">
+        <div class="rs rv" style="--at:2">
+          <div class="clock-row">
+            <div class="clock rv" style="--at:2" role="img" aria-label="Time to complete checkout: about 1:15 before, 1:00 after, 20% faster. Full dial equals the old time, 1:15.">
+          <svg viewBox="0 0 240 240" aria-hidden="true">
+            <circle class="c-ring" cx="120" cy="120" r="114"/>
+            <line class="tk-M" x1="120.00" y1="24.00" x2="120.00" y2="12.00"/><line class="tk-m" x1="130.66" y1="18.56" x2="131.29" y2="12.59"/><line class="tk-m" x1="141.21" y1="20.23" x2="142.45" y2="14.36"/><line class="tk-m" x1="151.52" y1="22.99" x2="153.37" y2="17.29"/><line class="tk-m" x1="161.49" y1="26.82" x2="163.93" y2="21.34"/><line class="tk-M" x1="168.00" y1="36.86" x2="174.00" y2="26.47"/><line class="tk-m" x1="179.95" y1="37.48" x2="183.48" y2="32.63"/><line class="tk-m" x1="188.25" y1="44.20" x2="192.27" y2="39.74"/><line class="tk-m" x1="195.80" y1="51.75" x2="200.26" y2="47.73"/><line class="tk-m" x1="202.52" y1="60.05" x2="207.37" y2="56.52"/><line class="tk-M" x1="203.14" y1="72.00" x2="213.53" y2="66.00"/><line class="tk-m" x1="213.18" y1="78.51" x2="218.66" y2="76.07"/><line class="tk-m" x1="217.01" y1="88.48" x2="222.71" y2="86.63"/><line class="tk-m" x1="219.77" y1="98.79" x2="225.64" y2="97.55"/><line class="tk-m" x1="221.44" y1="109.34" x2="227.41" y2="108.71"/><line class="tk-M" x1="216.00" y1="120.00" x2="228.00" y2="120.00"/><line class="tk-m" x1="221.44" y1="130.66" x2="227.41" y2="131.29"/><line class="tk-m" x1="219.77" y1="141.21" x2="225.64" y2="142.45"/><line class="tk-m" x1="217.01" y1="151.52" x2="222.71" y2="153.37"/><line class="tk-m" x1="213.18" y1="161.49" x2="218.66" y2="163.93"/><line class="tk-M" x1="203.14" y1="168.00" x2="213.53" y2="174.00"/><line class="tk-m" x1="202.52" y1="179.95" x2="207.37" y2="183.48"/><line class="tk-m" x1="195.80" y1="188.25" x2="200.26" y2="192.27"/><line class="tk-m" x1="188.25" y1="195.80" x2="192.27" y2="200.26"/><line class="tk-m" x1="179.95" y1="202.52" x2="183.48" y2="207.37"/><line class="tk-M" x1="168.00" y1="203.14" x2="174.00" y2="213.53"/><line class="tk-m" x1="161.49" y1="213.18" x2="163.93" y2="218.66"/><line class="tk-m" x1="151.52" y1="217.01" x2="153.37" y2="222.71"/><line class="tk-m" x1="141.21" y1="219.77" x2="142.45" y2="225.64"/><line class="tk-m" x1="130.66" y1="221.44" x2="131.29" y2="227.41"/><line class="tk-M" x1="120.00" y1="216.00" x2="120.00" y2="228.00"/><line class="tk-m" x1="109.34" y1="221.44" x2="108.71" y2="227.41"/><line class="tk-m" x1="98.79" y1="219.77" x2="97.55" y2="225.64"/><line class="tk-m" x1="88.48" y1="217.01" x2="86.63" y2="222.71"/><line class="tk-m" x1="78.51" y1="213.18" x2="76.07" y2="218.66"/><line class="tk-M" x1="72.00" y1="203.14" x2="66.00" y2="213.53"/><line class="tk-m" x1="60.05" y1="202.52" x2="56.52" y2="207.37"/><line class="tk-m" x1="51.75" y1="195.80" x2="47.73" y2="200.26"/><line class="tk-m" x1="44.20" y1="188.25" x2="39.74" y2="192.27"/><line class="tk-m" x1="37.48" y1="179.95" x2="32.63" y2="183.48"/><line class="tk-M" x1="36.86" y1="168.00" x2="26.47" y2="174.00"/><line class="tk-m" x1="26.82" y1="161.49" x2="21.34" y2="163.93"/><line class="tk-m" x1="22.99" y1="151.52" x2="17.29" y2="153.37"/><line class="tk-m" x1="20.23" y1="141.21" x2="14.36" y2="142.45"/><line class="tk-m" x1="18.56" y1="130.66" x2="12.59" y2="131.29"/><line class="tk-M" x1="24.00" y1="120.00" x2="12.00" y2="120.00"/><line class="tk-m" x1="18.56" y1="109.34" x2="12.59" y2="108.71"/><line class="tk-m" x1="20.23" y1="98.79" x2="14.36" y2="97.55"/><line class="tk-m" x1="22.99" y1="88.48" x2="17.29" y2="86.63"/><line class="tk-m" x1="26.82" y1="78.51" x2="21.34" y2="76.07"/><line class="tk-M" x1="36.86" y1="72.00" x2="26.47" y2="66.00"/><line class="tk-m" x1="37.48" y1="60.05" x2="32.63" y2="56.52"/><line class="tk-m" x1="44.20" y1="51.75" x2="39.74" y2="47.73"/><line class="tk-m" x1="51.75" y1="44.20" x2="47.73" y2="39.74"/><line class="tk-m" x1="60.05" y1="37.48" x2="56.52" y2="32.63"/><line class="tk-M" x1="72.00" y1="36.86" x2="66.00" y2="26.47"/><line class="tk-m" x1="78.51" y1="26.82" x2="76.07" y2="21.34"/><line class="tk-m" x1="88.48" y1="22.99" x2="86.63" y2="17.29"/><line class="tk-m" x1="98.79" y1="20.23" x2="97.55" y2="14.36"/><line class="tk-m" x1="109.34" y1="18.56" x2="108.71" y2="12.59"/>
+            <circle class="c-old" cx="120" cy="120" r="44" pathLength="100" transform="rotate(-90 120 120)"/>
+            <circle class="c-new" cx="120" cy="120" r="44" pathLength="100" transform="rotate(-90 120 120)"/>
+            <circle class="c-dot" cx="120" cy="120" r="4.5"/>
+          </svg>
+        </div>
+            <div class="clock-side">
+              <div class="big-pct serif">−20%</div>
+              <small class="rp-t">Time to complete checkout</small>
+              <div class="c-legend"><span class="lg old">≈1:15 before</span><span class="lg new">1:00 now</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="rs rv" style="--at:2.15">
+          <p class="fu">In a phone follow‑up we asked 6 users how they rate the shorter flow. <span class="serif">5 of 6</span> rated it very positively.</p>
+        </div>
+      </div>
+      <div class="rollout rv" style="--at:2.4">First stage rolled out to 100% · old version removed</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="checkout" data-steps="2" aria-roledescription="slide" aria-label="Two problems, not one">
+  <div class="txt">
+    <div class="eyebrow">Reflection</div>
+    <h2>Two problems, <span class="serif">not one.</span></h2>
+    <p class="sub rv seam-line serif" style="--at:1">Seams and screens.</p>
+  </div>
+  <div class="vis">
+    <div class="layers">
+      <div class="layer rv" style="--at:0.6"><span class="serif">Seams</span>
+        <div class="minis"><i class="mini"></i><i class="gap hl" style="--hat:0.8"></i><i class="mini"></i><i class="gap hl" style="--hat:0.9"></i><i class="mini"></i><i class="gap hl" style="--hat:1"></i><i class="mini"></i><i class="gap hl" style="--hat:1.1"></i><i class="mini"></i></div>
+      </div>
+      <div class="layer rv" style="--at:1"><span class="serif">Screens</span>
+        <div class="mess"><div class="scr busy"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="to">→</span><div class="scr calm rv" style="--at:1.3"><i></i><i></i><i style="width:60%"></i><i></i></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PIM ================= -->
+<section class="slide" data-ch="pim" data-steps="2" aria-roledescription="slide" aria-label="Creating products for a shared catalogue">
+  <div class="txt">
+    <div class="eyebrow">Chapter <b>02</b> · Product information</div>
+    <h2>Creating products <span class="serif">for a shared catalogue</span></h2>
+    <p class="meta"><span>DCB Marketplace</span><span>2020</span><span>Product Designer</span></p>
+    <p class="ctx">Marketplace of Doscredobank, a bank in Kyrgyzstan built on installment credit. Each product is created once; every seller attaches an offer to it.</p>
+    <div class="metric rv" style="--at:1"><small>Time to create one product</small>
+      <div class="val"><span class="before">20–25 min</span><span class="arrow">→</span><span class="serif">~10 min</span></div></div>
+  </div>
+  <div class="vis">
+    <div class="ph window"><b>Visual · Hook</b><p>Final screen of the new product‑creation flow, from the 2020 design files.</p></div>
+  </div>
+</section>
+
+<section class="slide" data-ch="pim" data-steps="2" aria-roledescription="slide" aria-label="Five people. Every product. By hand.">
+  <div class="txt">
+    <div class="eyebrow">Problem</div>
+    <h2>Five people. Every product. <span class="serif">By hand.</span></h2>
+    <p class="meta">Up to 1,000 rows per price list</p>
+  </div>
+  <div class="vis">
+    <div class="sheet" aria-hidden="true">
+      <div class="row"><span>#</span><span>Product name</span><span>Brand</span><span>Battery</span><span>Color</span><span>Price</span></div>
+      <div class="row hl" style="--hat:.3"><span>1</span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div>
+      <div class="row hl" style="--hat:.4"><span>2</span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div>
+      <div class="row hl" style="--hat:.5"><span>3</span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div>
+      <div class="row hl" style="--hat:.6"><span>4</span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div>
+      <div class="row hl" style="--hat:.7"><span>5</span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div>
+      <div class="row hl" style="--hat:.85"><span>6</span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div>
+      <div class="row hl" style="--hat:1"><span>7</span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div>
+      <div class="row"><span>8</span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div>
+      <div class="row"><span>9</span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div>
+      <div class="row"><span>10</span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div>
+      <div class="row"><span>11</span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div>
+      <div class="more">… row 1,000</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="pim" data-steps="3" aria-roledescription="slide" aria-label="The tool was the bottleneck">
+  <div class="txt">
+    <div class="eyebrow">Discovery</div>
+    <h2>The tool was <span class="serif">the bottleneck</span></h2>
+    <p class="sub rv" style="--at:1">Missing value → leave the product</p>
+  </div>
+  <div class="vis">
+    <div class="units">
+      <div class="ph rv" style="--at:1"><b>Visual · Old flow map</b><p>Map of the old admin flow; each context switch flashes in turn. If there are no screenshots, a schematic only.</p></div>
+      <div class="tokens rv" style="--at:2" aria-label="One unit typed three ways: mAh, mah, мА·ч"><span class="tok">mAh</span><span class="tok">mah</span><span class="tok">мА·ч</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide wide" data-ch="pim" data-steps="3" aria-roledescription="slide" aria-label="Add the missing value in place">
+  <div class="txt"><div>
+    <div class="eyebrow">Decision</div>
+    <h2>Add the missing value <span class="serif">in place</span></h2>
+  </div><p class="meta">3 versions, tested with the content team</p></div>
+  <div class="vis" style="align-items:flex-start">
+    <div class="vers">
+      <div class="ver rv" style="--at:1;--dat:2">
+        <div class="mock" aria-hidden="true"><div class="flabel">Battery capacity</div><div class="field">4500</div>
+          <div class="modal"><div><i style="width:50%"></i><i class="f"></i><i class="f"></i><i class="b"></i></div></div></div>
+        <div class="vname"><span>Modal</span><b class="no">✕</b></div>
+      </div>
+      <div class="ver pick hl rv" style="--at:1.15;--hat:2">
+        <div class="mock" aria-hidden="true"><div class="flabel">Battery capacity</div><div class="field focus">4500<i class="caret"></i></div>
+          <div class="drop"><small>No matches</small><span class="addbtn hl" style="--hat:2.5">+ Add “4500”</span></div></div>
+        <div class="vname"><span class="serif">Add button</span><b class="yes">✓</b></div>
+      </div>
+      <div class="ver rv" style="--at:1.3;--dat:2">
+        <div class="mock" aria-hidden="true"><div class="flabel">Battery capacity</div><div class="field">4500</div>
+          <span class="keychip">Tab ⇥</span><div class="warn">Saved silently, typo included</div></div>
+        <div class="vname"><span>Create on blur</span><b class="no">✕</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide wide" data-ch="pim" data-steps="3" aria-roledescription="slide" aria-label="One variant, one object">
+  <div class="txt"><div>
+    <div class="eyebrow">Decision</div>
+    <h2>One variant, <span class="serif">one object</span></h2>
+  </div><p class="meta">The matrix stays in the database</p></div>
+  <div class="vis">
+    <div class="variants">
+      <div class="rv" style="--at:1;--dat:2">
+        <div class="matrix" aria-label="Old view: a color by memory matrix">
+          <span></span><span>256 GB</span><span>512 GB</span>
+          <span>White</span><span class="y">✓</span><span></span>
+          <span>Black</span><span class="y">✓</span><span class="y">✓</span>
+        </div>
+        <div class="matrix-cap">How the old tool showed variants</div>
+      </div>
+      <div class="blocks">
+        <div class="vblock rv" style="--at:2"><i class="sw w"></i><b>White · 256 GB</b><span class="bars"><i></i><i></i></span></div>
+        <div class="vblock rv" style="--at:2.12"><i class="sw k"></i><b>Black · 256 GB</b><span class="bars"><i></i><i></i></span></div>
+        <div class="vblock rv" style="--at:2.24"><i class="sw k"></i><b>Black · 512 GB</b><span class="bars"><i></i><i></i></span></div>
+        <div class="vblock new rv" style="--at:2.45"><b>New variant</b>
+          <span class="chipset"><span class="on">White</span><span class="off">256 GB</span><span>512 GB</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide wide" data-ch="pim" data-steps="2" aria-roledescription="slide" aria-label="Result: 20 to 25 minutes down to about 10">
+  <div class="txt"><div>
+    <div class="eyebrow">Result</div>
+    <h2>20–25 min → <span class="serif">~10 min</span></h2>
+  </div><p class="meta">Per product · 5 timed runs on real data</p></div>
+  <div class="vis">
+    <div class="hbars" role="img" aria-label="Time per product: 20 to 25 minutes before, about 10 minutes after">
+      <div class="hb"><span>Old tool</span><div class="track"><i class="fill" style="width:80%"></i><i class="range"></i><span class="lab" style="left:calc(100% + 16px)">20–25</span></div></div>
+      <div class="hb after rv" style="--at:1"><span>New flow</span><div class="track"><i class="fill"></i><span class="lab" style="left:calc(90% - var(--v) * 50% + 16px)">~10</span></div></div>
+      <div class="ticks"><span></span><div><span>0</span><span>5</span><span>10</span><span>15</span><span>20</span><span>25 min</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide wide" data-ch="pim" data-steps="2" aria-roledescription="slide" aria-label="The UI kit outlived the tool">
+  <div class="txt"><div>
+    <div class="eyebrow">Afterlife</div>
+    <h2>The UI kit <span class="serif">outlived the tool</span></h2>
+  </div><p class="meta">Orders · CMS · internal tools</p></div>
+  <div class="vis">
+    <div class="kit">
+      <div class="kitparts solo" aria-hidden="true"><span class="lbl">UI kit · 2020</span><span class="btn">Save</span><div class="field" style="height:44px;font-size:17px">4500</div><span class="toggle"></span></div>
+      <i class="wire rv" style="--at:1"></i>
+      <div class="targets">
+        <div class="ph rv" style="--at:1"><b>Order management</b><p>Screen built on the kit</p></div>
+        <div class="ph rv" style="--at:1.15"><b>CMS</b><p>Screen built on the kit</p></div>
+        <div class="ph rv" style="--at:1.3"><b>Other internal tools</b><p>Screen built on the kit</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DESIGN SYSTEM (TBD) ================= -->
+<section class="slide" data-ch="system" data-steps="1" aria-roledescription="slide" aria-label="Design system, coming soon">
+  <div class="txt">
+    <div class="eyebrow">Chapter <b>03</b> · Design system</div>
+    <h2>Halyk Market <span class="serif">design system</span></h2>
+    <p><span class="soon">Coming soon</span></p>
+    <p class="ctx">This story is still being written. Ask me about it in a conversation.</p>
+  </div>
+  <div class="vis">
+    <div class="ph window"><b>Visual · TBD</b><p>Case to be prepared.</p></div>
+  </div>
+</section>
+
+<!-- ================= OUTRO ================= -->
+<section class="slide center" data-ch="outro" data-steps="2" aria-roledescription="slide" aria-label="Thank you">
+  <div class="txt" style="gap:36px;width:100%">
+    <h1>Thank <span class="serif">you.</span></h1>
+    <div class="contacts rv" style="--at:1">
+      <div><span>Site</span><a href="https://almaz.design/" target="_blank" rel="noopener">almaz.design</a><i></i></div>
+      <div><span>LinkedIn</span><a href="https://www.linkedin.com/in/almazisakov/" target="_blank" rel="noopener">in/almazisakov</a><i></i></div>
+      <div><span>Telegram</span><a href="https://t.me/jonelealmaz" target="_blank" rel="noopener">@jonelealmaz</a><i></i></div>
+      <div><span>Email</span><span class="addr" id="email">almazisakoff@gmail.com</span><button type="button" class="btn-ghost" id="copy">Copy</button></div>
+    </div>
+    <div class="outro-actions rv" style="--at:1.3"><a class="btn-primary" href="/cv.pdf" target="_blank" rel="noopener">Download CV</a></div>
+  </div>
+</section>
+
+</div>
+</main>

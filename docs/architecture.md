@@ -7,6 +7,7 @@ Status: draft, 2026-10-26. Sections marked **PROPOSED** are not agreed yet: conf
 | Area | Today | File |
 |---|---|---|
 | Routes | `/` home, `/work/balaty` custom page, `/notes/:project` and `/notes/:project/:slug` notes | `src/App.jsx` |
+| Case deck | `/demo-en-2026`: scroll-driven case deck (interview presentation + video frames). **Unlisted**: `noindex`, not in the sitemap, not linked from home. Text lives in `en.html`; CSS, JS and images are shared, so a localized copy (`/demo-ru-2026`, planned) only adds its own `.html` + page. Phones (<768px) get a temporary stub. Brief: `docs/deck-brief.md` | `src/pages/demo-en-2026.astro`, `src/views/Deck/`, `public/deck/img/` |
 | Home | One centered intro card (photo, headline, "Get CV", "Contact me") + contact dialog. **No masonry, no dotted paper yet** | `src/pages/HomePage/` |
 | Case: Balaty | Fully custom page (sticker honeycomb, own CSS) | `src/pages/BalatyPage/` |
 | Notes | Per-project microblog feed. Content comes from the public `almazisak/portfolio-notes` repo (Obsidian → repo), pulled at `dev`/`build` by `scripts/fetch-notes.mjs` into the gitignored `src/lib/notes.generated.json` and `public/notes/`. **Protected, do not remove in cleanups** | `scripts/fetch-notes.mjs`, `src/lib/notes.js`, `src/pages/NotesPage/` |

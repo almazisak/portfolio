@@ -1,0 +1,20 @@
+---
+// Case deck, English. Unlisted: shared by direct link only.
+// Markup with text lives in views/Deck/en.html; styles, script and images are shared
+// so a localized copy only needs its own .html file and a page like this one.
+import Base from '../layouts/Base.astro'
+import markup from '../views/Deck/en.html?raw'
+import '../views/Deck/deck.css'
+import '../views/Deck/MobileStub.css'
+---
+
+<Base
+  title="Almaz Isakov — Case deck 2026"
+  description="Lead Product Designer. Selected cases as a short presentation."
+  noindex
+>
+  <Fragment set:html={markup} />
+  <script>
+    import '../views/Deck/deck.js'
+  </script>
+</Base>
