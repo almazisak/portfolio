@@ -234,7 +234,7 @@
     ['Type · numbers', [['--fs-metric','Cover metric',28,100,1],['--fs-metric-label','Metric label',12,36,1],['--fs-bar-num','Bar values',16,60,1],['--fs-hero','+4.6 pp (hero)',48,180,1],['--fs-delta','+4.6 pp (old)',24,80,1],['--fs-donut','−20% (time)',48,180,1],['--fs-fu','Follow-up text',16,48,1],['--fs-result-label','Result labels',12,32,1],['--fs-result-value','Result values',16,48,1]]],
     ['Type · details', [['--fs-chapter','Chapter titles',24,64,1],['--fs-chapter-meta','Chapter meta',12,30,1],['--fs-screen-label','Screen labels',12,32,1],['--fs-tag','Tags',10,24,1],['--fs-note','Footnote',12,30,1],['--fs-cap-title','Caption title',10,28,1],['--fs-cap-desc','Caption text',12,32,1],['--fs-sticky','Sticky notes',12,28,1]]],
     ['Spacing · slide', [['--pad-top','Top padding',60,240,2],['--pad-x','Side padding',40,240,2],['--pad-bottom','Bottom padding',40,200,2],['--col-text','Text column',400,900,10],['--gap-col','Text ↔ visual',24,200,2],['--gap-wide','Heading ↔ visual',16,160,2],['--gap-txt','Text blocks gap',8,64,1],['--gap-head','Heading ↔ subtitle',4,48,1]]],
-    ['Problem slide', [['--gap-problem','Subtitle ↔ screens',24,160,2],['--inset','Text inset',0,48,1],['--tag-gap','Tags ↓ screen',0,48,1],['--note-gap','Footnote ↓ tag',0,40,1]]],
+    ['Problem slide', [['--gap-problem','Subtitle ↔ screens',24,160,2],['--inset','Text inset',0,48,1],['--tag-gap','Tags ↓ screen',0,48,1],['--note-gap','Footnote ↓ tag',0,40,1],['--shot-h','Screen height',360,600,2],['--shot-h-rec','Screen height (rec)',320,560,2]]],
     ['Result slide · spacing', [['--r-card-w','Card width',420,800,10],['--r-col-gap','Card ↔ right side',24,200,2],['--r-card-pad','Card padding',16,80,2],['--r-card-gap','Card label ↔ +4.6',0,60,1],['--r-plot-top','+4.6 ↔ chart',-40,120,2],['--r-side-gap','Clock ↔ survey',0,120,2],['--r-label-gap','Survey label ↔ avatars',0,48,1],['--r-clock-gap','Clock ↔ −20%',8,120,2],['--r-pct-gap','−20% ↔ its label',0,40,1],['--r-leg-top','Label ↔ legend',0,48,1],['--r-leg-gap','Legend rows',0,32,1],['--r-av-gap','Avatar gap',0,40,1],['--r-nps-inner','5 of 6 ↔ caption',0,60,1],['--r-roll-gap','Blocks ↔ bottom line',0,80,1],['--clock-w','Clock size',200,420,2]]],
     ['Three stories · list', [['--ch-x','Left',0,480,4],['--ch-y','Top',0,320,4],['--ch-w','Width',800,1680,10]]]
   ];
@@ -273,6 +273,9 @@
     try { navigator.clipboard.writeText(out.value).then(done, fb); } catch { fb(); }
   });
   placeArrows(); if (document.fonts) document.fonts.ready.then(placeArrows); addEventListener('load', placeArrows);
+  // Re-place whenever the geometry changes (rec toggle, image load, tune sliders)
+  const ro = new ResizeObserver(placeArrows);
+  [flow, ...flow.querySelectorAll('.fs')].forEach(el => ro.observe(el));
 
   const params = new URLSearchParams(location.search);
   if (params.has('record')) { stage.classList.add('rec'); document.body.classList.add('clean'); }
