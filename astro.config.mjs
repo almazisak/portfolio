@@ -7,7 +7,8 @@ export default defineConfig({
   site: 'https://almaz.design',
   // /notes has no page of its own: projects are entered from the home page.
   redirects: { '/notes': '/' },
-  integrations: [react(), sitemap()],
+  // Unlisted pages (shared by direct link only) stay out of the sitemap.
+  integrations: [react(), sitemap({ filter: (page) => !page.includes('/demo-') })],
   vite: {
     plugins: [svgr()],
   },

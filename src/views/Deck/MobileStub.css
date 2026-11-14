@@ -1,0 +1,15 @@
+/* Temporary phone stub for the deck page (<768px). Almaz will replace it. */
+.deck-stub{display:none}
+
+@media (max-width:767px){
+  .deck-stub{display:flex;flex-direction:column;justify-content:center;gap:20px;min-height:100svh;padding:48px 24px;
+    background:radial-gradient(circle,var(--color-dot) 1.5px,transparent 2px) 0 0/44px 44px,var(--color-bg)}
+  .deck-stub__eyebrow{margin:0;font-family:var(--font-mono);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--color-ink-light)}
+  .deck-stub__title{margin:0;font-size:36px;line-height:1.08;font-weight:600;letter-spacing:-.02em;color:var(--color-ink)}
+  .deck-stub__text{margin:0;font-size:18px;line-height:1.4;color:var(--color-ink-soft)}
+  .deck-stub__actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+  .deck-stub__actions a{min-height:48px}
+
+  /* The deck itself is hidden on phones */
+  #track,.chrome,.hint,.progress,.tune,.viewport{display:none !important}
+}

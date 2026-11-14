@@ -58,18 +58,28 @@ Two different blues are used for the same role. Both are listed as found.
 ### Status
 | Token | Value | Role | Uses / where | Today's name | Figma |
 |---|---|---|---|---|---|
-| `--color-status` | `#FCC934` | Status pill background on Notes pages | NotesPage | — | — |
+| `--color-status` | `#FCC934` | Status pill background on Notes pages; sticky notes in the case deck | NotesPage, Deck | — | — |
 | `--color-success-bright` | `#48F08B` | "fastest" tag background in contact dialog | 1: ContactDialog | — | — |
 
 ### Lines, overlay, shadows
 | Token | Value | Role | Uses / where | Today's name | Figma |
 |---|---|---|---|---|---|
-| `--color-dot` | `#CCC0AF` | Dots of the home background | HomePage (hardcoded) | — | — |
+| `--color-dot` | `#CCC0AF` | Dots of the dotted-paper background | HomePage (hardcoded), Deck | — | — |
 | `--color-divider` | `#F4EFEA` | Dividers on Notes pages: between posts, `hr`, blockquote rule, footer. Same value as `--color-bg-warm` | NotesPage | — | — |
 | `--color-border` | `#DCD3C7` | Row dividers in contact dialog | 1 | — | — |
 | `--color-overlay` | `rgb(8 7 8 / 42%)` | Dialog backdrop | 1: ContactDialog | — | — |
 | `--color-shadow-dialog` | `rgb(8 7 8 / 28%)` | Dialog drop shadow | 1: ContactDialog | — | — |
 | `--color-shadow-bar` | `rgb(26 25 24 / 4%)` | Hero bar shadow when scrolled | 1: HeroBar (note: different base color than the other shadow) | — | — |
+
+### Proposed (case deck, not in Figma yet)
+Used only by `src/views/Deck/deck.css`, defined there locally until confirmed. Confirm the values in Figma, then move them to `tokens.css`.
+
+| Token | Value | Role | Uses / where | Today's name | Figma |
+|---|---|---|---|---|---|
+| `--color-success` | `#2C9E5A` | Positive values and "yes" marks in deck visuals | Deck | — | — |
+| `--color-shadow-warm` | `#7B4421` | Warm shadow under sticky notes and flying cards (mixed to 30–55%) | Deck | — | — |
+
+Derived in the deck without new hex values: `--color-accent-border` = `--color-accent` at 30%, `--color-on-primary` = `--color-bg`.
 
 ## 3. Overlaps and conflicts found (decide in Figma)
 - **Two blues** for primary buttons: `#2092E9` family (hero bar) vs `#5D9BFF` family (home). Pick one, then drop `-alt`.

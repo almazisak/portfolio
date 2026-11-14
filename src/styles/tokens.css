@@ -20,7 +20,9 @@
 
   /* Accent and primary */
   --color-accent: #FF8811;
+  --color-accent-subtle: #FAEAD8;
   --color-primary: #2092E9;
+  --color-primary-hover: #1D85E0;
   --color-primary-alt: #5D9BFF;
   --color-primary-alt-hover: #4377DB;
   --color-primary-alt-pressed: #2E58B7;
@@ -31,4 +33,7 @@
   /* Lines */
   --color-dot: #CCC0AF;
   --color-divider: #F4EFEA;
+
+  /* Overlay */
+  --color-overlay: rgb(8 7 8 / 42%);
 }
