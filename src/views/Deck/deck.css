@@ -23,7 +23,7 @@
   --fs-hero:120px; --fs-nps:72px; --fs-fu:30px; --clock-w:310px;
   --r-card-w:650px; --r-col-gap:112px; --r-roll-gap:52px; --r-card-pad:40px; --r-card-gap:24px; --r-plot-top:0px; --r-side-gap:52px; --r-label-gap:18px; --r-clock-gap:48px; --r-pct-gap:20px; --r-leg-top:24px; --r-leg-gap:12px; --r-av-gap:36px; --r-nps-gap:90px; --r-nps-inner:22px; --fs-nps-text:24px; --fs-chapter:44px; --fs-chapter-meta:20px; --fs-screen-label:20px; --fs-tag:15px; --fs-note:20px; --fs-cap-title:18px; --fs-cap-desc:20px; --fs-sticky:19px;
   --pad-top:150px; --pad-x:120px; --pad-bottom:110px; --col-text:600px; --gap-col:88px; --gap-wide:56px; --gap-txt:28px; --gap-head:20px;
-  --gap-problem:80px; --inset:28px; --tag-gap:36px; --note-gap:10px; --shot-h:520px; --shot-h-rec:440px;
+  --gap-problem:24px; --inset:28px; --tag-gap:36px; --note-gap:10px; --shot-h:520px; --shot-h-rec:440px;
   --ch-x:240px; --ch-y:16px; --ch-w:1200px;
   color-scheme:light;
 }
