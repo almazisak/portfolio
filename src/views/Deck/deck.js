@@ -246,14 +246,20 @@
     const d = document.createElement('details'); if (gi === 0) d.open = true;
     d.innerHTML = '<summary>' + group + '</summary>'; body.appendChild(d);
     items.forEach(([v, label, min, max, step, unit = 'px']) => {
+      // If the stylesheet is not applied yet, the default reads as NaN. Never write NaN or a stored
+      // null back to :root: `null` becomes 0px and hides the text (seen in DuckDuckGo).
       UNIT[v] = unit; DEF[v] = parseFloat(cs.getPropertyValue(v));
+      const ok = x => x !== null && x !== '' && Number.isFinite(+x) && +x >= min && +x <= max;
       const id = 'tc' + v.replace(/[^a-z0-9]/gi, '');
       const row = document.createElement('div'); row.className = 'row';
       row.innerHTML = `<label for="${id}">${label}</label><input type="range" id="${id}" min="${min}" max="${max}" step="${step}"><input type="number" id="${id}n" min="${min}" max="${max}" step="${step}" aria-label="${label} value">`;
       d.appendChild(row); ROWS[v] = row;
       const r = row.children[1], n = row.children[2];
-      const set = x => { x = +x; CUR[v] = x; r.value = x; n.value = x; root.style.setProperty(v, x + unit); row.classList.toggle('chg', x !== DEF[v]); };
-      set(v in saved ? saved[v] : DEF[v]);
+      const set = x => {
+        if (!ok(x)) { delete CUR[v]; root.style.removeProperty(v); row.classList.remove('chg'); if (ok(DEF[v])) { r.value = DEF[v]; n.value = DEF[v]; } return; }
+        x = +x; CUR[v] = x; r.value = x; n.value = x; root.style.setProperty(v, x + unit); row.classList.toggle('chg', x !== DEF[v]);
+      };
+      if (ok(saved[v])) set(saved[v]); else if (ok(DEF[v])) { r.value = DEF[v]; n.value = DEF[v]; }
       const onIn = x => { set(x); persist(); placeArrows(); };
       r.addEventListener('input', () => onIn(r.value)); n.addEventListener('change', () => onIn(n.value));
       ROWS[v].set = set;
