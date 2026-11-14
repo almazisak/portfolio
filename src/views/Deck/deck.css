@@ -230,22 +230,23 @@ h2{font-size:var(--fs-h2);line-height:var(--lh-h2)}
 .eq{font-size:56px;color:var(--color-accent);font-family:var(--font-serif)}
 
 /* ---------- checkout: craft (deck → picker) ----------
-   Coordinates are stage px (slide box). Phone mock 1280×2642 at 488.5×1008 (f=.38153).
+   Coordinates are stage px (slide box). Phone mock 1280×2642 at 634×1308 (f=.4953),
+   bleeding off the top edge as in Paper (PRTFL'26, deck / Craft).
    k0 phone with placeholders + deck of 3 cards; k1..k3 each card in turn flies into its row,
    the next one rises to the front of the deck. */
 .s-craft .vis{position:static}
-.craft{position:absolute;inset:0;pointer-events:none;--full:url(/deck/img/craft-full.webp)}
-.craft-phone{position:absolute;left:922.4px;top:46px;width:488.5px;height:1008px}
+.craft{position:absolute;inset:0;overflow:hidden;pointer-events:none;--full:url(/deck/img/craft-full.webp)}
+.craft-phone{position:absolute;left:922px;top:-278px;width:634px;height:1308px}
 .craft-phone img{position:absolute;inset:0;width:100%;height:100%;display:block}
 .crow{position:absolute;inset:0;background:var(--full) 0 0/100% 100% no-repeat;
   opacity:clamp(0,calc((var(--k) - var(--i) - .75) / .25),1)}
 .ccard{position:absolute;left:0;top:0;width:380px;height:auto;margin:-122.95px 0 0 -190px;will-change:transform;
-  --x0:519px;--y0:670px;--x2:1040.5px;
+  --x0:519px;--y0:670px;--x2:1075.3px;
   --d:clamp(0,calc(var(--i) - var(--k)),3);
   --q:clamp(0,calc((var(--k) - var(--i)) / .85),1);--f:calc(var(--q) * var(--q) * (3 - 2 * var(--q)));
   --ds:calc(1 - .08 * var(--d));
   transform:translate(calc(var(--x0) + (var(--x2) - var(--x0)) * var(--f)),calc(var(--y0) + 30px * var(--d) + (var(--y2) - var(--y0)) * var(--f)))
-    scale(calc(var(--ds) * (1 - .8207 * var(--f))),calc(var(--ds) * (1 - .7967 * var(--f))));
+    scale(calc(var(--ds) * (1 - .7673 * var(--f))),calc(var(--ds) * (1 - .7361 * var(--f))));
   filter:drop-shadow(0 calc(20px * (1 - var(--f))) calc(28px * (1 - var(--f))) color-mix(in srgb,var(--color-shadow-warm) 30%,transparent));
   opacity:calc(1 - clamp(0,calc((var(--k) - var(--i) - .75) / .25),1))}
 .clabel{position:absolute;left:519px;top:878px;transform:translate(-50%,calc((1 - var(--o)) * 10px));white-space:nowrap;
