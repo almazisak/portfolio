@@ -97,6 +97,16 @@ export default function renderMarkdown(source, base, topLevel = 2) {
 
     const para = []
     while (i < lines.length && lines[i].trim() && !/^(#{1,3}\s|```|>|(\s*)([-*]|\d+\.)\s)/.test(lines[i])) para.push(lines[i++])
+    // Two or more images with nothing else in the paragraph render as a row (Figma: Notes, image row)
+    const images = para.map((l) => l.trim().match(/^!\[([^\]]*)\]\(([^)]+)\)$/))
+    if (images.length > 1 && images.every(Boolean)) {
+      blocks.push(
+        <div key={key} className="notes-page__gallery" role="region" aria-label="Photos" tabIndex={0}>
+          {images.map(([, alt, src], n) => <img key={n} src={resolveAsset(src, base)} alt={alt} loading="lazy" />)}
+        </div>,
+      )
+      continue
+    }
     blocks.push(<p key={key}>{renderInline(para.join(' '), base)}</p>)
   }
 

@@ -2,6 +2,8 @@
 .notes-page {
   text-wrap: pretty; /* one wrapping rule for every text on Notes pages, titles included */
   min-height: 100dvh;
+  overflow-x: clip; /* nothing on Notes pages scrolls the page sideways */
+  container-type: inline-size; /* 100cqw = page width without the scrollbar, for full-bleed image rows */
   background: var(--color-surface);
   display: flex;
   flex-direction: column;
@@ -98,6 +100,49 @@
   max-width: 100%;
   height: auto;
   border-radius: 12px;
+}
+
+/* Image row: a paragraph of 2+ images. Full-bleed scroller: at rest the first photo lines up
+   with the text, the last one stops at the column's right edge; while swiping, photos run to
+   both screen edges. Photos keep their size (352 × 235). */
+.notes-page__gallery {
+  /* space between the 540px column (see .notes-page__main) and the screen edge */
+  --gutter: calc((100cqw - min(540px, 100cqw - 48px)) / 2);
+  display: flex;
+  gap: 8px;
+  margin-inline: calc(var(--gutter) * -1);
+  padding-inline: var(--gutter);
+  scroll-padding-inline: var(--gutter);
+  overflow-x: auto;
+  overscroll-behavior-x: contain; /* the swipe moves the row, never the page */
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.notes-page__gallery::-webkit-scrollbar { display: none; }
+
+.notes-page__gallery:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+}
+
+.notes-page__prose .notes-page__gallery img {
+  flex: 0 0 auto;
+  width: 352px;
+  max-width: none;
+  aspect-ratio: 352 / 235;
+  object-fit: cover;
+  scroll-snap-align: start;
+  background: var(--color-sand);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .notes-page__gallery { scroll-behavior: smooth; }
+}
+
+@media (max-width: 480px) {
+  /* Narrower than the screen so the next photo peeks in from the edge */
+  .notes-page__prose .notes-page__gallery img { width: min(352px, 100cqw - 72px); }
 }
 
 .notes-page__prose blockquote {
