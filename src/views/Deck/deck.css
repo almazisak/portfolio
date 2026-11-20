@@ -21,7 +21,7 @@
   --fs-sub:28px; --fs-ctx:27px; --fs-meta:27px; --fs-finding:64px;
   --fs-metric:64px; --fs-metric-label:24px; --fs-bar-num:38px; --fs-delta:56px; --fs-donut:128px; --fs-result-label:22px; --fs-result-value:32px;
   --fs-hero:120px; --fs-nps:72px; --fs-fu:30px; --clock-w:310px;
-  --r-card-w:650px; --r-col-gap:112px; --r-roll-gap:52px; --r-card-pad:40px; --r-card-gap:24px; --r-plot-top:0px; --r-side-gap:52px; --r-label-gap:18px; --r-clock-gap:48px; --r-pct-gap:20px; --r-leg-top:24px; --r-leg-gap:12px; --r-av-gap:36px; --r-nps-gap:90px; --r-nps-inner:22px; --fs-nps-text:24px; --fs-chapter:44px; --fs-chapter-meta:20px; --fs-screen-label:20px; --fs-tag:15px; --fs-note:20px; --fs-cap-title:18px; --fs-cap-desc:20px; --fs-sticky:19px;
+  --r-card-w:650px; --r-col-gap:112px; --r-roll-gap:52px; --r-card-pad:40px; --r-card-gap:24px; --r-plot-top:0px; --r-side-gap:52px; --r-label-gap:18px; --r-clock-gap:48px; --r-pct-gap:20px; --r-leg-top:24px; --r-leg-gap:12px; --r-av-gap:36px; --r-nps-gap:90px; --r-nps-inner:22px; --fs-nps-text:24px; --fs-chapter:52px; --fs-chapter-meta:20px; --fs-screen-label:20px; --fs-tag:15px; --fs-note:20px; --fs-cap-title:18px; --fs-cap-desc:20px; --fs-sticky:19px;
   --pad-top:150px; --pad-x:120px; --pad-bottom:110px; --col-text:600px; --gap-col:88px; --gap-wide:56px; --gap-txt:28px; --gap-head:20px;
   --gap-problem:24px; --inset:28px; --tag-gap:36px; --note-gap:10px; --shot-h:520px; --shot-h-rec:440px;
   --ch-x:240px; --ch-y:16px; --ch-w:1200px;
@@ -114,6 +114,7 @@ h2{font-size:var(--fs-h2);line-height:var(--lh-h2)}
 .serif{font-family:var(--font-serif);font-style:italic;font-weight:500;letter-spacing:-.01em}
 .sub{font-size:var(--fs-sub);line-height:1.35;color:var(--color-ink-soft);margin:0;text-wrap:pretty;max-width:30ch}
 .meta{font-size:var(--fs-meta);color:var(--color-ink-light);margin:0;line-height:1.5}
+.meta span{white-space:nowrap}
 .meta span+span::before{content:" · "}
 .ctx{font-size:var(--fs-ctx);line-height:1.45;color:var(--color-ink-light);margin:0;max-width:40ch}
 .metric{display:flex;flex-direction:column;gap:8px;padding-top:24px}
@@ -142,8 +143,9 @@ h2{font-size:var(--fs-h2);line-height:var(--lh-h2)}
   display:flex;flex-direction:column;justify-content:flex-end;gap:8px;padding:24px;min-width:0;max-width:100%}
 .ph b{font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent);font-weight:600}
 .ph p{margin:0;font-size:18px;line-height:1.4;color:var(--color-ink-light);text-wrap:pretty}
-.phone{aspect-ratio:9/19.5;border-radius:44px;height:100%;max-height:820px}
+.phone{aspect-ratio:1280/2642;border-radius:44px;height:100%;max-height:820px} /* PHONE mock in Figma (929:4479), same frame as Craft */
 .window{aspect-ratio:16/10;width:100%;border-radius:18px}
+.window.cover{aspect-ratio:1362/877} /* dcb-pim-cover in Figma (973:14099) */
 
 /* ---------- intro ---------- */
 .intro-photo{display:block;width:480px;height:auto;aspect-ratio:1;max-width:100%;border-radius:50%;object-fit:cover;object-position:50% 45%}
@@ -151,13 +153,13 @@ h2{font-size:var(--fs-h2);line-height:var(--lh-h2)}
 .chapters{border-top:1px solid var(--line)}
 .chapters li{border-bottom:1px solid var(--line)}
 .chapters button{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:grid;
-  grid-template-columns:72px 1fr auto;align-items:baseline;gap:24px;padding:30px 16px;border-radius:0}
+  grid-template-columns:72px 1fr auto;align-items:baseline;gap:24px;padding:46px 16px;border-radius:0}
 .chapters button:hover{background:color-mix(in srgb,var(--color-accent-subtle) 60%,transparent)}
 .chapters button:focus-visible{outline:2px solid var(--color-primary)}
-.chapters .n{font-size:22px;color:var(--color-accent);font-variant-numeric:tabular-nums;font-weight:600}
+.chapters .n{font-size:24px;color:var(--color-accent);font-variant-numeric:tabular-nums;font-weight:600}
 .chapters .t{font-size:var(--fs-chapter);color:var(--color-ink);font-weight:600;letter-spacing:-.03em}
 .chapters .t em{font-family:var(--font-serif);font-weight:500;color:var(--color-ink-soft)}
-.chapters .m{font-size:var(--fs-chapter-meta);color:var(--color-ink-light)}
+.chapters .m{font-size:22px;color:var(--color-ink-light)}
 .soon{display:inline-block;font-size:16px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
   background:var(--color-accent-subtle);color:var(--color-accent);padding:6px 12px;border-radius:999px;vertical-align:middle}
 
@@ -209,10 +211,11 @@ h2{font-size:var(--fs-h2);line-height:var(--lh-h2)}
 .evi .cap-in b{font-size:var(--fs-cap-title);letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent);font-weight:600}
 .evi .cap-in p{margin:0;font-size:var(--fs-cap-desc);line-height:1.4;color:var(--color-ink-light)}
 .frags .ph,.frags .evi{transform:translateY(calc((1 - var(--v)) * 22px)) scale(calc(1 - var(--d) * .08))}
-.finding{position:absolute;left:0;right:0;bottom:0;font-size:var(--fs-finding);line-height:1.1;color:var(--color-primary);margin:0;text-wrap:balance}
+.s-disc .vis{flex-direction:column;align-items:flex-start!important;justify-content:flex-start;gap:72px}
+.finding{position:relative;font-size:var(--fs-finding);line-height:1.1;color:var(--color-primary);margin:0;text-wrap:balance}
 
 /* ---------- checkout: decision ---------- */
-.decide{display:flex;gap:120px;height:100%;align-items:stretch;justify-content:center}
+.decide{display:flex;gap:220px;height:100%;align-items:stretch;justify-content:center} /* gap fits the New card / Installments exit labels */
 .decide .col{position:relative;display:flex;flex-direction:column;align-items:center;gap:18px}
 .decide .col .ph{flex:1}
 .cap{font-size:18px;color:var(--color-ink-light);text-align:center;max-width:30ch;line-height:1.4}
@@ -391,15 +394,17 @@ h2{font-size:var(--fs-h2);line-height:var(--lh-h2)}
 /* ---------- PIM: units ---------- */
 .units{display:flex;flex-direction:column;gap:24px;width:100%;height:100%}
 .units .ph{flex:1}
-.tokens{display:flex;gap:16px;align-items:center}
-.tok{font-size:36px;padding:10px 22px;border-radius:14px;background:var(--color-surface);border:1.5px solid var(--line);color:var(--color-ink);font-variant-numeric:tabular-nums}
+.tokens{display:flex;gap:16px;align-items:center;margin-top:12px}
+.tok{font-size:32px;padding:10px 22px;border-radius:14px;background:var(--color-surface);border:1.5px solid var(--line);color:var(--color-ink);font-variant-numeric:tabular-nums}
 .tok:nth-child(2){transform:rotate(-2deg)}
 .tok:nth-child(3){transform:rotate(1.5deg)}
 
 /* ---------- PIM: three versions ---------- */
 .vers{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;width:100%}
-.ver{display:flex;flex-direction:column;gap:18px}
-.mock{height:360px;border-radius:20px;background:var(--color-surface);border:1.5px solid var(--line);position:relative;padding:28px;box-sizing:border-box;overflow:hidden}
+.s-vers .vis{align-items:stretch!important}
+.s-vers .vers{height:100%;padding-bottom:20px;box-sizing:border-box}
+.ver{display:flex;flex-direction:column;gap:18px;min-height:0}
+.mock{flex:1;min-height:360px;border-radius:20px;background:var(--color-surface);border:1.5px solid var(--line);position:relative;padding:28px;box-sizing:border-box;overflow:hidden}
 .ver.pick .mock{border-color:color-mix(in srgb,var(--color-accent) calc(var(--h) * 100%),var(--line));box-shadow:0 0 0 calc(var(--h) * 4px) var(--color-accent-subtle)}
 .flabel{font-size:15px;color:var(--color-ink-light);margin-bottom:8px}
 .field{height:52px;border-radius:12px;border:1.5px solid var(--line);display:flex;align-items:center;padding:0 16px;font-size:20px;color:var(--color-ink);font-variant-numeric:tabular-nums;gap:2px}
@@ -422,41 +427,53 @@ h2{font-size:var(--fs-h2);line-height:var(--lh-h2)}
 .vname .yes{color:var(--color-success)}
 
 /* ---------- PIM: variants ---------- */
-.variants{display:grid;grid-template-columns:auto 1fr;gap:80px;align-items:center;width:100%}
-.matrix{display:grid;grid-template-columns:120px 120px 120px;border:1.5px solid var(--line);border-radius:14px;overflow:hidden;background:var(--color-surface)}
-.matrix>*{height:76px;display:grid;place-items:center;font-size:19px;color:var(--color-ink-soft);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.s-var .variants>.rv:first-child{opacity:calc(var(--v) * (1 - .5 * var(--d)))} /* old matrix stays legible after it dims */
+.variants{display:grid;grid-template-columns:auto 1fr;gap:80px;align-items:start;width:100%}
+.matrix{display:grid;grid-template-columns:160px 160px 160px;border:1.5px solid var(--line);border-radius:14px;overflow:hidden;background:var(--color-surface)}
+.matrix>*{height:112px;display:grid;place-items:center;font-size:24px;color:var(--color-ink-soft);border-top:1px solid var(--line);border-left:1px solid var(--line)}
 .matrix>*:nth-child(-n+3){border-top:0;background:var(--color-sand);font-weight:500}
 .matrix>*:nth-child(3n+1){border-left:0;font-weight:500}
 .matrix .y{color:var(--color-success);font-size:26px}
-.matrix-cap{font-size:17px;color:var(--color-ink-light);margin-top:14px}
-.blocks{display:flex;flex-direction:column;gap:16px;min-width:0}
-.vblock{display:flex;align-items:center;gap:18px;padding:18px 22px;border-radius:16px;background:var(--color-surface);border:1.5px solid var(--line)}
+.matrix-cap{font-size:20px;color:var(--color-ink-light);margin-top:14px}
+.blocks{display:flex;flex-direction:column;gap:20px;min-width:0}
+.vblock{display:flex;align-items:center;gap:20px;padding:30px 28px;border-radius:16px;background:var(--color-surface);border:1.5px solid var(--line)}
 .sw{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--line);flex:none}
 .sw.w{background:var(--color-surface)}
 .sw.k{background:var(--color-ink)}
-.vblock b{font-size:22px;color:var(--color-ink);font-weight:500}
+.vblock b{font-size:26px;color:var(--color-ink);font-weight:500}
 .vblock .bars{flex:1;display:flex;gap:10px;justify-content:flex-end}
 .vblock .bars i{display:block;width:70px;height:10px;border-radius:5px;background:var(--bar)}
 .vblock.new{border-style:dashed;border-color:var(--color-accent-border);flex-wrap:wrap}
 .chipset{display:flex;gap:8px;flex-wrap:wrap}
-.chipset span{font-size:17px;padding:6px 12px;border-radius:999px;border:1.5px solid var(--line);color:var(--color-ink-soft)}
+.chipset span{font-size:20px;padding:6px 12px;border-radius:999px;border:1.5px solid var(--line);color:var(--color-ink-soft)}
 .chipset span.off{color:color-mix(in srgb,var(--color-ink-light) 55%,transparent);text-decoration:line-through;border-style:dashed}
 .chipset span.on{border-color:var(--color-ink);color:var(--color-ink)}
 
 /* ---------- PIM: time ---------- */
-.hbars{display:flex;flex-direction:column;gap:44px;width:100%;max-width:1040px}
+.s-time .vis{justify-content:flex-start}
+.s-time .hbars{max-width:1300px}
+.hbars{display:flex;flex-direction:column;gap:64px;width:100%;max-width:1040px}
 .hb{display:grid;grid-template-columns:150px 1fr;align-items:center;gap:28px}
-.hb>span{font-size:22px;color:var(--color-ink-light)}
-.hb .track{position:relative;height:64px}
+.hb>span{font-size:24px;color:var(--color-ink-light)}
+.hb .track{position:relative;height:104px}
 .hb .fill{position:absolute;left:0;top:0;bottom:0;border-radius:10px;background:var(--bar)}
 .hb .range{position:absolute;top:0;bottom:0;left:80%;width:20%;border-radius:0 10px 10px 0;
   background:repeating-linear-gradient(135deg,var(--bar) 0 6px,transparent 6px 12px)}
 .hb.after .fill{background:var(--color-accent);width:calc(90% - var(--v) * 50%)}
-.hb .lab{position:absolute;top:50%;transform:translateY(-50%);font-size:26px;font-weight:600;color:var(--color-ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+.hb .lab{position:absolute;top:50%;transform:translateY(-50%);font-size:32px;font-weight:600;color:var(--color-ink);white-space:nowrap;font-variant-numeric:tabular-nums}
 .ticks{display:grid;grid-template-columns:150px 1fr;gap:28px}
-.ticks div{display:flex;justify-content:space-between;font-size:15px;color:var(--color-ink-light);border-top:1px solid var(--color-ink-light);padding-top:8px;font-variant-numeric:tabular-nums}
+.ticks div{display:flex;justify-content:space-between;font-size:20px;color:var(--color-ink-light);border-top:1px solid var(--color-ink-light);padding-top:8px;font-variant-numeric:tabular-nums}
 
 /* ---------- PIM: kit ---------- */
+/* kit card on the left grid line, wire, then the screens built on it in one row */
+.s-kit .kit{grid-template-columns:auto auto 1fr;gap:40px}
+.s-kit .kit .solo{justify-self:start}
+.s-kit .kit{align-items:center}
+.s-kit .targets{flex-direction:column;gap:24px}
+.tgt{display:flex;align-items:center;gap:28px}
+.tgt .ph{flex:none;height:200px;width:auto;aspect-ratio:16/10;padding:16px}
+.tgt>span{font-size:26px;font-weight:500;color:var(--color-ink);letter-spacing:-.01em}
+.s-kit .kitparts{width:340px;padding:32px;gap:20px}
 .kit{display:grid;grid-template-columns:1fr auto 1fr;gap:56px;align-items:center;width:100%;height:100%}
 .kitparts{display:flex;flex-direction:column;gap:16px;padding:28px;border-radius:22px;background:var(--color-surface);border:1.5px solid var(--line);width:300px}
 .kitparts .btn{align-self:flex-start;background:var(--color-ink);color:var(--color-bg);border-radius:10px;padding:10px 18px;font-size:18px;font-weight:500}
@@ -464,7 +481,7 @@ h2{font-size:var(--fs-h2);line-height:var(--lh-h2)}
 .kitparts .toggle::after{content:"";position:absolute;right:3px;top:3px;width:24px;height:24px;border-radius:50%;background:var(--color-surface)}
 .kitparts .lbl{font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent);font-weight:600}
 .targets{display:flex;flex-direction:column;gap:20px;grid-column:3}
-.targets .ph{height:170px;justify-content:center}
+.targets .ph{height:186px;width:auto;aspect-ratio:16/10;align-self:flex-start;justify-content:flex-end} /* screen thumbnails */
 .targets .ph b{font-size:22px;letter-spacing:0;text-transform:none;color:var(--color-ink);font-weight:600}
 .wire{grid-column:2;width:120px;height:2px;background:repeating-linear-gradient(90deg,var(--color-accent) 0 10px,transparent 10px 18px);
   transform:scaleX(var(--v));transform-origin:left;opacity:1}
@@ -482,6 +499,38 @@ h2{font-size:var(--fs-h2);line-height:var(--lh-h2)}
 .btn-primary{background:var(--color-primary);color:var(--color-on-primary);border:0}
 .btn-primary:hover{background:var(--color-primary-hover)}
 .outro-actions{display:flex;gap:16px;margin-top:8px}
+
+
+/* ---------- rec mode: video bubble (key R, ?record) ----------
+   The camera bubble (.safe, 280px, 48px from the bottom-right corner) owns the right 420px column.
+   One rule for every slide: content ends at x 1500 (padding-right 420). Wide visuals on
+   .rec-top slides rise to the top line (y 150) instead of floating in the middle. */
+/* chapter index: stays inside x 1500, titles on one line */
+.stage.rec .slide{--ch-w:1140px;--fs-chapter:46px}
+.chapters .t{white-space:nowrap}
+/* narrower text column in rec gives visuals 768px instead of 692 */
+.stage.rec .slide{--col-text:540px;--gap-col:72px}
+/* intro: a smaller portrait, top-aligned, so photo and bubble read as a pair on the diagonal */
+.stage.rec .slide.intro{column-gap:120px;align-content:center;justify-content:start}
+.stage.rec .s-time .hbars{max-width:1290px}
+.stage.rec .intro-photo{width:400px}
+.stage.rec .slide.intro .vis{align-self:start;margin-top:-40px}
+/* decision: both phones fit the 692px column; exit labels keep their own lane */
+.stage.rec .s-decide .decide{gap:176px;justify-content:flex-start}
+.stage.rec .s-decide .col:first-child{height:720px;align-self:end}
+.stage.rec .s-decide .col:last-child{height:520px;align-self:end} /* captions share one baseline */
+.stage.rec .s-decide .exits span::before{width:36px}
+/* craft: phone and cards move together, away from the bubble */
+.stage.rec .craft{transform:translateX(-80px)}
+/* result: tighter columns so the clock row fits */
+.stage.rec .res4{--r-card-w:620px;--r-col-gap:64px;--clock-w:250px;--r-clock-gap:36px}
+/* reflection: smaller minis so the seams row fits */
+.stage.rec .layer{grid-template-columns:150px 1fr;gap:28px}
+.stage.rec .mini{width:88px;height:156px}
+.stage.rec .minis .gap{width:34px}
+.stage.rec .scr{width:170px;height:300px}
+.stage.rec .s-kit .kitparts{width:300px;padding:28px}
+.stage.rec .tgt .ph{height:190px}
 
 /* ---------- portrait stage (phones) ---------- */
 
