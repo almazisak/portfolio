@@ -1,16 +1,39 @@
-# React + Vite
+# PRTFL'26
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio of Almaz Isakov, product designer.
 
-Currently, two official plugins are available:
+Live: https://portfolio-ruddy-omega-58.vercel.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Stack
 
-## React Compiler
+- [Astro](https://astro.build) 7, static output
+- React 19 islands for interactive parts
+- Plain CSS per component, design tokens in `src/styles/tokens.css`
+- SVGR for UI icons, deployed on Vercel
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting started
 
-## Expanding the ESLint configuration
+```sh
+npm install
+npm run dev      # dev server
+npm run build    # production build to dist/
+npm run preview  # serve the build locally
+npm run lint     # ESLint
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+`dev` and `build` first run `scripts/fetch-notes.mjs`, which pulls project notes from
+[almazisak/portfolio-notes](https://github.com/almazisak/portfolio-notes).
+To use a local checkout instead: `NOTES_SRC=../portfolio-notes npm run dev`.
+
+## Structure
+
+```
+src/pages/       routes: home, /work/*, /notes/*
+src/views/       page views (home, case deck, Balaty, notes)
+src/components/  shared components (contact dialog, hero bar)
+src/styles/      tokens and global styles
+public/          static assets, OG images, icon sprite
+docs/            architecture and color tokens
+```
+
+More detail in [`docs/architecture.md`](docs/architecture.md) and [`docs/color-tokens.md`](docs/color-tokens.md).
