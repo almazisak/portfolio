@@ -5,6 +5,8 @@
 
 const INLINE = /(`[^`]+`)|(!\[[^\]]*\]\([^)]+\))|(\[[^\]]+\]\([^)]+\))|(\*\*[^*]+\*\*)|(\*[^*\s][^*]*\*)/
 
+const IMAGE = /!\[([^\]]*)\]\(([^)]+)\)/g
+
 function resolveAsset(src, base) {
   if (/^https?:\/\//.test(src) || src.startsWith('/')) return src
   return `${base}/${src.replace(/^\.\//, '')}`
@@ -97,17 +99,41 @@ export default function renderMarkdown(source, base, topLevel = 2) {
 
     const para = []
     while (i < lines.length && lines[i].trim() && !/^(#{1,3}\s|```|>|(\s*)([-*]|\d+\.)\s)/.test(lines[i])) para.push(lines[i++])
-    // Two or more images with nothing else in the paragraph render as a row (Figma: Notes, image row)
-    const images = para.map((l) => l.trim().match(/^!\[([^\]]*)\]\(([^)]+)\)$/))
-    if (images.length > 1 && images.every(Boolean)) {
-      blocks.push(
-        <div key={key} className="notes-page__gallery" role="region" aria-label="Photos" tabIndex={0}>
-          {images.map(([, alt, src], n) => <img key={n} src={resolveAsset(src, base)} alt={alt} loading="lazy" />)}
-        </div>,
-      )
-      continue
+    // Lines made only of images never stay inside a text paragraph, whether or not there is a
+    // blank line before them: text lines become a <p>, consecutive image lines become one image
+    // block. Two or more images render as a row (Figma: Notes, image row), a single one as a
+    // full-width image.
+    let text = []
+    let pics = []
+    const flushText = () => {
+      if (text.length) blocks.push(<p key={`${key}-t${blocks.length}`}>{renderInline(text.join(' '), base)}</p>)
+      text = []
     }
-    blocks.push(<p key={key}>{renderInline(para.join(' '), base)}</p>)
+    const flushPics = () => {
+      if (pics.length === 1) {
+        const [alt, src] = pics[0]
+        blocks.push(<img key={`${key}-i${blocks.length}`} src={resolveAsset(src, base)} alt={alt} loading="lazy" />)
+      } else if (pics.length > 1) {
+        blocks.push(
+          <div key={`${key}-g${blocks.length}`} className="notes-page__gallery" role="region" aria-label="Photos" tabIndex={0}>
+            {pics.map(([alt, src], n) => <img key={n} src={resolveAsset(src, base)} alt={alt} loading="lazy" />)}
+          </div>,
+        )
+      }
+      pics = []
+    }
+    for (const l of para) {
+      const found = [...l.matchAll(IMAGE)]
+      if (found.length && !l.replace(IMAGE, '').trim()) {
+        flushText()
+        pics.push(...found.map(m => [m[1], m[2]]))
+      } else {
+        flushPics()
+        text.push(l)
+      }
+    }
+    flushText()
+    flushPics()
   }
 
   return blocks
